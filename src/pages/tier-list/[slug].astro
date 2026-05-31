@@ -9,7 +9,7 @@ const { pet } = Astro.props;
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Tier List', url: '/tier-list' }, { name: pet.name, url: `/tier-list/${pet.slug}` }]);
 const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-700', Uncommon: 'bg-green-200 text-green-700', Rare: 'bg-blue-200 text-blue-700', Epic: 'bg-purple-200 text-purple-700', Legendary: 'bg-amber-200 text-amber-700', Mythical: 'bg-red-200 text-red-700' };
 ---
-<BaseLayout title={`${pet.name} — ${pet.rarity} Pet (${pet.muscleBonus}x Muscle)`} description={`${pet.name}: ${pet.rarity} pet. ${pet.muscleBonus}x muscle, ${pet.winBonus}x wins. From ${pet.eggSource}.`} canonical={`/tier-list/${pet.slug}`}>
+<BaseLayout title={`${pet.name} — +1 Muscle to Arm Wrestle ${pet.rarity} Pet`} description={`${pet.name} in +1 Muscle to Arm Wrestle: ${pet.rarity} pet with ${pet.muscleBonus}x muscle bonus and ${pet.winBonus}x win bonus. Hatched from ${pet.eggSource}.`} canonical={`/tier-list/${pet.slug}/`}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-3xl mx-auto px-4 py-10">
     <a href="/tier-list/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Tier List</a>

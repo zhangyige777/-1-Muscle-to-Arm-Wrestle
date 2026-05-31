@@ -22,11 +22,12 @@ const faqSchema = generateFAQSchema([
   { question: 'How to get Golden Pets?', answer: 'Use the Gold Machine to combine 5 of the same pet into a Golden version.' },
 ]);
 ---
-<BaseLayout title={`+1 Muscle to Arm Wrestle Pet Tier List (${monthYear})`} description="All pets ranked from S to D tier with muscle bonus, win bonus, rarity, and hatch chance." canonical="/tier-list">
+<BaseLayout title="+1 Muscle to Arm Wrestle Pet Tier List" description="All pets in +1 Muscle to Arm Wrestle ranked from S to D tier with muscle bonus, win bonus, rarity, and hatch chance compared." canonical="/tier-list/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🏆 Pet Tier List ({monthYear})</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🏆</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Pet Tier List</h1>
     <p class="text-gray-500 mb-8">All pets ranked by muscle bonus and overall value.</p>
 
     {tiers.map(tier => {
@@ -58,6 +59,8 @@ const faqSchema = generateFAQSchema([
     <div class="mt-6 flex flex-wrap gap-3">
       <a href="/codes/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🎫 Free Pet Codes</a>
       <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Calculator</a>
+      <a href="/pet-tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">📊 Detailed Pet Rankings</a>
+      <a href="/best-pets/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">⭐ Best Pets Guide</a>
     </div>
   </div>
 </BaseLayout>

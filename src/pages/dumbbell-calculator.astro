@@ -16,7 +16,7 @@ const faqSchema = generateFAQSchema([
 ]);
 const videoGameSchema = generateVideoGameSchema();
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Dumbbell Calculator" description="Compare dumbbell upgrade value in +1 Muscle to Arm Wrestle. See cost per muscle and find the best upgrade path." canonical="/dumbbell-calculator">
+<BaseLayout title="+1 Muscle to Arm Wrestle Dumbbell Calculator" description="Compare dumbbell upgrade value in +1 Muscle to Arm Wrestle. See cost per muscle and find the best upgrade path." canonical="/dumbbell-calculator/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
@@ -28,7 +28,8 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Dumbbell Calculator</span>
     </nav>
 
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🏋️ Dumbbell Calculator</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🏋️</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Dumbbell Calculator</h1>
     <p class="text-gray-500 mb-8">Compare dumbbell upgrade value. See cost per muscle and find the best upgrade path.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

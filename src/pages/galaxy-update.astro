@@ -1,0 +1,217 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getPets, getDumbbells, getWorlds, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const dumbbells = getDumbbells();
+const worlds = getWorlds();
+const pets = getPets();
+
+const galaxyDumbbell = dumbbells.find(d => d.id === 'galaxy-dumbbell');
+const universalDumbbell = dumbbells.find(d => d.id === 'universal-dumbbell');
+const cyberCity = worlds.find(w => w.slug === 'cyber-city');
+const rockZone = worlds.find(w => w.slug === 'the-rock-zone');
+const endgamePets = pets.filter(p => ['the-rock-zone', 'cyber-city', 'Gamepass (329 Robux)'].includes(p.eggSource) || p.tier === 'S');
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Galaxy Update', url: '/galaxy-update' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'What is the Galaxy Update in +1 Muscle to Arm Wrestle?', answer: 'The Galaxy Update is a major content expansion that introduced the Galaxy Dumbbell tier (1500x muscle per step), the Cyber City world with extreme-difficulty opponents, and powerful endgame pets. It represents the transition from mid-game to late-game content, requiring players to have defeated the Fantasy World bosses.' },
+  { question: 'How do I unlock Cyber City in +1 Muscle to Arm Wrestle?', answer: 'To unlock Cyber City, you must first defeat all bosses in The Rock Zone, which requires defeating the Tech Titan (12T Muscle) in Fantasy World. The Rock Zone opponents require 67T to 150T muscle. Once you clear The Rock Zone, Cyber City becomes accessible with opponents ranging from 225T to 79Q muscle.' },
+  { question: 'Is the Galaxy Dumbbell worth the cost?', answer: 'The Galaxy Dumbbell costs 10B Wins and provides 1500x muscle per step, making it a massive upgrade over the Cyber Dumbbell (500x). It is absolutely worth saving for if you are progressing through The Rock Zone or Cyber City. Use the calculator to plan your path to affording it.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Galaxy Update" description="Everything about the Galaxy Update in +1 Muscle to Arm Wrestle. New worlds, pets, dumbbells, and features." canonical="/galaxy-update/">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Galaxy Update</span>
+    </nav>
+
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl" aria-hidden="true">&#x1F30C;</span>
+      <h1 class="text-3xl font-extrabold tracking-tight">Galaxy Update</h1>
+    </div>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Everything about the Galaxy Update in +1 Muscle to Arm Wrestle. New worlds, pets, dumbbells, and features explained.</p>
+
+    <!-- Introduction -->
+    <section class="mb-10">
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        The Galaxy Update is one of the most significant content expansions in <strong>+1 Muscle to Arm Wrestle</strong>. It introduced a new tier of endgame content including the Galaxy Dumbbell, The Rock Zone world, and the futuristic Cyber City — the final and most challenging world in the game. This update represents the bridge between mid-game and true endgame, pushing players to reach astronomical muscle levels and encounter meme-themed opponents.
+      </p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+        If you have been grinding through Fantasy World and wondering what comes next, the Galaxy Update is your goal. Reaching this content requires defeating the Tech Titan (12T Muscle) and progressing through The Rock Zone before unlocking Cyber City. The rewards are massive — opponents in Cyber City drop up to 10B Wins per match, and the Galaxy Dumbbell provides a staggering 1500x muscle per step.
+      </p>
+    </section>
+
+    <!-- New Features -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        New Features
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div class="p-5 rounded-xl border border-purple-200 dark:border-purple-900 bg-purple-50 dark:bg-purple-950/30">
+          <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2">Galaxy Dumbbell (Tier 9)</h3>
+          {galaxyDumbbell && (
+            <div class="flex gap-4 mb-2">
+              <div class="text-center">
+                <div class="font-bold text-blue-600 dark:text-blue-400 text-lg">{formatNumber(galaxyDumbbell.musclePerStep)}x</div>
+                <div class="text-xs text-gray-400">Muscle/Step</div>
+              </div>
+              <div class="text-center">
+                <div class="font-bold text-amber-600 dark:text-amber-400 text-lg">{formatNumber(galaxyDumbbell.cost)}</div>
+                <div class="text-xs text-gray-400">Cost (Wins)</div>
+              </div>
+            </div>
+          )}
+          <p>The Galaxy Dumbbell is a cosmic-themed endgame dumbbell that provides 1500x muscle per step — a massive 3x jump from the Cyber Dumbbell (500x). It costs 10B Wins, making it a significant investment, but one that pays off enormously when farming Cyber City opponents. This dumbbell is essential for taking on the strongest opponents in the game.</p>
+        </div>
+        <div class="p-5 rounded-xl border border-cyan-200 dark:border-cyan-900 bg-cyan-50 dark:bg-cyan-950/30">
+          <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2">Cyber City (World 4)</h3>
+          {cyberCity && (
+            <p class="mb-2">The final futuristic world with <strong>{cyberCity.opponents.length} extreme-difficulty opponents</strong>. Muscle requirements range from {formatNumber(cyberCity.opponents[0].muscleRequired)} to {formatNumber(cyberCity.opponents[cyberCity.opponents.length - 1].muscleRequired)} — culminating in the Green Alien, the ultimate boss requiring 79Q muscle and rewarding 10B Wins per match.</p>
+          )}
+          <p>Cyber City is the endgame destination where only the most dedicated players reach. The opponents here drop astronomical Win rewards, making it the best location for farming Wins once you can consistently beat its challengers.</p>
+        </div>
+        <div class="p-5 rounded-xl border border-orange-200 dark:border-orange-900 bg-orange-50 dark:bg-orange-950/30">
+          <h3 class="font-bold text-orange-700 dark:text-orange-400 mb-2">The Rock Zone (World 3)</h3>
+          {rockZone && (
+            <p class="mb-2">A meme-themed world featuring {rockZone.opponents.length} opponents including The Rock, Troll, and the legendary Skippy Toilet. Muscle requirements range from {formatNumber(rockZone.opponents[0].muscleRequired)} to {formatNumber(rockZone.opponents[rockZone.opponents.length - 1].muscleRequired)}. The Rock Zone serves as the gateway between Fantasy World and Cyber City.</p>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- New Opponents -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        New Opponents
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+          <thead class="bg-gray-50 dark:bg-gray-900">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold">Opponent</th>
+              <th class="px-4 py-3 text-center font-bold">Muscle Required</th>
+              <th class="px-4 py-3 text-center font-bold">Wins Reward</th>
+              <th class="px-4 py-3 text-center font-bold">World</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            {rockZone && rockZone.opponents.map(o => (
+              <tr class="bg-white dark:bg-gray-950">
+                <td class="px-4 py-3 font-bold">{o.name}</td>
+                <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400">{formatNumber(o.muscleRequired)}</td>
+                <td class="px-4 py-3 text-center font-bold text-amber-600 dark:text-amber-400">{formatNumber(o.winsReward)}</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 rounded text-xs font-bold bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300">Rock Zone</span></td>
+              </tr>
+            ))}
+            {cyberCity && cyberCity.opponents.map(o => (
+              <tr class="bg-gray-50 dark:bg-gray-900">
+                <td class="px-4 py-3 font-bold">{o.name}</td>
+                <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400">{formatNumber(o.muscleRequired)}</td>
+                <td class="px-4 py-3 text-center font-bold text-amber-600 dark:text-amber-400">{formatNumber(o.winsReward)}</td>
+                <td class="px-4 py-3 text-center"><span class="px-2 py-1 rounded text-xs font-bold bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300">Cyber City</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- New Pets -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Endgame Pets
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        The Galaxy Update era brings access to the most powerful pets in the game. These pets are essential for tackling the extreme muscle requirements of Cyber City and making the most of your Galaxy Dumbbell.
+      </p>
+      <div class="space-y-3">
+        {endgamePets.map(pet => (
+          <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-bold">{pet.name}</span>
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300">{pet.rarity}</span>
+                <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-bold text-gray-600 dark:text-gray-400">Tier {pet.tier}</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">{pet.description}</p>
+              <p class="text-xs text-gray-400 mt-1">Source: {pet.eggSource}</p>
+            </div>
+            <div class="flex gap-3 text-sm shrink-0">
+              <div class="text-center">
+                <div class="font-bold text-blue-600 dark:text-blue-400">{pet.muscleBonus}x</div>
+                <div class="text-xs text-gray-400">Muscle</div>
+              </div>
+              <div class="text-center">
+                <div class="font-bold text-amber-600 dark:text-amber-400">{pet.winBonus}x</div>
+                <div class="text-xs text-gray-400">Wins</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- How to Prepare -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+        How to Prepare for Galaxy Update Content
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Defeat the Tech Titan</h3>
+          <p>Your first milestone is defeating the Tech Titan in Fantasy World, which requires 12T muscle. This unlocks The Rock Zone, your gateway to Galaxy Update content. Focus on maxing your rebirth level and acquiring the strongest available pet to reach this threshold.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Upgrade to the Cyber Dumbbell</h3>
+          <p>Before you can efficiently farm The Rock Zone, you need the Cyber Dumbbell (Tier 8, 500x muscle per step). It costs 100M Wins, which you can farm from Fantasy World bosses like the Devil (10M Wins per match) and the Tech Titan (25M Wins per match).</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Push Rebirth Levels</h3>
+          <p>High rebirth levels (10+) are essential for Galaxy Update content. Each rebirth level multiplies your muscle gains, and the opponents here require quadrillions of muscle. Use the <a href="/calculator/" class="text-blue-600 hover:underline">calculator</a> to find the optimal rebirth timing for your current setup.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Stockpile Boosts</h3>
+          <p>Save your boosts from <a href="/codes/" class="text-blue-600 hover:underline">codes</a> for push sessions in The Rock Zone and Cyber City. A 2x muscle boost on top of a Cyber or Galaxy Dumbbell with high rebirth and a strong pet makes a massive difference in reaching the next milestone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progression Tips -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">Galaxy Update Progression Tips</h2>
+      <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><strong>Farm The Rock first:</strong> The Rock (67T muscle, 100M Wins) is your primary farming target in The Rock Zone. Beat him repeatedly to save for the Galaxy Dumbbell.</li>
+        <li><strong>Skip nothing:</strong> Even though The Rock Zone only has 3 opponents, each one gives significantly more Wins than any Fantasy World boss. Do not skip this world.</li>
+        <li><strong>Galaxy to Universal path:</strong> After getting the Galaxy Dumbbell (1500x), your next goal is the Universal Dumbbell (5000x, 1T Wins). Use Cyber City opponents to farm the massive Win requirement.</li>
+        <li><strong>Pet synergy:</strong> The Huge Hydra Dominus (150x muscle, 50x wins) transforms your Galaxy Update experience. If you are considering a Robux purchase, this pet provides the biggest value for endgame content.</li>
+        <li><strong>Green Alien is the goal:</strong> The Green Alien (79Q muscle, 10B Wins) is the ultimate opponent. Reaching this boss is the culmination of all your progression efforts.</li>
+      </ul>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/updates/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Update Log</a>
+        <a href="/wiki/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold text-sm hover:bg-gray-700">Wiki</a>
+        <a href="/dumbbells/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Dumbbells Guide</a>
+        <a href="/calculator/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Muscle Calculator</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

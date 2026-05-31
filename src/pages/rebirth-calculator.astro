@@ -18,7 +18,7 @@ const faqSchema = generateFAQSchema([
 ]);
 const videoGameSchema = generateVideoGameSchema();
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Rebirth Calculator" description="Should you rebirth now or wait? Calculate the optimal rebirth timing in +1 Muscle to Arm Wrestle with break-even analysis." canonical="/rebirth-calculator">
+<BaseLayout title="+1 Muscle to Arm Wrestle Rebirth Calculator" description="Should you rebirth now or wait? Calculate the optimal rebirth timing in +1 Muscle to Arm Wrestle with break-even analysis." canonical="/rebirth-calculator/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
@@ -30,7 +30,8 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Rebirth Calculator</span>
     </nav>
 
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🔄 Rebirth Calculator</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🔄</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Rebirth Calculator</h1>
     <p class="text-gray-500 mb-8">Should you rebirth now or wait? Calculate the optimal rebirth timing with break-even analysis.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

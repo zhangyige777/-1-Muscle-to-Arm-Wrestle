@@ -54,7 +54,7 @@ const lastUpdated = config.game.lastUpdated;
 <BaseLayout
   title="+1 Muscle to Arm Wrestle Pet Tier List (Best Pets Ranked)"
   description="Complete pet tier list for +1 Muscle to Arm Wrestle. All pets ranked from S to D tier with muscle and win bonuses compared."
-  canonical="/pet-tier-list"
+  canonical="/pet-tier-list/"
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -67,9 +67,8 @@ const lastUpdated = config.game.lastUpdated;
       <span class="text-gray-700 dark:text-gray-300 font-medium">Pet Tier List</span>
     </nav>
 
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">
-      🏆 +1 Muscle to Arm Wrestle Pet Tier List
-    </h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🏆</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Pet Tier List</h1>
     <p class="text-gray-500 mb-2">
       All {allPets.length} pets ranked from S to D tier with muscle and win bonuses compared.
     </p>
@@ -174,6 +173,9 @@ const lastUpdated = config.game.lastUpdated;
     <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
       <h2 class="text-xl font-bold mb-4">Related Tools & Guides</h2>
       <div class="flex flex-wrap gap-3">
+        <a href="/tier-list/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold text-sm hover:bg-gray-700 transition-colors">
+          🏆 Full Tier List
+        </a>
         <a href="/best-pets/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600 transition-colors">
           🐾 Best Pets Guide
         </a>

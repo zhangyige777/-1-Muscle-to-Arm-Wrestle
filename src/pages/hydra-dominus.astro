@@ -1,0 +1,207 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const pets = getPets();
+
+const hydraDominus = pets.find(p => p.id === 'huge-hydra-dominus');
+const bestFreePet = pets.filter(p => !p.eggSource.includes('Gamepass')).sort((a, b) => b.muscleBonus - a.muscleBonus)[0];
+const bestF2PWins = pets.filter(p => !p.eggSource.includes('Gamepass')).sort((a, b) => b.winBonus - a.winBonus)[0];
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Hydra Dominus', url: '/hydra-dominus' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'How do I get the Huge Hydra Dominus in +1 Muscle to Arm Wrestle?', answer: 'The Huge Hydra Dominus is exclusively available through the in-game Gamepass for 329 Robux. You cannot hatch it from eggs or earn it through gameplay. Once purchased, it is permanently added to your account and provides a 150x muscle bonus and 50x win bonus — the highest pet multipliers in the game.' },
+  { question: 'Is the Huge Hydra Dominus worth 329 Robux?', answer: 'For dedicated players, yes. The Huge Hydra Dominus provides a 150x muscle bonus and 50x win bonus, which is 3x better than the best free pet (67, with 50x muscle and 10x wins). When combined with high rebirth levels and a strong dumbbell, the difference in progression speed is enormous. If you play regularly and plan to reach Cyber City, the Hydra Dominus significantly shortens your grind.' },
+  { question: 'How does the Huge Hydra Dominus compare to free pets?', answer: 'The best free pet is the 67 (50x muscle, 10x wins from 67 Packs). The Huge Hydra Dominus triples the muscle bonus (150x vs 50x) and quintuples the win bonus (50x vs 10x). With a Galaxy Dumbbell and Rebirth 10, the Hydra Dominus gives 2,250,000 muscle per step versus 750,000 with the 67 — a difference of 1.5M muscle per step that adds up incredibly fast over time.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Hydra Dominus Pet Guide" description="Complete guide to the Huge Hydra Dominus in +1 Muscle to Arm Wrestle. Cost, stats, how to get it, and is it worth the Robux?" canonical="/hydra-dominus/">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Hydra Dominus</span>
+    </nav>
+
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl" aria-hidden="true">&#x1F409;</span>
+      <h1 class="text-3xl font-extrabold tracking-tight">Huge Hydra Dominus Pet Guide</h1>
+    </div>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Complete guide to the Huge Hydra Dominus in +1 Muscle to Arm Wrestle. Cost, stats, how to get it, and is it worth the Robux?</p>
+
+    <!-- Pet Overview Card -->
+    {hydraDominus && (
+      <section class="mb-10">
+        <div class="p-6 rounded-xl border-2 border-amber-400 dark:border-amber-600 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-2xl font-extrabold text-amber-600 dark:text-amber-400">{hydraDominus.name}</span>
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300">{hydraDominus.rarity}</span>
+                <span class="px-2 py-0.5 bg-amber-200 dark:bg-amber-800 rounded text-xs font-bold text-amber-800 dark:text-amber-200">Tier {hydraDominus.tier} &mdash; ULTIMATE</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{hydraDominus.description}</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3 rounded-xl bg-white/60 dark:bg-gray-900/40 text-center">
+              <div class="font-black text-blue-600 dark:text-blue-400 text-2xl">{hydraDominus.muscleBonus}x</div>
+              <div class="text-xs text-gray-500 font-medium">Muscle Bonus</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/60 dark:bg-gray-900/40 text-center">
+              <div class="font-black text-amber-600 dark:text-amber-400 text-2xl">{hydraDominus.winBonus}x</div>
+              <div class="text-xs text-gray-500 font-medium">Win Bonus</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/60 dark:bg-gray-900/40 text-center">
+              <div class="font-black text-green-600 dark:text-green-400 text-2xl">329</div>
+              <div class="text-xs text-gray-500 font-medium">Cost (Robux)</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/60 dark:bg-gray-900/40 text-center">
+              <div class="font-black text-purple-600 dark:text-purple-400 text-2xl">Gamepass</div>
+              <div class="text-xs text-gray-500 font-medium">How to Get</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- How to Obtain -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        How to Obtain the Huge Hydra Dominus
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>
+          The Huge Hydra Dominus is exclusively available through the in-game <strong>Gamepass for 329 Robux</strong>. Unlike other pets that can be hatched from eggs, there is no way to obtain this pet through free gameplay. You must purchase it from the Roblox game store.
+        </p>
+        <p>
+          Once purchased, the pet is permanently bound to your account. You do not need to hatch it or do anything else — it appears in your pet inventory immediately. This means there is no luck involved; every player who buys the Gamepass receives the exact same pet with the full 150x muscle bonus and 50x win bonus.
+        </p>
+        <p>
+          The pet is classified as <strong>Mythical</strong> rarity and Tier S (the highest tier). According to game data, only 18 to 101 of these pets exist across all servers, making it one of the rarest pets in the game — not because of hatch luck, but because of the Robux cost barrier.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stat Comparison -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        Stat Comparison vs Best Free Pets
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        To understand the true value of the Huge Hydra Dominus, compare it against the best pets available to free-to-play players.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+          <thead class="bg-gray-50 dark:bg-gray-900">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold">Pet</th>
+              <th class="px-4 py-3 text-center font-bold">Muscle Bonus</th>
+              <th class="px-4 py-3 text-center font-bold">Win Bonus</th>
+              <th class="px-4 py-3 text-center font-bold">Source</th>
+              <th class="px-4 py-3 text-center font-bold">Cost</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            {hydraDominus && (
+              <tr class="bg-amber-50 dark:bg-amber-950/30">
+                <td class="px-4 py-3 font-bold text-amber-700 dark:text-amber-400">{hydraDominus.name}</td>
+                <td class="px-4 py-3 text-center font-bold text-blue-600 dark:text-blue-400">{hydraDominus.muscleBonus}x</td>
+                <td class="px-4 py-3 text-center font-bold text-amber-600 dark:text-amber-400">{hydraDominus.winBonus}x</td>
+                <td class="px-4 py-3 text-center">Gamepass</td>
+                <td class="px-4 py-3 text-center">329 Robux</td>
+              </tr>
+            )}
+            {bestFreePet && (
+              <tr class="bg-white dark:bg-gray-950">
+                <td class="px-4 py-3 font-bold">{bestFreePet.name}</td>
+                <td class="px-4 py-3 text-center font-bold text-blue-600 dark:text-blue-400">{bestFreePet.muscleBonus}x</td>
+                <td class="px-4 py-3 text-center font-bold text-amber-600 dark:text-amber-400">{bestFreePet.winBonus}x</td>
+                <td class="px-4 py-3 text-center">{bestFreePet.eggSource}</td>
+                <td class="px-4 py-3 text-center">Free (1% hatch)</td>
+              </tr>
+            )}
+            {pets.filter(p => p.id !== 'huge-hydra-dominus' && p.id !== bestFreePet?.id && ['Legendary', 'Mythical'].includes(p.rarity)).map(pet => (
+              <tr class="bg-gray-50 dark:bg-gray-900">
+                <td class="px-4 py-3 font-bold">{pet.name}</td>
+                <td class="px-4 py-3 text-center">{pet.muscleBonus}x</td>
+                <td class="px-4 py-3 text-center">{pet.winBonus}x</td>
+                <td class="px-4 py-3 text-center text-gray-500">{pet.eggSource}</td>
+                <td class="px-4 py-3 text-center text-gray-500">Free ({(pet.hatchChance * 100).toFixed(0)}% hatch)</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {hydraDominus && bestFreePet && (
+        <div class="mt-4 p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            <strong>Key takeaway:</strong> The Huge Hydra Dominus provides <strong>{(hydraDominus.muscleBonus / bestFreePet.muscleBonus).toFixed(1)}x more muscle bonus</strong> and <strong>{(hydraDominus.winBonus / bestFreePet.winBonus).toFixed(1)}x more win bonus</strong> than the best free pet ({bestFreePet.name}). With a Galaxy Dumbbell (1500x) and Rebirth 10 (15x), the Hydra Dominus gives {formatNumber(1500 * 15 * hydraDominus.muscleBonus)} muscle per step versus {formatNumber(1500 * 15 * bestFreePet.muscleBonus)} with {bestFreePet.name} — a difference of {formatNumber(1500 * 15 * (hydraDominus.muscleBonus - bestFreePet.muscleBonus))} muscle per step.
+          </p>
+        </div>
+      )}
+    </section>
+
+    <!-- Is It Worth Buying? -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Is the Huge Hydra Dominus Worth Buying?
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">For Dedicated Players: Yes</h3>
+          <p>
+            If you play <strong>+1 Muscle to Arm Wrestle</strong> regularly and plan to reach Cyber City, the Huge Hydra Dominus is the single best Robux investment you can make. The 150x muscle bonus and 50x win bonus transform your progression speed at every stage of the game. The pet pays for itself in time saved — weeks of grinding reduced to days, especially in late game where the multipliers compound dramatically.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">For Casual Players: Depends</h3>
+          <p>
+            If you play casually (a few hours per week), the Huge Hydra Dominus is still powerful but may not feel as impactful because you are not pushing the extreme content where the multiplier difference matters most. The 67 pet (50x muscle, 10x wins) from 67 Packs is a strong free alternative for casual players. Consider whether 329 Robux is better spent on this pet or other Roblox experiences you enjoy.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Value Analysis</h3>
+          <p>
+            At 329 Robux, the Huge Hydra Dominus costs roughly equivalent to a few dollars. For the amount of progression power it provides — tripling the muscle bonus and quintupling the win bonus of the best free pet — it is one of the most efficient Gamepass purchases in the game. The fact that only 18 to 101 exist also makes it a prestigious flex in servers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips for Maximizing Value -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">Tips for Maximizing the Hydra Dominus</h2>
+      <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><strong>Pair with high rebirth:</strong> The Hydra Dominus scales with rebirth levels. At Rebirth 17 (200x), the pet's 150x bonus results in 30,000x combined multiplier on top of your dumbbell base. Always push rebirth levels to maximize the pet's impact.</li>
+        <li><strong>Use with the best dumbbell:</strong> Equip your strongest available dumbbell alongside the Hydra Dominus. The pet bonus is applied to every step you take with the dumbbell, so a higher base means more total gain.</li>
+        <li><strong>Combine with boosts:</strong> Activate a 2x Muscle Boost with the Hydra Dominus equipped for the ultimate farming setup. At high rebirth levels, this combination generates millions of muscle per step.</li>
+        <li><strong>Farm the hardest opponents you can beat:</strong> The Hydra Dominus excels at helping you reach higher-tier opponents. Always challenge the strongest opponent available to you, as the Win rewards scale exponentially.</li>
+        <li><strong>Do not neglect rebirth for the pet:</strong> The pet is a multiplier, not a replacement for rebirth. You still need to rebirth regularly to reach the highest multipliers. The pet amplifies whatever rebirth level you have.</li>
+      </ul>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/best-pets/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Best Pets</a>
+        <a href="/tier-list/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Pet Tier List</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">Full Tier List</a>
+        <a href="/pet-calculator/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Pet Calculator</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

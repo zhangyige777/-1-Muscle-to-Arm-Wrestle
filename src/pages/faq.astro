@@ -85,7 +85,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ]);
 const faqSchema = generateFAQSchema(faqItems.map(f => ({ question: f.question, answer: f.answer })));
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle FAQ" description="Frequently asked questions about +1 Muscle to Arm Wrestle. Codes, rebirth, wins, pets, eggs, dumbbells, and more." canonical="/faq">
+<BaseLayout title="+1 Muscle to Arm Wrestle FAQ" description="Frequently asked questions about +1 Muscle to Arm Wrestle. Codes, rebirth, wins, pets, eggs, dumbbells, and more." canonical="/faq/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 

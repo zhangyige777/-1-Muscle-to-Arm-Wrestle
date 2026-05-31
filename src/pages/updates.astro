@@ -10,10 +10,11 @@ const UPDATES = [
   { date: '2026-04-20', title: 'Game Launch', changes: ['Initial release', 'Starter Gym with 10 opponents', 'Basic dumbbell upgrades', 'Walk = +1 Muscle per step'] },
 ];
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Updates" description="Latest updates and patch notes. Updated every Saturday." canonical="/updates">
+<BaseLayout title="+1 Muscle to Arm Wrestle Updates" description="Latest updates and patch notes. Updated every Saturday." canonical="/updates/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-4xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-extrabold mb-2">🆕 Updates & Patch Notes</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🆕</div>
+    <h1 class="text-3xl font-extrabold mb-2">Updates & Patch Notes</h1>
     <p class="text-gray-500 mb-8">Game updates every Saturday.</p>
     <div class="space-y-6">
       {UPDATES.map((u, i) => (

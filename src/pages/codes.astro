@@ -14,12 +14,13 @@ const faqSchema = generateFAQSchema([
   { question: 'Why is my code not working?', answer: 'Codes may be expired, entered incorrectly, or already redeemed. Some codes like "more potion" contain spaces.' },
 ]);
 ---
-<BaseLayout title={`+1 Muscle to Arm Wrestle Codes (${monthYear}) — All Working Codes`} description="All working codes for free Wins, Muscle, Pets, Eggs, and Boosts. Updated daily." canonical="/codes">
+<BaseLayout title="+1 Muscle to Arm Wrestle Codes — All Working Codes" description="All working codes for +1 Muscle to Arm Wrestle. Free Wins, Muscle, Pets, Eggs, and Boosts updated daily." canonical="/codes/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🎫 +1 Muscle to Arm Wrestle Codes ({monthYear})</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🎫</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Codes</h1>
     <p class="text-gray-500 mb-8">All working promo codes for free Wins, Muscle, Pets, Eggs, and Boosts.</p>
 
     <!-- Active Codes -->

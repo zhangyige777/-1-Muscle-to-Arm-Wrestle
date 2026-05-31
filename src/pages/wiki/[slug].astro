@@ -7,11 +7,12 @@ const { world } = Astro.props;
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Wiki', url: '/wiki' }, { name: world.name, url: `/wiki/${world.slug}` }]);
 const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700', Medium:'bg-yellow-100 text-yellow-700', Hard:'bg-orange-100 text-orange-700', Extreme:'bg-red-100 text-red-700' };
 ---
-<BaseLayout title={`${world.name} — All Opponents | +1 Muscle to Arm Wrestle`} description={`${world.name}: ${world.opponents.length} opponents with muscle requirements.`} canonical={`/wiki/${world.slug}`}>
+<BaseLayout title={`${world.name} — +1 Muscle to Arm Wrestle Wiki`} description={`${world.name} in +1 Muscle to Arm Wrestle: ${world.opponents.length} opponents with muscle requirements, win rewards, and difficulty ratings.`} canonical={`/wiki/${world.slug}/`}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-4xl mx-auto px-4 py-10">
     <a href="/wiki/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Wiki</a>
-    <h1 class="text-3xl font-extrabold mb-2">🌍 {world.name}</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">🌍</div>
+    <h1 class="text-3xl font-extrabold mb-2">{world.name}</h1>
     <p class="text-gray-500 mb-2">{world.description}</p>
     <div class="flex flex-wrap gap-3 text-sm mb-8">
       <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700">World {world.order} of 4</span>

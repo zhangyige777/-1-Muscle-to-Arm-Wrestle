@@ -2,9 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { generateSEOMetadata } from '../lib/data';
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Beginner Guide" description="Complete walkthrough: how to gain muscle, arm wrestle, upgrade dumbbells, collect pets, and rebirth." canonical="/beginner-guide">
+<BaseLayout title="+1 Muscle to Arm Wrestle Beginner Guide" description="Complete walkthrough: how to gain muscle, arm wrestle, upgrade dumbbells, collect pets, and rebirth." canonical="/beginner-guide/">
   <div class="max-w-4xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-extrabold mb-2">📖 Beginner Guide</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">📖</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Beginner Guide</h1>
     <p class="text-gray-500 mb-8">Everything you need to go from Noob to Pro.</p>
     <div class="space-y-10">
       <section>

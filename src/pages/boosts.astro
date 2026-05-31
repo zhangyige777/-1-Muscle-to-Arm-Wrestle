@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Boosts', url: '/boosts' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'What are boosts in +1 Muscle to Arm Wrestle?', answer: 'Boosts are temporary multipliers that increase your muscle gains, win rewards, or luck for a limited time. The three main types are Win Boost (increases wins from opponents), Muscle Boost (doubles muscle per step), and Lucky Boost (increases hatch chances for rare pets).' },
+  { question: 'How do I get free boosts in +1 Muscle to Arm Wrestle?', answer: 'You can get free boosts by redeeming promo codes from the in-game Shop. Check our codes page for the latest boost codes. Boosts are also occasionally given out during special events and game updates, which typically happen every Saturday.' },
+  { question: 'Do boosts stack in +1 Muscle to Arm Wrestle?', answer: 'Yes, boosts stack multiplicatively with your other multipliers (dumbbell, rebirth, pet). Activating a 2x Muscle Boost on top of a 30x dumbbell, 3x rebirth, and 2x pet bonus gives you 30 x 3 x 2 x 2 = 360 muscle per step instead of 180. Always use boosts during long play sessions for maximum value.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Boosts Guide" description="All boosts in +1 Muscle to Arm Wrestle explained. Learn how win boosts, muscle boosts, and lucky boosts work and when to use them." canonical="/boosts/">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Boosts</span>
+    </nav>
+
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl" aria-hidden="true">&#x26A1;</span>
+      <h1 class="text-3xl font-extrabold tracking-tight">Boosts Guide</h1>
+    </div>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">All boosts in +1 Muscle to Arm Wrestle explained. Learn how win boosts, muscle boosts, and lucky boosts work, how to get them, and when to activate them for maximum benefit.</p>
+
+    <!-- Introduction -->
+    <section class="mb-10">
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        Boosts are temporary power-ups in <strong>+1 Muscle to Arm Wrestle</strong> that multiply your gains for a limited duration. Understanding when and how to use boosts can dramatically accelerate your progression, especially during push sessions where you aim for a specific milestone like a new dumbbell or rebirth threshold.
+      </p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+        There are three main boost types, each targeting a different aspect of gameplay. Because all boosts stack multiplicatively with your existing multipliers (dumbbell base, rebirth level, and pet bonus), their impact becomes more powerful the further you progress in the game. A 2x boost on a late-game setup can be worth thousands of muscle per step compared to just a few in the early game.
+      </p>
+    </section>
+
+    <!-- Boost Types -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        Boost Types
+      </h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30">
+          <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2">Win Boost</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            The Win Boost increases the number of Wins you earn from each successful arm wrestle match. If an opponent normally gives 1,000 Wins per match, a 2x Win Boost doubles that to 2,000 Wins. This boost is essential when you are saving up for an expensive dumbbell upgrade or pet egg. Prioritize Win Boosts when your immediate goal is accumulating Wins for a major purchase.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30">
+          <h3 class="font-bold text-green-700 dark:text-green-400 mb-2">Muscle Boost</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            The Muscle Boost doubles your muscle per step for the duration of the boost. This is the most straightforward and consistently useful boost in the game. It directly multiplies the muscle formula: Base x Rebirth x Pet x 2. Because it scales with all your other multipliers, the Muscle Boost becomes increasingly valuable as you progress. A late-game player with high rebirth and a strong pet gets exponentially more benefit from a Muscle Boost than a new player.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-purple-200 dark:border-purple-900 bg-purple-50 dark:bg-purple-950/30">
+          <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2">Lucky Boost</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            The Lucky Boost increases your chances of hatching rare pets from eggs. If you are hunting for a Legendary or Mythical pet, the Lucky Boost can significantly improve your odds. Use Lucky Boosts when you have saved up a large number of eggs and are ready for a hatching session. This boost does not affect muscle gains or Wins — it is purely for pet acquisition.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Get Boosts -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        How to Get Boosts
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Promo Codes (Free)</h3>
+          <p>The most reliable way to get free boosts is by redeeming <a href="/codes/" class="text-blue-600 hover:underline">promo codes</a>. The developers regularly release codes that include boost rewards, especially during weekly Saturday updates. Always check the codes page for the latest active codes — many include free 2x muscle boosts, win boosts, or lucky boosts that last for a limited time.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">In-Game Shop (Wins)</h3>
+          <p>You can purchase boosts directly from the in-game Shop using Wins. The cost varies depending on the boost type and duration. If you have accumulated a large number of Wins and already own the best available dumbbell, spending Wins on boosts is a smart investment to push further.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Gamepass (Robux)</h3>
+          <p>Certain gamepasses available for Robux provide permanent or recurring boost benefits. While these require spending real currency, they offer the best boost value for dedicated players who play regularly. Evaluate whether the boost gamepass fits your play schedule before purchasing.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Events and Updates</h3>
+          <p>Special in-game events and major updates often include free boost rewards as part of the celebration. The weekly update schedule (every Saturday) is a good time to log in and check for new boost opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to Activate Boosts -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        When to Activate Boosts
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <ul class="space-y-3">
+          <li><strong>Before a long play session:</strong> Boosts have a time limit. Never activate a boost if you are about to stop playing. Use them when you have at least 15–30 minutes of uninterrupted play time ahead of you. The longer you can keep the boost active while actively farming, the more value you get.</li>
+          <li><strong>Before a big push:</strong> If you are close to a milestone — like affording a new dumbbell, reaching a rebirth threshold, or unlocking a new world — activate a boost to push you over the finish line faster.</li>
+          <li><strong>With the right setup:</strong> Before activating a Muscle Boost, make sure you have your best pet equipped and are using your strongest dumbbell. The boost multiplies everything, so having optimal gear maximizes the return.</li>
+          <li><strong>Lucky Boosts before hatching:</strong> Save Lucky Boosts for when you have accumulated multiple premium eggs (Fantasy Egg, Strawberry Egg, 67 Pack). Hatching several eggs during a Lucky Boost gives you the best chance at a Legendary or Mythical pet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stacking Rules -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+        Stacking Rules
+      </h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>Boosts in <strong>+1 Muscle to Arm Wrestle</strong> stack multiplicatively with all other multipliers in the game. Here is how the stacking works:</p>
+        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 font-mono text-center text-sm font-bold">
+          Total = Dumbbell Base &times; Rebirth Mult &times; Pet Bonus &times; Boost Mult
+        </div>
+        <p>This means that a 2x Muscle Boost does not just add 2x to your total — it doubles everything you already have. With a 500x dumbbell, 10x rebirth, and 50x pet, activating a 2x boost takes you from 250,000 muscle per step to 500,000 muscle per step. Use the <a href="/calculator/" class="text-blue-600 hover:underline">muscle calculator</a> to see exactly how boosts affect your specific setup.</p>
+        <p>You can have multiple boost types active simultaneously (for example, a Win Boost and a Muscle Boost at the same time). However, two of the same boost type do not stack on top of each other — they refresh the duration instead.</p>
+      </div>
+    </section>
+
+    <!-- Boost Farming Tips -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">Boost Farming Tips</h2>
+      <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><strong>Collect codes weekly:</strong> New codes drop every Saturday with the game update. Bookmark the <a href="/codes/" class="text-blue-600 hover:underline">codes page</a> and check it regularly to stock up on free boosts.</li>
+        <li><strong>Plan your sessions:</strong> Save boosts for dedicated farming sessions rather than casual logins. A boost wasted on 5 minutes of play is a significant loss.</li>
+        <li><strong>Combine with rebirth:</strong> The best time to use a Muscle Boost is right after a rebirth when you are rebuilding muscle with a higher multiplier. The boost helps you quickly regain your previous muscle level and push further.</li>
+        <li><strong>Win Boost for egg shopping:</strong> Use Win Boosts when farming Wins specifically to buy premium eggs. This accelerates your progress toward rare pets.</li>
+        <li><strong>Track boost timers:</strong> Pay attention to how much time is left on your active boosts. Plan your play around the boost timer to avoid wasting any active duration.</li>
+      </ul>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+        <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Muscle Calculator</a>
+        <a href="/wins-calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Wins Calculator</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>
