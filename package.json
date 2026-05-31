@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node scripts/copy-sitemap-index.mjs",
+    "postbuild": "node scripts/write-sitemaps.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
