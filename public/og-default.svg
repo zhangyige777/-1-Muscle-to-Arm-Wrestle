@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">+1 Muscle to Arm Wrestle Guide and Tools</title>
+  <desc id="desc">Open graph image for the +1 Muscle to Arm Wrestle companion site.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="0.52" stop-color="#1f2937"/>
+      <stop offset="1" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1020" cy="120" r="210" fill="#f59e0b" opacity="0.16"/>
+  <circle cx="170" cy="520" r="180" fill="#2563eb" opacity="0.18"/>
+  <g transform="translate(790 150) scale(2.15)">
+    <path d="M46 142V76c0-31 18-54 45-62l19-6c12-4 24 4 27 16l5 24c3 13-4 25-16 30l-27 11c-13 5-22 18-22 32v21z" fill="url(#gold)"/>
+    <path d="M144 24c18-17 46-16 63 2l42 43c16 17 25 39 25 63v10h-60v-20c0-11-4-22-12-30l-43-43c-8-8-17-12-27-11z" fill="url(#gold)"/>
+    <path d="M76 90c20-14 42-13 62 3" fill="none" stroke="#92400e" stroke-width="7" stroke-linecap="round" opacity="0.45"/>
+  </g>
+  <g transform="translate(96 98)">
+    <rect x="0" y="0" width="172" height="82" rx="18" fill="url(#gold)"/>
+    <text x="86" y="57" font-family="Arial, sans-serif" font-size="46" font-weight="900" fill="#111827" text-anchor="middle">+1</text>
+  </g>
+  <text x="96" y="278" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="#ffffff">Muscle to Arm Wrestle</text>
+  <text x="96" y="360" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#fbbf24">Guide, Codes, Calculator</text>
+  <text x="96" y="438" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#e5e7eb">Pet tier list, worlds, opponents, and beginner tips</text>
+  <rect x="96" y="494" width="390" height="58" rx="14" fill="#ffffff" opacity="0.12"/>
+  <text x="122" y="534" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff">1-muscle-to-arm-wrestle.pages.dev</text>
+</svg>

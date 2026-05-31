@@ -12,8 +12,11 @@ interface Props {
 }
 
 const config = getGameConfig();
-const { title = config.seo.siteTitle, description = config.seo.siteDescription, canonical, ogImage = '/og-default.jpg' } = Astro.props;
+const { title = config.seo.siteTitle, description = config.seo.siteDescription, canonical, ogImage = config.seo.defaultOgImage } = Astro.props;
 const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+if (canonicalURL.pathname !== '/' && !canonicalURL.pathname.endsWith('/')) {
+  canonicalURL.pathname += '/';
+}
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
