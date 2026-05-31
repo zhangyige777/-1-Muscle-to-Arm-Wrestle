@@ -1,0 +1,167 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getWorlds, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const worlds = getWorlds();
+const pets = getPets();
+
+const bestWinPets = [...pets].sort((a, b) => b.winBonus - a.winBonus).slice(0, 5);
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'How to Get Wins Fast', url: '/how-to-get-wins-fast' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'What is the fastest way to get Wins in +1 Muscle to Arm Wrestle?', answer: 'The fastest way is to defeat the highest-reward opponent you can beat, equipped with a pet that has a high winBonus. Use boosts to reach stronger opponents faster, and always rebirth when you have beaten all available opponents to increase your win multiplier.' },
+  { question: 'Which opponent gives the most Wins?', answer: 'The Green Alien in Cyber City gives 10B Wins per victory, but requires 79Q muscle. For most players, the best Wins-per-effort ratio comes from the highest opponent they can consistently beat in their current world.' },
+  { question: 'Do pets increase Wins earned from opponents?', answer: 'Yes, pets with a high winBonus multiplier increase the Wins you earn from each arm wrestle. The Huge Hydra Dominus gives 50x Wins, and the "67" pet gives 10x. Always equip your highest winBonus pet when farming Wins.' },
+]);
+
+function getDifficultyColor(difficulty: string) {
+  const colors: Record<string, string> = {
+    Easy: 'text-green-600 dark:text-green-400',
+    Medium: 'text-yellow-600 dark:text-yellow-400',
+    Hard: 'text-orange-600 dark:text-orange-400',
+    Extreme: 'text-red-600 dark:text-red-400',
+  };
+  return colors[difficulty] || 'text-gray-500';
+}
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle How to Get Wins Fast" description="Best strategies to earn wins fast in +1 Muscle to Arm Wrestle. Opponent selection, pet bonuses, boosts, and farming routes." canonical="/how-to-get-wins-fast">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">How to Get Wins Fast</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">How to Get Wins Fast</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Best strategies to earn Wins quickly &mdash; opponent selection, pet bonuses, boost timing, and optimal farming routes.</p>
+
+    <!-- Best Opponents Per World -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        Best Opponents Per World
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        The key to fast Wins is beating the highest-reward opponent you can reach. Each world has opponents that scale in both difficulty and reward. Below are the top opponents in each world, sorted by Wins reward. Focus on the strongest opponent you can consistently defeat.
+      </p>
+      <div class="space-y-6">
+        {worlds.map(world => {
+          const topOpponents = [...world.opponents].sort((a, b) => b.winsReward - a.winsReward).slice(0, 3);
+          return (
+            <div class="p-5 rounded-xl border border-gray-200 dark:border-gray-800">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-lg">{world.name}</h3>
+                <span class="text-xs text-gray-400">Unlock: {world.unlockRequirement}</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">{world.description}</p>
+              <div class="space-y-2">
+                {topOpponents.map(opp => (
+                  <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-900">
+                    <div>
+                      <span class="font-bold text-sm">{opp.name}</span>
+                      <span class={`ml-2 text-xs font-bold ${getDifficultyColor(opp.difficulty)}`}>{opp.difficulty}</span>
+                    </div>
+                    <div class="flex gap-4 text-xs">
+                      <div class="text-center">
+                        <div class="font-bold text-blue-600 dark:text-blue-400">{formatNumber(opp.muscleRequired)}</div>
+                        <div class="text-gray-400">Muscle</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="font-bold text-amber-600 dark:text-amber-400">{formatNumber(opp.winsReward)}</div>
+                        <div class="text-gray-400">Wins</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Pet Win Bonuses -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        Best Pets for Win Farming
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        Your pet's <strong>winBonus</strong> multiplier directly increases the Wins you earn from each opponent. Equipping the right pet can double or even 50x your Wins per match. Here are the top 5 pets for Wins farming:
+      </p>
+      <div class="space-y-3">
+        {bestWinPets.map((pet, i) => (
+          <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded-full flex items-center justify-center text-sm font-bold">#{i + 1}</span>
+              <div>
+                <span class="font-bold">{pet.name}</span>
+                <span class="ml-2 text-xs text-gray-400">{pet.rarity}</span>
+              </div>
+            </div>
+            <div class="text-center">
+              <span class="font-bold text-amber-600 dark:text-amber-400 text-lg">{pet.winBonus}x</span>
+              <div class="text-xs text-gray-400">Win Bonus</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Boost Usage Tips -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Boost Usage Tips
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>Boosts temporarily double your muscle gains, allowing you to reach stronger opponents faster. Here is how to use them effectively:</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Activate before farming:</strong> Pop a boost right before a dedicated play session. The timer runs in real time, so do not waste it on breaks.</li>
+          <li><strong>Stack with rebirth:</strong> Rebirth first, then activate your boost. The rebirth multiplier applies on top of the boost, giving exponential gains.</li>
+          <li><strong>Use during double events:</strong> Some game events already provide 2x muscle. Using a boost during these events can give up to 4x total.</li>
+          <li><strong>Get free boosts from codes:</strong> Check <a href="/codes/" class="text-blue-600 hover:underline">our codes page</a> regularly for free boost rewards. New codes often include temporary 2x boosts.</li>
+          <li><strong>Walk in circles:</strong> During a boost, maximize your steps by walking in tight patterns. Every step generates muscle multiplied by your dumbbell, pet, rebirth, and boost.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Farming Route -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">Recommended Farming Route</h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Phase 1: Starter Gym (0&ndash;111M Muscle)</h3>
+          <p>Walk to build muscle, defeat Nerdy Kid through Gym Bro. Equip Piggy for 1.5x win bonus. Upgrade to Steel or Golden Dumbbell as soon as you can afford them. Farm Mafia Boss (10K Wins) and The Unknown (25K Wins) repeatedly once you can beat them.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Phase 2: Fantasy World (450M&ndash;12T Muscle)</h3>
+          <p>Hatch Fantasy Eggs for better pets. Target Cookie King (500K Wins) and Skelly Giant (1M Wins) for efficient farming. Rebirth at least once before pushing to Sky Lord and Devil.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Phase 3: Rock Zone &amp; Cyber City (67T+ Muscle)</h3>
+          <p>The Rock Zone opponents give 100M&ndash;200M Wins each. Cyber City offers 500M to 10B Wins. These numbers make earlier worlds irrelevant. Focus all farming here once unlocked, using your best pet and highest dumbbell.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/wins-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Wins Calculator</a>
+        <a href="/tier-list/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Pet Tier List</a>
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

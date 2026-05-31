@@ -1,0 +1,176 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+
+const faqItems = [
+  {
+    question: 'What is +1 Muscle to Arm Wrestle?',
+    answer: '+1 Muscle to Arm Wrestle is a popular Roblox strength simulator game developed by Beast Lifters. The core mechanic is walking to build muscle (+1 per step, multiplied by upgrades), then using that muscle to arm wrestle opponents and earn Wins. Wins are spent on dumbbell upgrades, pet eggs, and other items. The game features multiple worlds, a rebirth system, pets, and regular updates.'
+  },
+  {
+    question: 'How do I redeem codes?',
+    answer: 'To redeem codes, open the game on Roblox, click the Shop button (shopping cart icon), scroll to the bottom, find "Community Code", type your code, and click "Verify". Check our codes page for all currently active codes with free rewards.'
+  },
+  {
+    question: 'How often are new codes released?',
+    answer: 'New codes are typically released with game updates, which happen every Saturday. Special codes may also be released during events, milestones, or collaborations. Check our codes page regularly for the latest working codes.'
+  },
+  {
+    question: 'How does the rebirth system work?',
+    answer: 'Rebirth is a prestige mechanic that resets your current muscle to zero in exchange for permanent multipliers. You keep all pets, dumbbells, and Wins. Each rebirth level increases both your muscle multiplier and win multiplier. The maximum rebirth level is 17, which grants a 200x muscle multiplier and 20x win multiplier. See our rebirth guide for detailed strategy.'
+  },
+  {
+    question: 'When should I rebirth?',
+    answer: 'You should rebirth after defeating all available opponents in your current world. This ensures you have earned the maximum possible Wins before your muscle resets. Do not rebirth if you are close to unlocking the next world or if you have active boosts running.'
+  },
+  {
+    question: 'What are the best pets in the game?',
+    answer: 'The best pet overall is the Huge Hydra Dominus (150x muscle, 50x wins), available via Gamepass for 329 Robux. For free-to-play players, the "67" pet from 67 Packs offers 50x muscle and 10x wins with a 1% hatch chance. The Strawberry Elephant (25x muscle, 8x wins) is another top free option.'
+  },
+  {
+    question: 'What is the Huge Hydra Dominus and how do I get it?',
+    answer: 'The Huge Hydra Dominus is a Mythical-tier pet and the strongest in the game with 150x muscle and 50x win bonuses. It can only be obtained by purchasing the Gamepass for 329 Robux. Only 18 to 101 of these pets exist across all servers, making it extremely rare and prestigious.'
+  },
+  {
+    question: 'How do I get Wins fast?',
+    answer: 'To earn Wins fast, defeat the highest-reward opponent you can beat while equipped with a pet that has a high winBonus. Use boosts strategically, rebirth for higher win multipliers, and farm opponents in the highest world you have unlocked. Check our Wins guide for detailed farming routes.'
+  },
+  {
+    question: 'How do I get muscle fast?',
+    answer: 'Fast muscle gain comes from stacking all multipliers: upgrade your dumbbell, equip your best pet, reach higher rebirth levels, and use temporary 2x boosts. The formula is Base x Dumbbell x Pet x Rebirth x Boost. Each multiplier stacks, so upgrading all four sources gives exponential gains.'
+  },
+  {
+    question: 'What are the different egg types?',
+    answer: 'There are 5 egg types: Basic Egg (starter, common to epic pets), Fantasy Egg (Fantasy World, epic pets), Strawberry Egg (legendary Strawberry Elephant), 67 Pack (legendary "67" pet), and Huge Hydra Dominus Gamepass (mythical pet). Each egg has different hatch rates pools and is available in different worlds.'
+  },
+  {
+    question: 'Are there secret pets in the game?',
+    answer: 'Yes, pets like the "67" from 67 Packs are considered rare or secret due to their extremely low 1% hatch chance. The Huge Hydra Dominus is a limited-availability Gamepass pet. Some code-exclusive pets like Bunny ("bunnyhop" code) and Turkey ("ilovecass" code) are also considered special since they can only be obtained through specific codes.'
+  },
+  {
+    question: 'What are the best dumbbell upgrades?',
+    answer: 'Always buy the next available dumbbell tier as soon as you can afford it. The Iron Dumbbell (100 Wins, 2x) is the best first purchase. The Golden Dumbbell (10K Wins, 12x) is a major mid-game power spike. The Universal Dumbbell (1T Wins, 5000x) is the ultimate endgame tier. See our dumbbells guide for the full upgrade path.'
+  },
+  {
+    question: 'How many worlds are there?',
+    answer: 'There are 4 worlds in +1 Muscle to Arm Wrestle: Starter Gym (starting world), Fantasy World (unlock after defeating The Unknown), The Rock Zone (unlock after defeating Tech Titan), and Cyber City (final world, unlock after defeating The Rock Zone bosses). Each world has progressively stronger opponents with higher rewards.'
+  },
+  {
+    question: 'What is the Golden Machine?',
+    answer: 'The Golden Machine lets you combine 5 identical pets into a Golden version with boosted stats. This is useful for Common and Uncommon pets you have in bulk. Golden pets have higher muscle and win bonuses than their regular counterparts, making them worth investing duplicate pets into.'
+  },
+  {
+    question: 'Do I keep my pets and dumbbells after rebirth?',
+    answer: 'Yes, you keep everything except your current muscle. Pets, dumbbells, Wins, and unlocked worlds all persist through rebirth. Only your muscle counter resets to zero. The permanent multipliers from rebirth more than make up for the temporary muscle loss.'
+  },
+  {
+    question: 'Is there a +1 Muscle to Arm Wrestle wiki?',
+    answer: 'Yes, we have a comprehensive wiki on this site covering all game mechanics, pets, worlds, opponents, and more. Visit our wiki page for detailed information on every aspect of the game.'
+  },
+  {
+    question: 'How do boosts work?',
+    answer: 'Boosts temporarily double your muscle gains for a set duration. They stack multiplicatively with your dumbbell, pet, and rebirth multipliers. Use boosts during dedicated play sessions for maximum value. Free boosts can be obtained from codes and events.'
+  },
+  {
+    question: 'What happens when I defeat all opponents in a world?',
+    answer: 'Defeating the final boss of each world unlocks the next world. For example, defeating The Unknown (111M muscle) in Starter Gym unlocks Fantasy World. The new world has stronger opponents that give significantly more Wins, making it worth progressing through.'
+  },
+];
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'FAQ', url: '/faq' },
+]);
+const faqSchema = generateFAQSchema(faqItems.map(f => ({ question: f.question, answer: f.answer })));
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle FAQ" description="Frequently asked questions about +1 Muscle to Arm Wrestle. Codes, rebirth, wins, pets, eggs, dumbbells, and more." canonical="/faq">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">FAQ</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Frequently Asked Questions</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Everything you need to know about +1 Muscle to Arm Wrestle &mdash; codes, rebirth, pets, eggs, dumbbells, and more.</p>
+
+    <!-- Accordion FAQ -->
+    <section class="mb-10 space-y-3" id="faq-accordion">
+      {faqItems.map((item, i) => (
+        <div class="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden faq-item">
+          <button
+            class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors faq-toggle"
+            aria-expanded="false"
+          >
+            <span class="font-bold text-sm">{item.question}</span>
+            <svg class="w-5 h-5 shrink-0 text-gray-400 transition-transform duration-200 faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-content">
+            <p class="text-sm text-gray-600 dark:text-gray-400 pb-4">{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+        <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Calculator</a>
+        <a href="/beginner-guide/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Beginner Guide</a>
+        <a href="/tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">Tier List</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const content = item?.querySelector('.faq-content') as HTMLElement | null;
+        const chevron = item?.querySelector('.faq-chevron') as SVGElement | null;
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+        if (!content || !item) return;
+
+        // Close all others
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== item) {
+            const otherContent = other.querySelector('.faq-content') as HTMLElement | null;
+            const otherChevron = other.querySelector('.faq-chevron') as SVGElement | null;
+            const otherButton = other.querySelector('.faq-toggle') as HTMLButtonElement | null;
+            if (otherContent) {
+              otherContent.style.maxHeight = '0';
+              otherContent.style.paddingBottom = '0';
+            }
+            if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+            if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current
+        if (isOpen) {
+          content.style.maxHeight = '0';
+          content.style.paddingBottom = '0';
+          button.setAttribute('aria-expanded', 'false');
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.paddingBottom = '0';
+          button.setAttribute('aria-expanded', 'true');
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+</BaseLayout>

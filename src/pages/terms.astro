@@ -1,16 +1,92 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
 ---
-<BaseLayout title="Terms of Service" description="Terms of service." canonical="/terms">
+<BaseLayout title={`Terms of Service - ${config.game.name} Guide`} description={`Terms of service for the unofficial ${config.game.name} fan site. Usage terms, disclaimers, and limitations.`} canonical="/terms/">
   <div class="max-w-3xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-extrabold mb-6">Terms of Service</h1>
-    <div class="space-y-4 text-sm text-gray-600 dark:text-gray-400">
+    <div class="space-y-6 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
       <p><strong>Last updated:</strong> May 31, 2026</p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">1. Acceptance</p><p>By using this site, you agree to these terms.</p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">2. Nature</p><p>Fan-made informational site. Not affiliated with Roblox or Beast Lifters.</p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">3. Accuracy</p><p>We strive for accuracy but cannot guarantee all data is current.</p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">4. IP</p><p>Game names and content are property of their respective owners.</p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">5. Liability</p><p>Site provided "as is" without warranties.</p>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">1. Acceptance of Terms</p>
+        <p>By accessing and using this website ("Site"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should not use this Site.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">2. Nature of This Site</p>
+        <p>This Site is an <strong>unofficial, fan-made informational resource</strong> for the Roblox game "{config.game.name}" developed by {config.game.developer}. This Site is:</p>
+        <ul class="list-disc list-inside space-y-1 mt-2">
+          <li>NOT affiliated with, endorsed by, or sponsored by Roblox Corporation</li>
+          <li>NOT affiliated with, endorsed by, or sponsored by {config.game.developer}</li>
+          <li>NOT an official game website or support channel</li>
+          <li>NOT a substitute for the official Roblox platform or game mechanics</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">3. Content Accuracy</p>
+        <p>We strive to provide accurate and up-to-date information about game codes, mechanics, pets, dumbbells, opponents, and other game elements. However:</p>
+        <ul class="list-disc list-inside space-y-1 mt-2">
+          <li>Game data may change with updates without prior notice from developers</li>
+          <li>Codes may expire at any time</li>
+          <li>Calculator results are estimates based on known game formulas and may not reflect exact in-game results</li>
+          <li>We do not guarantee the accuracy, completeness, or timeliness of any information on this Site</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">4. No Guarantee</p>
+        <p>This Site and all content are provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis without warranties of any kind, either express or implied. We make no guarantee that:</p>
+        <ul class="list-disc list-inside space-y-1 mt-2">
+          <li>The Site will be uninterrupted, timely, secure, or error-free</li>
+          <li>The results obtained from calculators will be accurate or reliable</li>
+          <li>Any errors in the Site will be corrected</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">5. User Responsibility</p>
+        <p>You use this Site and its tools at your own risk. You are responsible for:</p>
+        <ul class="list-disc list-inside space-y-1 mt-2">
+          <li>Verifying game information through official channels before making in-game decisions</li>
+          <li>Ensuring your use of this Site complies with applicable laws</li>
+          <li>Any actions taken based on information provided on this Site</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">6. Intellectual Property</p>
+        <p>All game-related content, including but not limited to the game name "{config.game.name}", character names, pet names, world names, images, and game mechanics, are the property of {config.game.developer} and/or Roblox Corporation. This Site uses game names and references under fair use for informational purposes only.</p>
+        <p class="mt-2">The Site's original content, design, code, and tools are the property of this Site's creators.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">7. Third-Party Services</p>
+        <p>This Site uses third-party services including:</p>
+        <ul class="list-disc list-inside space-y-1 mt-2">
+          <li><strong>Cloudflare Pages</strong> — Site hosting and content delivery</li>
+          <li><strong>Google Analytics</strong> — Anonymous traffic analytics</li>
+          <li><strong>Advertising networks</strong> — Display advertisements</li>
+        </ul>
+        <p class="mt-2">These services have their own terms of service and privacy policies. We are not responsible for their practices.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">8. Limitation of Liability</p>
+        <p>To the fullest extent permitted by law, the creators of this Site shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Site, including but not limited to loss of in-game items, currency, or progress.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">9. Changes to Terms</p>
+        <p>We reserve the right to modify these terms at any time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the Site after changes constitutes acceptance of the new terms.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">10. Contact</p>
+        <p>If you have questions about these terms, please visit our <a href="/contact/" class="text-blue-600 hover:underline">Contact page</a>.</p>
+      </div>
     </div>
   </div>
 </BaseLayout>

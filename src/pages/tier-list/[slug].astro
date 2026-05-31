@@ -12,7 +12,7 @@ const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-7
 <BaseLayout title={`${pet.name} — ${pet.rarity} Pet (${pet.muscleBonus}x Muscle)`} description={`${pet.name}: ${pet.rarity} pet. ${pet.muscleBonus}x muscle, ${pet.winBonus}x wins. From ${pet.eggSource}.`} canonical={`/tier-list/${pet.slug}`}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-3xl mx-auto px-4 py-10">
-    <a href="/tier-list" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Tier List</a>
+    <a href="/tier-list/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Tier List</a>
     <div class="mb-6">
       <div class="flex items-center gap-3 mb-2">
         <h1 class="text-3xl font-extrabold">{pet.name}</h1>
@@ -39,9 +39,9 @@ const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-7
       </div>
     </div>
     <div class="flex flex-wrap gap-3">
-      <a href="/tier-list" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🏆 Full Tier List</a>
-      <a href="/calculator" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
-      <a href="/codes" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">🎫 Free Codes</a>
+      <a href="/tier-list/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🏆 Full Tier List</a>
+      <a href="/calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
+      <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">🎫 Free Codes</a>
     </div>
   </div>
 </BaseLayout>

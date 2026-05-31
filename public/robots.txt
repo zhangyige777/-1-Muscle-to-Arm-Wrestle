@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://1-muscle-to-arm-wrestle.pages.dev/sitemap.xml
-Sitemap: https://1-muscle-to-arm-wrestle.pages.dev/gsc-sitemap.xml
-Sitemap: https://1-muscle-to-arm-wrestle.pages.dev/sitemap.txt
+Sitemap: https://1-muscle-to-arm-wrestle.pages.dev/sitemap-index.xml

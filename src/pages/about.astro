@@ -1,18 +1,55 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
 ---
-<BaseLayout title="About" description="About this fan-made companion site." canonical="/about">
+<BaseLayout title={`About - ${config.game.name} Guide & Tools`} description={`About this unofficial fan-made companion site for ${config.game.name}. Data sources, update frequency, and how to submit corrections.`} canonical="/about/">
   <div class="max-w-3xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-extrabold mb-6">About This Site</h1>
-    <div class="space-y-4 text-sm text-gray-600 dark:text-gray-400">
-      <p><strong>+1 Muscle to Arm Wrestle Guide & Tools</strong> is a fan-made companion site for the Roblox game by Beast Lifters.</p>
-      <p>Tools: <strong>Codes Tracker</strong> · <strong>Muscle Calculator</strong> · <strong>Pet Tier List</strong> · <strong>Beginner Guide</strong> · <strong>Wiki</strong></p>
-      <p class="font-bold text-gray-900 dark:text-gray-100">Disclaimer</p>
-      <p>Not affiliated with Roblox Corporation or Beast Lifters. Game content is property of respective owners.</p>
+    <div class="space-y-6 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+
+      <p><strong class="text-gray-900 dark:text-gray-100">{config.game.name} Guide & Tools</strong> is an unofficial fan-made companion site created to help players get the most out of the Roblox game developed by <strong>{config.game.developer}</strong>. We are not affiliated with, endorsed by, or connected to Roblox Corporation or {config.game.developer}.</p>
+
+      <div class="p-4 rounded-xl bg-amber-50 dark:bg-gray-900 border border-amber-200 dark:border-gray-800">
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">What We Offer</p>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Active Codes</strong> — Verified promo codes updated regularly, with rewards and expiration tracking.</li>
+          <li><strong>Muscle Calculator</strong> — Plan your muscle gains based on dumbbell tier, pet bonus, and rebirth level.</li>
+          <li><strong>Wins Calculator</strong> — Find the best opponents to farm and calculate how many matches you need.</li>
+          <li><strong>Rebirth Calculator</strong> — Determine the optimal time to rebirth with break-even analysis.</li>
+          <li><strong>Dumbbell Calculator</strong> — Compare dumbbell upgrades and find the most cost-efficient path.</li>
+          <li><strong>Egg Calculator</strong> — Calculate hatch probabilities and expected costs for each egg type.</li>
+          <li><strong>Pet Calculator</strong> — Compare pet multipliers and see how they affect your muscle and wins.</li>
+          <li><strong>Pet Tier List</strong> — All pets ranked from S to D tier with detailed stats.</li>
+          <li><strong>Wiki & Guides</strong> — Complete walkthrough for all worlds, opponents, eggs, and dumbbells.</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">Data Sources</p>
+        <p>Our data comes from in-game observations, the official Roblox game page, developer announcements, community reports, and verified YouTube content creators. We cross-reference multiple sources to ensure accuracy.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">Update Frequency</p>
+        <p>We update codes, tier lists, and game data within 24 hours of new game updates. The game typically updates <strong>{config.game.updateSchedule.toLowerCase()}</strong>. Calculators and tools are reviewed monthly to ensure formulas match the current game mechanics.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">How to Submit Corrections</p>
+        <p>If you find outdated information, incorrect stats, or expired codes still listed as active, please reach out through our <a href="/contact/" class="text-blue-600 hover:underline">Contact page</a>. We review all submissions and update the site accordingly.</p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+        <p class="font-bold text-gray-900 dark:text-gray-100 mb-2">Disclaimer</p>
+        <p>This is an <strong>unofficial fan site</strong>. {config.game.name} is a trademark of {config.game.developer}. Roblox is a trademark of Roblox Corporation. This site is not endorsed by or affiliated with Roblox Corporation or {config.game.developer}. All game content, images, and names are property of their respective owners. This site exists solely to provide helpful information to players.</p>
+      </div>
     </div>
+
     <div class="mt-8 flex gap-3">
-      <a href="/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🏠 Home</a>
-      <a href="https://www.roblox.com/games/134750648450964" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">▶ Play</a>
+      <a href="/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Home</a>
+      <a href="/codes/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Codes</a>
+      <a href="/contact/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold text-sm hover:bg-gray-700">Contact</a>
     </div>
   </div>
 </BaseLayout>

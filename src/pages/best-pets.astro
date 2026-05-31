@@ -1,0 +1,177 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const pets = getPets();
+
+const earlyPets = pets.filter(p => ['Basic Egg'].includes(p.eggSource) && p.tier !== 'S').sort((a, b) => b.muscleBonus - a.muscleBonus);
+const midPets = pets.filter(p => ['Fantasy Egg', 'Strawberry Egg', '67 Pack'].includes(p.eggSource)).sort((a, b) => b.muscleBonus - a.muscleBonus);
+const latePets = pets.filter(p => ['the-rock-zone', 'cyber-city', 'Gamepass (329 Robux)'].includes(p.eggSource) || p.tier === 'S').sort((a, b) => b.muscleBonus - a.muscleBonus);
+const ultimatePet = pets.find(p => p.id === 'huge-hydra-dominus');
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Best Pets', url: '/best-pets' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'What is the best pet in +1 Muscle to Arm Wrestle?', answer: 'The Huge Hydra Dominus is the ultimate pet with a 150x muscle bonus and 50x win bonus. It is a Gamepass-exclusive pet available for 329 Robux. Among free-to-play pets, the "67" legendary from 67 Packs offers a 50x muscle bonus and 10x win bonus.' },
+  { question: 'What pets should I use in early game?', answer: 'In early game, focus on hatching Fox and Piggy from Basic Eggs. Fox gives 2x muscle bonus, and Piggy gives 1.5x win bonus, making them the strongest free early-game options. You can also redeem codes like "bunnyhop" for a free Bunny with 1.3x muscle bonus.' },
+  { question: 'How do I get legendary pets?', answer: 'Legendary pets like the "67" and Strawberry Elephant come from special eggs (67 Pack, Strawberry Egg) with a 1% hatch chance. Keep opening eggs and use any available boosts to increase your odds. The Huge Hydra Dominus can only be purchased via Gamepass for 329 Robux.' },
+]);
+
+function getRarityColor(rarity: string) {
+  const colors: Record<string, string> = {
+    Common: 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+    Uncommon: 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300',
+    Rare: 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300',
+    Epic: 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300',
+    Legendary: 'bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300',
+    Mythical: 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300',
+  };
+  return colors[rarity] || 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
+}
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Best Pets" description="The best pets in +1 Muscle to Arm Wrestle ranked for early, mid, and late game. Compare pet multipliers and find the strongest pet for your stage." canonical="/best-pets">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Best Pets</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Best Pets in +1 Muscle to Arm Wrestle</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">The best pets ranked for early, mid, and late game. Compare multipliers and find the strongest companion for your stage.</p>
+
+    <!-- Early Game -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        Early Game &mdash; Starter Gym
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        When you first start out in the Starter Gym, your priority is hatching pets from <strong>Basic Eggs</strong>. These pets provide modest but crucial muscle and win bonuses that accelerate your early progression. The Fox is the standout free pet with a 2x muscle multiplier, while the Piggy excels at generating Wins with its 1.5x win bonus. Don't forget to redeem <a href="/codes/" class="text-blue-600 hover:underline">codes</a> like "bunnyhop" for a free Bunny pet.
+      </p>
+      <div class="space-y-3">
+        {earlyPets.map(pet => (
+          <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-bold">{pet.name}</span>
+                <span class={`px-2 py-0.5 rounded text-xs font-bold ${getRarityColor(pet.rarity)}`}>{pet.rarity}</span>
+                <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-bold text-gray-600 dark:text-gray-400">Tier {pet.tier}</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">{pet.description}</p>
+              <p class="text-xs text-gray-400 mt-1">Source: {pet.eggSource} &middot; Hatch Chance: {(pet.hatchChance * 100).toFixed(0)}%</p>
+            </div>
+            <div class="flex gap-3 text-sm shrink-0">
+              <div class="text-center">
+                <div class="font-bold text-blue-600 dark:text-blue-400">{pet.muscleBonus}x</div>
+                <div class="text-xs text-gray-400">Muscle</div>
+              </div>
+              <div class="text-center">
+                <div class="font-bold text-amber-600 dark:text-amber-400">{pet.winBonus}x</div>
+                <div class="text-xs text-gray-400">Wins</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Mid Game -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        Mid Game &mdash; Fantasy World
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        Once you defeat The Unknown and unlock the Fantasy World, you gain access to stronger eggs like the <strong>Fantasy Egg</strong>, <strong>Strawberry Egg</strong>, and <strong>67 Pack</strong>. These eggs contain Epic and Legendary pets with significantly higher multipliers. The "67" pet is the crown jewel of mid-game with a staggering 50x muscle bonus and 10x win bonus, though its 1% hatch chance makes it rare. The Strawberry Elephant is another top-tier option with 25x muscle and 8x win bonuses.
+      </p>
+      <div class="space-y-3">
+        {midPets.map(pet => (
+          <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-bold">{pet.name}</span>
+                <span class={`px-2 py-0.5 rounded text-xs font-bold ${getRarityColor(pet.rarity)}`}>{pet.rarity}</span>
+                <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-bold text-gray-600 dark:text-gray-400">Tier {pet.tier}</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">{pet.description}</p>
+              <p class="text-xs text-gray-400 mt-1">Source: {pet.eggSource} &middot; Hatch Chance: {(pet.hatchChance * 100).toFixed(0)}%</p>
+            </div>
+            <div class="flex gap-3 text-sm shrink-0">
+              <div class="text-center">
+                <div class="font-bold text-blue-600 dark:text-blue-400">{pet.muscleBonus}x</div>
+                <div class="text-xs text-gray-400">Muscle</div>
+              </div>
+              <div class="text-center">
+                <div class="font-bold text-amber-600 dark:text-amber-400">{pet.winBonus}x</div>
+                <div class="text-xs text-gray-400">Wins</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Late Game / Ultimate -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Late Game &mdash; Rock Zone &amp; Cyber City
+      </h2>
+      {ultimatePet && (
+        <div class="p-6 rounded-xl border-2 border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-950/30 mb-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-2xl font-extrabold text-amber-600 dark:text-amber-400">{ultimatePet.name}</span>
+            <span class={`px-2 py-0.5 rounded text-xs font-bold ${getRarityColor(ultimatePet.rarity)}`}>{ultimatePet.rarity}</span>
+            <span class="px-2 py-0.5 bg-amber-200 dark:bg-amber-800 rounded text-xs font-bold text-amber-800 dark:text-amber-200">ULTIMATE</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{ultimatePet.description}</p>
+          <div class="flex gap-4 text-sm">
+            <div class="text-center">
+              <div class="font-bold text-blue-600 dark:text-blue-400 text-lg">{ultimatePet.muscleBonus}x</div>
+              <div class="text-xs text-gray-400">Muscle Bonus</div>
+            </div>
+            <div class="text-center">
+              <div class="font-bold text-amber-600 dark:text-amber-400 text-lg">{ultimatePet.winBonus}x</div>
+              <div class="text-xs text-gray-400">Win Bonus</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">Source: {ultimatePet.eggSource} &middot; Only 18&ndash;101 exist in the entire game.</p>
+        </div>
+      )}
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        The Huge Hydra Dominus stands alone at the top with a massive 150x muscle bonus and 50x win bonus. This Gamepass-exclusive pet costs 329 Robux and is the single largest power spike in the game. If you are a free-to-play player, your best option remains the "67" pet from 67 Packs, which provides 50x muscle and 10x win multipliers. Combined with high rebirth levels and the best dumbbells, even free-to-play players can compete at the highest levels.
+      </p>
+    </section>
+
+    <!-- Pet Comparison Tips -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">Pet Strategy Tips</h2>
+      <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><strong>Muscle vs Wins:</strong> If your goal is fast muscle gain, prioritize pets with higher muscleBonus. For earning Wins to buy dumbbells, focus on winBonus.</li>
+        <li><strong>Golden Machine:</strong> Combine 5 identical pets into a Golden version for boosted stats. This is especially valuable for Common and Uncommon pets you have in bulk.</li>
+        <li><strong>Egg Priority:</strong> Save up for premium eggs like the 67 Pack and Strawberry Egg rather than spending on Basic Eggs once you reach Fantasy World.</li>
+        <li><strong>Code Pets:</strong> Always check <a href="/codes/" class="text-blue-600 hover:underline">our codes page</a> for free pet rewards. Codes like "bunnyhop" and "ilovecass" give you free Bunny and Turkey pets.</li>
+        <li><strong>Equip Your Best:</strong> Always have your strongest pet equipped. Pet bonuses are only applied to the active pet.</li>
+      </ul>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/tier-list/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Pet Tier List</a>
+        <a href="/pet-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Pet Calculator</a>
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

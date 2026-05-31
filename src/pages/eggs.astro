@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const pets = getPets();
+
+const eggTypes = [...new Set(pets.map(p => p.eggSource))];
+const petsByEgg = eggTypes.map(egg => ({
+  egg,
+  pets: pets.filter(p => p.eggSource === egg).sort((a, b) => b.muscleBonus - a.muscleBonus),
+}));
+
+function getRarityColor(rarity: string) {
+  const colors: Record<string, string> = {
+    Common: 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+    Uncommon: 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300',
+    Rare: 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300',
+    Epic: 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300',
+    Legendary: 'bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300',
+    Mythical: 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300',
+  };
+  return colors[rarity] || 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
+}
+
+function getEggColor(egg: string) {
+  if (egg.includes('Basic')) return 'border-blue-300 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/20';
+  if (egg.includes('Fantasy')) return 'border-purple-300 dark:border-purple-800 bg-purple-50 dark:bg-purple-950/20';
+  if (egg.includes('Strawberry')) return 'border-pink-300 dark:border-pink-800 bg-pink-50 dark:bg-pink-950/20';
+  if (egg.includes('67')) return 'border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/20';
+  if (egg.includes('Gamepass')) return 'border-red-300 dark:border-red-800 bg-red-50 dark:bg-red-950/20';
+  return 'border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900';
+}
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Eggs', url: '/eggs' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'What types of eggs are in +1 Muscle to Arm Wrestle?', answer: 'There are 5 egg types: Basic Egg (Starter Gym, common to epic pets), Fantasy Egg (Fantasy World, epic pets), Strawberry Egg (Legendary pets), 67 Pack (Legendary "67" pet), and the Huge Hydra Dominus Gamepass (329 Robux, Mythical pet). Each egg has different hatch rates and pet pools.' },
+  { question: 'Which egg should I open first?', answer: 'Start with Basic Eggs in the Starter Gym to get your first pets. Once you unlock Fantasy World, switch to Fantasy Eggs for stronger pets. Save up for 67 Packs or Strawberry Eggs when you can afford them for a chance at Legendary pets.' },
+  { question: 'What are the hatch chances for rare pets?', answer: 'Legendary pets like "67" and Strawberry Elephant have a 1% hatch chance from their respective eggs. Epic pets range from 3-5% chance. Common pets from Basic Eggs have a 30% chance. The Huge Hydra Dominus from the Gamepass is guaranteed (100%) but costs Robux.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Eggs Guide" description="All eggs in +1 Muscle to Arm Wrestle with hatch rates, best pets from each egg, and opening recommendations." canonical="/eggs">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Eggs</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Eggs Guide</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">All egg types with hatch rates, best pets from each egg, and opening strategy recommendations.</p>
+
+    <!-- Egg Overview -->
+    <section class="mb-10">
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        Eggs are the primary way to obtain pets in <strong>+1 Muscle to Arm Wrestle</strong>. Each egg type contains a different pool of pets with varying rarities and hatch chances. Understanding which eggs to open and when is key to building a strong pet collection without wasting Wins. Below is a complete breakdown of every egg type in the game, organized by the world or area where they become available.
+      </p>
+    </section>
+
+    <!-- Eggs by Type -->
+    {petsByEgg.map(({ egg, pets: eggPets }) => (
+      <section class={`mb-8 p-6 rounded-xl border-2 ${getEggColor(egg)}`}>
+        <h2 class="text-xl font-bold mb-2">{egg}</h2>
+        {egg === 'Basic Egg' && <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Available from the start in the Starter Gym. Cheapest egg with the widest pet pool. Best for early game pet collection.</p>}
+        {egg === 'Fantasy Egg' && <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Available in Fantasy World after defeating The Unknown. Contains stronger Epic-tier pets with higher muscle and win bonuses.</p>}
+        {egg === 'Strawberry Egg' && <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Premium egg with a chance at the Legendary Strawberry Elephant (1% hatch rate). High cost but worth saving up for.</p>}
+        {egg === '67 Pack' && <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Special egg containing the brain-rot legendary "67" pet with 50x muscle and 10x win bonuses. Extremely rare at 1% hatch chance.</p>}
+        {egg === 'Gamepass (329 Robux)' && <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">The only way to obtain the Mythical Huge Hydra Dominus. Guaranteed hatch but requires Robux purchase. The strongest pet in the game.</p>}
+
+        <div class="space-y-3 mt-4">
+          {eggPets.map(pet => (
+            <div class="p-4 rounded-lg bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-bold">{pet.name}</span>
+                  <span class={`px-2 py-0.5 rounded text-xs font-bold ${getRarityColor(pet.rarity)}`}>{pet.rarity}</span>
+                  <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs font-bold text-gray-600 dark:text-gray-400">Tier {pet.tier}</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">{pet.description}</p>
+              </div>
+              <div class="flex gap-4 text-sm shrink-0">
+                <div class="text-center">
+                  <div class="text-xs text-gray-400">Hatch</div>
+                  <div class="font-bold text-gray-700 dark:text-gray-300">{(pet.hatchChance * 100).toFixed(0)}%</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-xs text-gray-400">Muscle</div>
+                  <div class="font-bold text-blue-600 dark:text-blue-400">{pet.muscleBonus}x</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-xs text-gray-400">Wins</div>
+                  <div class="font-bold text-amber-600 dark:text-amber-400">{pet.winBonus}x</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+          <p class="text-xs font-bold text-gray-600 dark:text-gray-400">Best pet: <span class="text-blue-600 dark:text-blue-400">{eggPets[0]?.name}</span> ({eggPets[0]?.muscleBonus}x muscle)</p>
+        </div>
+      </section>
+    ))}
+
+    <!-- Egg Strategy -->
+    <section class="mb-10 p-6 rounded-xl bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900">
+      <h2 class="text-xl font-bold mb-3">Egg Opening Strategy</h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p><strong>Early Game (Starter Gym):</strong> Open Basic Eggs to get your first pets. Fox (2x muscle) and Piggy (1.5x wins) are the best targets. You will likely get several Dogs and Cats before hitting the rarer ones, but even these provide a small boost. Use the Golden Machine to merge 5 copies into a Golden version.</p>
+        <p><strong>Mid Game (Fantasy World):</strong> Switch to Fantasy Eggs. Walrus and Cyborg Kitty provide 3x and 3.5x muscle respectively, which is a significant upgrade over Basic Egg pets. Start saving for 67 Packs if you want the "67" pet, but understand the 1% hatch rate means you may need many attempts.</p>
+        <p><strong>Late Game (Rock Zone &amp; Cyber City):</strong> Focus exclusively on premium eggs. The Strawberry Egg and 67 Pack offer the best free-to-play pets. If you are willing to spend Robux, the Huge Hydra Dominus Gamepass is the ultimate purchase.</p>
+        <p><strong>General tip:</strong> Do not spend all your Wins on eggs at the expense of dumbbell upgrades. A stronger dumbbell helps you earn Wins faster, which means more eggs in the long run. Balance your spending between both.</p>
+      </div>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/egg-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Egg Calculator</a>
+        <a href="/tier-list/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Pet Tier List</a>
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

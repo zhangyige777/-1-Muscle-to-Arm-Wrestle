@@ -10,7 +10,7 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
 <BaseLayout title={`${world.name} — All Opponents | +1 Muscle to Arm Wrestle`} description={`${world.name}: ${world.opponents.length} opponents with muscle requirements.`} canonical={`/wiki/${world.slug}`}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-4xl mx-auto px-4 py-10">
-    <a href="/wiki" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Wiki</a>
+    <a href="/wiki/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Wiki</a>
     <h1 class="text-3xl font-extrabold mb-2">🌍 {world.name}</h1>
     <p class="text-gray-500 mb-2">{world.description}</p>
     <div class="flex flex-wrap gap-3 text-sm mb-8">
@@ -35,8 +35,8 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
       ))}
     </div>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/wiki" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">📚 All Worlds</a>
-      <a href="/calculator" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
+      <a href="/wiki/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">📚 All Worlds</a>
+      <a href="/calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
     </div>
   </div>
 </BaseLayout>

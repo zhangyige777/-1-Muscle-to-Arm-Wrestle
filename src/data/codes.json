@@ -3,7 +3,7 @@
   "lastUpdated": "2026-05-31",
   "codes": [
     {
-      "code": "yasineoldman",
+      "code": "YASEENOLDMAN",
       "reward": "10 Free Basic Eggs",
       "source": "YouTube/@AustinChallenges",
       "addedDate": "2026-05-22",
@@ -11,7 +11,7 @@
       "isNew": true
     },
     {
-      "code": "ilovecass",
+      "code": "ilovekaz",
       "reward": "300 Wins + 500 Muscle + 1 Turkey Pet",
       "source": "Sportskeeda",
       "addedDate": "2026-05-16",
@@ -27,15 +27,23 @@
       "isNew": false
     },
     {
-      "code": "strongman",
-      "reward": "Free Rewards (Wins & Muscle)",
+      "code": "goldenpaw",
+      "reward": "1 Free Fox Pet + 200 Wins",
       "source": "Sportskeeda",
-      "addedDate": "2026-05-10",
+      "addedDate": "2026-05-14",
       "status": "active",
       "isNew": false
     },
     {
-      "code": "more potion",
+      "code": "potionup",
+      "reward": "1 Win Boost + 1 Muscle Boost",
+      "source": "Sportskeeda",
+      "addedDate": "2026-05-05",
+      "status": "active",
+      "isNew": false
+    },
+    {
+      "code": "morepotion",
       "reward": "2 Win Boosts + 2 Muscle Boosts",
       "source": "YouTube/@AustinChallenges",
       "addedDate": "2026-05-10",
@@ -43,10 +51,10 @@
       "isNew": false
     },
     {
-      "code": "potion up",
-      "reward": "1 Win Boost + 1 Muscle Boost",
+      "code": "strongman",
+      "reward": "Free Rewards (Wins & Muscle)",
       "source": "Sportskeeda",
-      "addedDate": "2026-05-05",
+      "addedDate": "2026-05-10",
       "status": "active",
       "isNew": false
     },

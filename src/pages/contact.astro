@@ -1,0 +1,100 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, generateBreadcrumbSchema } from '@/lib/data';
+
+const config = getGameConfig();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact' },
+]);
+---
+<BaseLayout title="Contact Us - +1 Muscle to Arm Wrestle Guide" description="Contact us for corrections, data updates, or questions about our +1 Muscle to Arm Wrestle fan site." canonical="/contact">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Contact</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Contact Us</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Questions, corrections, or data updates? Get in touch with our team.</p>
+
+    <!-- Fan Site Disclaimer -->
+    <section class="mb-8 p-6 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900">
+      <h2 class="text-lg font-bold mb-2">Fan Site Disclaimer</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        This website is an <strong>unofficial fan-made companion site</strong> for the Roblox game <strong>+1 Muscle to Arm Wrestle</strong> by Beast Lifters. We are not affiliated with, endorsed by, or connected to Roblox Corporation or Beast Lifters in any way. All game content, trademarks, and intellectual property belong to their respective owners.
+      </p>
+    </section>
+
+    <!-- What We Cover -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-3">What We Cover</h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+        <p>Our site provides up-to-date tools and guides for the +1 Muscle to Arm Wrestle community, including:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Active Codes</strong> &mdash; All working promo codes with rewards, updated weekly</li>
+          <li><strong>Muscle Calculator</strong> &mdash; Plan your upgrades and progression path</li>
+          <li><strong>Pet Tier List</strong> &mdash; Rankings of all pets by muscle and win bonuses</li>
+          <li><strong>Beginner Guide</strong> &mdash; Complete walkthrough for new players</li>
+          <li><strong>Wiki</strong> &mdash; Comprehensive game encyclopedia</li>
+          <li><strong>Strategy Guides</strong> &mdash; Best pets, dumbbells, rebirth tips, and farming routes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- How to Contact -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-3">How to Reach Us</h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">Report Outdated Information</h3>
+          <p>If you notice any outdated or incorrect data on our site (expired codes, changed pet stats, new opponents, etc.), please let us know so we can update it promptly. We strive to keep all information current and accurate.</p>
+          <div class="mt-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Email us at:</p>
+            <a href="mailto:contact@1muscletools.online" class="text-blue-600 dark:text-blue-400 hover:underline font-bold">contact@1muscletools.online</a>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">Correction Requests</h3>
+          <p>If you believe any information on our site is incorrect, please include the following in your email:</p>
+          <ul class="list-disc pl-5 space-y-1 mt-2">
+            <li>The page URL where the error appears</li>
+            <li>A description of what is incorrect</li>
+            <li>The correct information (with a source if possible)</li>
+          </ul>
+          <p class="mt-2">We review all correction requests and aim to update the site within 48 hours.</p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-800">
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">General Questions</h3>
+          <p>Have a question about the game that is not covered on our site? Send us an email and we will do our best to help or add the information to our guides.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Accuracy -->
+    <section class="mb-8 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-lg font-bold mb-2">Data Accuracy</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        We verify all game data through direct gameplay and community sources. However, +1 Muscle to Arm Wrestle receives regular updates (typically every Saturday), which may change pet stats, opponent requirements, egg pools, or other game mechanics. If you spot discrepancies between our data and the current game state, please email us so we can investigate and update accordingly. Our data was last verified on <strong>{config.game.lastUpdated}</strong>.
+      </p>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Quick Links</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>
+        <a href="/beginner-guide/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Beginner Guide</a>
+        <a href="/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Home</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

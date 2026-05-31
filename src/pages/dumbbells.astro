@@ -1,0 +1,170 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getDumbbells, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const dumbbells = getDumbbells();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Dumbbells', url: '/dumbbells' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'Which dumbbell should I buy first?', answer: 'Buy the Iron Dumbbell (100 Wins) as soon as possible. It doubles your muscle per step from 1x to 2x, making it the best value upgrade in the game. After that, prioritize reaching the Golden Dumbbell (10K Wins, 12x) for the next big power spike.' },
+  { question: 'What is the best dumbbell in the game?', answer: 'The Universal Dumbbell is the best dumbbell at Tier 10 with 5000x muscle per step. It costs 1T Wins, making it a very late-game purchase. Most players will be using the Galaxy or Cyber Dumbbell for a long time before reaching this tier.' },
+  { question: 'Should I save for a better dumbbell or buy the next tier?', answer: 'Always buy the next available tier as soon as you can afford it. Each tier provides a significant multiplier increase that helps you earn Wins faster. The time saved by having a stronger dumbbell always outweighs the cost of skipping a tier.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Dumbbells Guide" description="All dumbbell tiers in +1 Muscle to Arm Wrestle with costs, muscle per step, and upgrade order recommendations." canonical="/dumbbells">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Dumbbells</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Dumbbells Guide</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">All dumbbell tiers with costs, muscle per step, cost-efficiency analysis, and upgrade recommendations.</p>
+
+    <!-- Introduction -->
+    <section class="mb-10">
+      <p class="text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <span>Dumbbells are the core progression mechanic in <strong>+1 Muscle to Arm Wrestle</strong>. Each dumbbell tier multiplies the muscle you gain per step. Upgrading your dumbbell is the single most impactful thing you can do to accelerate your progress, especially in early and mid game.</span>
+      </p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+        Dumbbells are purchased with <strong>Wins</strong> at the in-game shop. The cost scales dramatically with each tier, from free (Basic) to 1 Trillion Wins (Universal). Your goal is always to reach the next tier as quickly as possible, since each upgrade multiplies your earning speed for all future Wins.
+      </p>
+    </section>
+
+    <!-- Full Dumbbell Table -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        All Dumbbell Tiers
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+          <thead class="bg-gray-50 dark:bg-gray-900">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold">Tier</th>
+              <th class="px-4 py-3 text-left font-bold">Dumbbell</th>
+              <th class="px-4 py-3 text-center font-bold">Muscle/Step</th>
+              <th class="px-4 py-3 text-center font-bold">Cost (Wins)</th>
+              <th class="px-4 py-3 text-center font-bold">Jump</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            {dumbbells.map((db, i) => {
+              const prevStep = i > 0 ? dumbbells[i - 1].musclePerStep : 1;
+              const jump = (db.musclePerStep / prevStep).toFixed(1);
+              const tierColors = {
+                1: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400',
+                2: 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
+                3: 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300',
+                4: 'bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300',
+                5: 'bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300',
+                6: 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300',
+                7: 'bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-300',
+                8: 'bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300',
+                9: 'bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300',
+                10: 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300',
+              };
+              return (
+                <tr class={i % 2 === 0 ? 'bg-white dark:bg-gray-950' : 'bg-gray-50 dark:bg-gray-900'}>
+                  <td class="px-4 py-3">
+                    <span class={`px-2 py-1 rounded text-xs font-bold ${tierColors[db.tier] || 'bg-gray-200'}`}>T{db.tier}</span>
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class="font-bold">{db.name}</span>
+                    <p class="text-xs text-gray-400 mt-0.5">{db.description}</p>
+                  </td>
+                  <td class="px-4 py-3 text-center font-bold text-blue-600 dark:text-blue-400">{formatNumber(db.musclePerStep)}x</td>
+                  <td class="px-4 py-3 text-center text-gray-500 dark:text-gray-400">{db.cost === 0 ? 'Free' : formatNumber(db.cost)}</td>
+                  <td class="px-4 py-3 text-center">
+                    {i > 0 ? (
+                      <span class="text-green-600 dark:text-green-400 font-bold">{jump}x</span>
+                    ) : (
+                      <span class="text-gray-400">&mdash;</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Upgrade Priority -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        Upgrade Priority
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Tier 1&ndash;3: Basic to Steel (0&ndash;1K Wins)</h3>
+          <p>The first three tiers are very affordable and provide the foundation of your muscle gains. Buy Iron (100 Wins) immediately when you start, then save for Steel (1K Wins). The jump from 1x to 5x muscle per step is a 5x total increase that makes early opponents trivial.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Tier 4&ndash;5: Golden to Diamond (10K&ndash;100K Wins)</h3>
+          <p>This is where the game opens up. Golden Dumbbell (12x) is a major power spike that lets you farm Gym Bro and King Boxer efficiently. Diamond (30x) prepares you for the jump to Fantasy World. Focus all your Wins on reaching Diamond before spending on pet eggs.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Tier 6&ndash;7: Crystal to Candy (1M&ndash;10M Wins)</h3>
+          <p>These mid-tier dumbbells are where the costs start to feel significant. Crystal (75x) and Candy (200x) are essential for progressing through Fantasy World opponents. Farm Cookie King and Skelly Giant to earn the Wins you need.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Tier 8&ndash;10: Cyber to Universal (100M&ndash;1T Wins)</h3>
+          <p>The endgame dumbbells. Cyber (500x) gets you into The Rock Zone. Galaxy (1500x) opens Cyber City. Universal (5000x) is the ultimate goal. At this stage, you should have high rebirth levels and strong pets to help farm the massive Win requirements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cost-Efficiency Analysis -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Cost-Efficiency Analysis
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>Not all upgrades are equally efficient. Here are the best value tiers based on the muscle-per-step increase relative to the cost:</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Best Value: Iron Dumbbell (T2)</strong> &mdash; 100 Wins for a 2x jump from the Basic. This is a no-brainer purchase and should be your very first upgrade.</li>
+          <li><strong>Great Value: Steel Dumbbell (T3)</strong> &mdash; 1K Wins for a 2.5x jump. Still very efficient and affordable within the first hour of play.</li>
+          <li><strong>Solid Value: Golden Dumbbell (T4)</strong> &mdash; 10K Wins for a 2.4x jump. The multiplier increase is strong relative to the cost.</li>
+          <li><strong>Lowest Value: Crystal Dumbbell (T6)</strong> &mdash; 1M Wins for a 2.5x jump. The cost-to-jump ratio starts to decrease here, but the absolute muscle gain is still very significant.</li>
+          <li><strong>Important Note:</strong> Even the least efficient upgrades are still worth buying because muscle per step is multiplicative with pets and rebirth. Every tier you skip is lost potential.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- When to Upgrade -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-3">When to Upgrade</h2>
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+        <ul class="space-y-2">
+          <li><strong>Upgrade immediately when:</strong> You have enough Wins and there is no upcoming opponent you need the Wins for. Dumbbell upgrades always pay for themselves over time.</li>
+          <li><strong>Wait briefly when:</strong> You are 50&ndash;100 Wins away from being able to beat a high-reward opponent. Farm the opponent first, then upgrade.</li>
+          <li><strong>Never skip tiers:</strong> There is no benefit to saving up for a tier two levels ahead. Buy each tier sequentially &mdash; the intermediate upgrade helps you earn Wins faster for the next one.</li>
+          <li><strong>After rebirth:</strong> You keep your dumbbell after rebirthing, so your first upgrade after a rebirth is the next dumbbell tier you could not previously afford.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/dumbbell-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Dumbbell Calculator</a>
+        <a href="/calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Muscle Calculator</a>
+        <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Beginner Guide</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

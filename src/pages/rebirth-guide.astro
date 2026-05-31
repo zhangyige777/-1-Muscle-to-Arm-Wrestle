@@ -1,0 +1,155 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getRebirthTiers, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const rebirthTiers = getRebirthTiers();
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Rebirth Guide', url: '/rebirth-guide' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'When should I rebirth in +1 Muscle to Arm Wrestle?', answer: 'You should rebirth after defeating all available opponents in your current world. Rebirthing resets your muscle, so make sure you have earned enough Wins from opponents first. A good rule of thumb is to beat at least the top 3 opponents before considering rebirth.' },
+  { question: 'Do I lose my pets and dumbbells when I rebirth?', answer: 'No! When you rebirth, you keep all your pets, dumbbells, and Wins. Only your current muscle is reset to zero. The permanent multipliers from rebirth more than compensate for the lost muscle.' },
+  { question: 'What is the maximum rebirth level?', answer: 'The maximum rebirth level is 17, which grants a 200x muscle multiplier and 20x win multiplier at a cost of 5T muscle. Reaching max rebirth is a long-term goal that requires consistent farming and smart use of pets, dumbbells, and boosts.' },
+]);
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Rebirth Guide" description="Complete rebirth guide for +1 Muscle to Arm Wrestle. Learn when to rebirth, when to wait, and how rebirth multipliers work." canonical="/rebirth-guide">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-500 dark:text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-900 dark:text-gray-100 font-medium">Rebirth Guide</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Rebirth Guide</h1>
+    <p class="text-gray-500 dark:text-gray-400 mb-8">Everything you need to know about the rebirth system, when to rebirth, and how to maximize your multipliers.</p>
+
+    <!-- What is Rebirth? -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+        What is Rebirth?
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>Rebirth is a prestige mechanic in <strong>+1 Muscle to Arm Wrestle</strong> that resets your current muscle to zero in exchange for <strong>permanent multipliers</strong>. Each rebirth level increases both your muscle multiplier and your win multiplier, making all future progression faster.</p>
+        <p>When you rebirth, you keep everything else: your <strong>pets</strong>, <strong>dumbbells</strong>, <strong>Wins</strong>, and <strong>unlocked worlds</strong>. Only your current muscle counter resets. Because your dumbbell and pet multipliers remain, you will quickly regain your lost muscle and push far beyond your previous maximum.</p>
+        <p>The rebirth system is essential for late-game progression. Without rebirth multipliers, the muscle requirements for opponents in Fantasy World, The Rock Zone, and Cyber City are practically unreachable. Higher rebirth levels also unlock better training zones and areas.</p>
+      </div>
+    </section>
+
+    <!-- When to Rebirth -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+        When to Rebirth (Break-Even Analysis)
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <p>The golden rule of rebirthing is: <strong>always beat the opponents you can before rebirthing</strong>. Since rebirth resets your muscle, you want to make sure you have squeezed every possible Win out of your current muscle level first.</p>
+        <p><strong>Break-even point:</strong> After rebirth, you need to regain your previous muscle level to start seeing net gains. Because your new multiplier is higher, this happens quickly. For example, at Rebirth Level 1 (1.5x multiplier), you only need to walk about 67% as much to reach the same muscle you had before rebirth. At Rebirth Level 5 (5x), you reach break-even in just 20% of the original time.</p>
+        <p><strong>Signs it is time to rebirth:</strong></p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>You have defeated all opponents in your current world</li>
+          <li>Your muscle gains have slowed significantly</li>
+          <li>You cannot reach the next opponent's requirement even with boosts</li>
+          <li>The next rebirth tier's multiplier is at least 1.5x your current one</li>
+        </ul>
+        <p><strong>Signs you should wait:</strong></p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>You have not beaten all available opponents yet</li>
+          <li>You are close to unlocking the next world</li>
+          <li>You have active boosts running</li>
+          <li>A new update is coming soon that might change the meta</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Rebirth Tier Table -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+        Rebirth Tier Table
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+          <thead class="bg-gray-50 dark:bg-gray-900">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold">Level</th>
+              <th class="px-4 py-3 text-center font-bold">Muscle Multiplier</th>
+              <th class="px-4 py-3 text-center font-bold">Win Multiplier</th>
+              <th class="px-4 py-3 text-center font-bold">Muscle Cost</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            {rebirthTiers.map((tier, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white dark:bg-gray-950' : 'bg-gray-50 dark:bg-gray-900'}>
+                <td class="px-4 py-3 font-bold">{tier.level === 0 ? 'None' : `Rebirth ${tier.level}`}</td>
+                <td class="px-4 py-3 text-center">
+                  <span class="font-bold text-blue-600 dark:text-blue-400">{tier.muscleMultiplier}x</span>
+                </td>
+                <td class="px-4 py-3 text-center">
+                  <span class="font-bold text-amber-600 dark:text-amber-400">{tier.winMultiplier}x</span>
+                </td>
+                <td class="px-4 py-3 text-center text-gray-500 dark:text-gray-400">{tier.muscleCost}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tips for Each Stage -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+        Tips for Each Rebirth Stage
+      </h2>
+      <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Rebirth 1&ndash;3 (Early Game)</h3>
+          <p>Focus on getting your first 3 rebirths quickly. Each one gives a noticeable boost. Use your best pet and the Steel or Golden Dumbbell to speed up muscle regain. Do not spend too many Wins on pet eggs at this stage &mdash; save for dumbbell upgrades.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Rebirth 5&ndash;7 (Mid Game)</h3>
+          <p>At Rebirth 5, you unlock a 5x muscle multiplier. This is when progression starts accelerating. Focus on unlocking Fantasy World and hatching mid-tier pets. The Crystal and Candy Dumbbells become affordable and provide huge boosts.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Rebirth 10&ndash;15 (Late Game)</h3>
+          <p>The grind from Rebirth 10 to 15 is significant but rewarding. You jump from 15x to 100x muscle multiplier. Use boosts strategically during long play sessions and farm the highest-reward opponents in Fantasy World and The Rock Zone.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Rebirth 17 (Endgame)</h3>
+          <p>The final rebirth level gives 200x muscle and 20x win multipliers. Reaching this level means you can tackle the hardest content in Cyber City. The cost of 5T muscle is steep, so make sure you have the Galaxy or Universal Dumbbell equipped.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Mistakes -->
+    <section class="mb-10 p-6 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900">
+      <h2 class="text-xl font-bold mb-3">Common Rebirth Mistakes</h2>
+      <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><strong>Rebirthing too early:</strong> If you have not beaten all reachable opponents, you are leaving free Wins on the table. Always farm opponents first.</li>
+        <li><strong>Not using boosts before rebirth:</strong> Activate a 2x boost before a long session, not after rebirth. The muscle you gain during the boost period helps you reach higher levels faster.</li>
+        <li><strong>Ignoring pet bonuses:</strong> Your pet's muscle bonus applies after rebirth. A strong pet like Fox (2x) or Walrus (3x) dramatically speeds up post-rebirth recovery.</li>
+        <li><strong>Spending Wins on eggs instead of dumbbells:</strong> Early on, dumbbell upgrades provide more value per Win than eggs. Prioritize dumbbells until you reach the Diamond tier.</li>
+        <li><strong>Comparing yourself to Robux players:</strong> The Huge Hydra Dominus provides 150x muscle, which makes rebirthing trivially easy. Focus on your own progression curve.</li>
+      </ul>
+    </section>
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
+      <h2 class="text-xl font-bold mb-4">Related Tools &amp; Guides</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/rebirth-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Rebirth Calculator</a>
+        <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Beginner Guide</a>
+        <a href="/calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Muscle Calculator</a>
+      </div>
+    </section>
+
+    <p class="text-xs text-gray-400 text-center">Last updated: {config.game.lastUpdated}</p>
+  </div>
+</BaseLayout>

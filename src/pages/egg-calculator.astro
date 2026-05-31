@@ -1,0 +1,201 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const pets = getPets();
+
+// Group pets by eggSource
+const eggSources = [...new Set(pets.map(p => p.eggSource))].map(source => ({
+  name: source,
+  pets: pets.filter(p => p.eggSource === source).sort((a, b) => b.hatchChance - a.hatchChance),
+}));
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Egg Calculator', url: '/egg-calculator' },
+]);
+const faqSchema = generateFAQSchema([
+  { question: 'How do egg hatch chances work in +1 Muscle to Arm Wrestle?', answer: 'Each pet has a fixed hatch chance when opening its associated egg. For example, a 5% hatch chance means you have a 1 in 20 chance per egg. Opening more eggs increases your odds but never guarantees a specific pet.' },
+  { question: 'How many eggs do I need to hatch a specific pet?', answer: 'The expected number of eggs needed is 1 divided by the hatch chance. For a 1% chance pet, you need about 100 eggs on average. For a 30% chance pet, only about 3-4 eggs.' },
+  { question: 'Which egg source has the best pets?', answer: 'Fantasy Eggs and Strawberry Eggs contain epic and legendary pets with high multipliers. Basic Eggs have common pets with lower bonuses. 67 Packs contain the legendary 67 pet with a massive 50x muscle bonus.' },
+]);
+const videoGameSchema = generateVideoGameSchema();
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Egg Calculator" description="Calculate egg hatch probabilities and expected costs in +1 Muscle to Arm Wrestle. Find the best eggs to open for pets." canonical="/egg-calculator">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
+
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <nav class="text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-blue-500">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700 dark:text-gray-200 font-medium">Egg Calculator</span>
+    </nav>
+
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🥚 Egg Calculator</h1>
+    <p class="text-gray-500 mb-8">Calculate egg hatch probabilities and expected costs. Find the best eggs to open for pets.</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Calculator -->
+      <div class="space-y-6">
+        <div>
+          <label class="block font-bold mb-2" for="pet-select">🐾 Target Pet</label>
+          <select id="pet-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
+            {pets.map(p => (
+              <option value={p.id} data:hatchChance={p.hatchChance} data:eggSource={p.eggSource} data:rarity={p.rarity} data:muscleBonus={p.muscleBonus}>
+                {p.name} ({p.rarity}) — {p.eggSource}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold mb-2" for="confidence-level">📈 Confidence Level</label>
+          <select id="confidence-level" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
+            <option value="50">50% (Average luck)</option>
+            <option value="80">80% (Likely)</option>
+            <option value="90" selected>90% (Very likely)</option>
+            <option value="95">95% (Near certain)</option>
+            <option value="99">99% (Almost guaranteed)</option>
+          </select>
+        </div>
+        <button id="calc-btn" class="w-full py-3 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg transition-colors">
+          Calculate Odds
+        </button>
+
+        <!-- Results -->
+        <div id="results-panel" class="hidden space-y-4">
+          <div class="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border text-center">
+            <div class="text-sm text-gray-500 mb-1">Expected Eggs Needed</div>
+            <div id="expected-eggs" class="text-5xl font-black text-emerald-500">—</div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
+              <div class="text-xs text-gray-500">Hatch Chance</div>
+              <div id="hatch-chance" class="text-xl font-bold">—</div>
+            </div>
+            <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
+              <div class="text-xs text-gray-500">1 in X Odds</div>
+              <div id="one-in-x" class="text-xl font-bold">—</div>
+            </div>
+            <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
+              <div class="text-xs text-gray-500">Egg Source</div>
+              <div id="egg-source" class="text-xl font-bold">—</div>
+            </div>
+            <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
+              <div class="text-xs text-gray-500">Muscle Bonus</div>
+              <div id="muscle-bonus" class="text-xl font-bold">—</div>
+            </div>
+          </div>
+          <div id="detail-box" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+            <h3 class="font-bold mb-1">📊 Probability Analysis</h3>
+            <p id="detail-text" class="text-sm text-gray-600 dark:text-gray-300"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Egg Source Groups -->
+      <div class="space-y-6">
+        <h2 class="text-xl font-bold">🥚 All Egg Sources</h2>
+        {eggSources.map(group => (
+          <div class="p-4 rounded-xl border bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="font-bold mb-3">{group.name}</h3>
+            <div class="space-y-2">
+              {group.pets.map(pet => (
+                <div class="flex items-center justify-between p-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700">
+                  <div>
+                    <span class="font-medium text-sm">{pet.name}</span>
+                    <span class={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                      pet.rarity === 'Common' ? 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300' :
+                      pet.rarity === 'Uncommon' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                      pet.rarity === 'Rare' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                      pet.rarity === 'Epic' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
+                      pet.rarity === 'Legendary' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' :
+                      'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                    }`}>{pet.rarity}</span>
+                  </div>
+                  <div class="text-right text-sm">
+                    <div class="font-mono">{(pet.hatchChance * 100).toFixed(1)}%</div>
+                    <div class="text-xs text-gray-400">~{formatNumber(Math.ceil(1 / pet.hatchChance))} eggs</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- FAQ -->
+        <div class="mt-8">
+          <h2 class="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
+              <summary class="font-semibold">How do egg hatch chances work?</summary>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Each pet has a fixed hatch chance when opening its associated egg. For example, a 5% hatch chance means you have a 1 in 20 chance per egg. Opening more eggs increases your odds but never guarantees a specific pet.</p>
+            </details>
+            <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
+              <summary class="font-semibold">How many eggs do I need to hatch a specific pet?</summary>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">The expected number of eggs needed is 1 divided by the hatch chance. For a 1% chance pet, you need about 100 eggs on average. For a 30% chance pet, only about 3-4 eggs.</p>
+            </details>
+            <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
+              <summary class="font-semibold">Which egg source has the best pets?</summary>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Fantasy Eggs and Strawberry Eggs contain epic and legendary pets with high multipliers. Basic Eggs have common pets with lower bonuses. 67 Packs contain the legendary 67 pet with a massive 50x muscle bonus.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-12 pt-8 border-t">
+      <h3 class="font-bold mb-4">Useful Links</h3>
+      <div class="flex flex-wrap gap-3">
+        <a href="/tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📊 Tier List</a>
+        <a href="/codes/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🎁 Codes</a>
+        <a href="/calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🧮 Muscle Calculator</a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-xs text-gray-400">Last updated: {config.game.lastUpdated}</p>
+  </div>
+
+  <script define:vars={{ pets }}>
+    function formatNumber(num) {
+      if (num >= 1e15) return (num / 1e15).toFixed(1) + 'Q';
+      if (num >= 1e12) return (num / 1e12).toFixed(1) + 'T';
+      if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+      if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+      if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+      return Math.round(num).toString();
+    }
+
+    document.getElementById('calc-btn').addEventListener('click', () => {
+      const petSel = document.getElementById('pet-select');
+      const opt = petSel.options[petSel.selectedIndex];
+      const hatchChance = parseFloat(opt.dataset.hatchchance);
+      const eggSource = opt.dataset.eggsource;
+      const rarity = opt.dataset.rarity;
+      const muscleBonus = parseFloat(opt.dataset.musclebonus);
+      const petName = opt.textContent.split('(')[0].trim();
+
+      const confidence = parseFloat(document.getElementById('confidence-level').value) / 100;
+
+      const expectedEggs = 1 / hatchChance;
+      const confidenceEggs = Math.ceil(Math.log(1 - confidence) / Math.log(1 - hatchChance));
+      const oneInX = Math.round(1 / hatchChance);
+
+      document.getElementById('results-panel').classList.remove('hidden');
+      document.getElementById('expected-eggs').textContent = formatNumber(confidenceEggs);
+      document.getElementById('hatch-chance').textContent = (hatchChance * 100).toFixed(1) + '%';
+      document.getElementById('one-in-x').textContent = '1 in ' + formatNumber(oneInX);
+      document.getElementById('egg-source').textContent = eggSource;
+      document.getElementById('muscle-bonus').textContent = muscleBonus + 'x';
+
+      document.getElementById('detail-text').textContent =
+        `${petName} has a ${(hatchChance * 100).toFixed(1)}% hatch chance from ${eggSource}. ` +
+        `On average you need ${formatNumber(Math.ceil(expectedEggs))} eggs (median ~${formatNumber(Math.ceil(Math.log(0.5) / Math.log(1 - hatchChance)))}). ` +
+        `To be ${(confidence * 100).toFixed(0)}% sure of hatching one, prepare about ${formatNumber(confidenceEggs)} eggs. ` +
+        `This ${rarity} pet gives a ${muscleBonus}x muscle bonus!`;
+    });
+  </script>
+</BaseLayout>
