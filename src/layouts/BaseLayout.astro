@@ -37,6 +37,15 @@ const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={`${config.seo.baseUrl}${ogImage}`} />
+
+  <!-- Google Analytics 4 -->
+  <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-6DXJC8Z3BV" async></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6DXJC8Z3BV');
+  </script>
 </head>
 <body class="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans antialiased">
   <Header />
