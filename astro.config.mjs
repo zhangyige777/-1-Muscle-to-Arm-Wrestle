@@ -6,7 +6,7 @@ export default defineConfig({
   integrations: [react()],
   output: 'static',
   trailingSlash: 'always',
-  site: 'https://muscle-arm-wrestle.gg',
+  site: 'https://1-muscle-to-arm-wrestle.pages.dev',
   vite: {
     plugins: [tailwindcss()],
   },
