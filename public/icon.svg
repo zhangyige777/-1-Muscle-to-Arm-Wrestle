@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e3f"/>
+      <stop offset="100%" stop-color="#0d0d1a"/>
+    </linearGradient>
+    <linearGradient id="arm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Glow effect -->
+  <circle cx="256" cy="240" r="180" fill="url(#glow)"/>
+  <!-- Flexed bicep arm - larger, more detailed -->
+  <g transform="translate(100, 80) scale(3.2)">
+    <!-- Upper arm -->
+    <path d="M40 110 L40 60 Q40 35 55 28 L70 22 Q78 19 85 24 L85 50 Q85 60 75 65 L60 72 Q52 76 52 86 L52 110 Z" fill="url(#arm)"/>
+    <!-- Forearm with fist -->
+    <path d="M85 24 Q95 16 105 24 L130 48 Q140 58 140 72 L140 110 L115 110 L115 72 Q115 64 108 58 L85 50 Z" fill="url(#arm)"/>
+    <!-- Muscle definition lines -->
+    <path d="M55 50 Q65 45 75 52" stroke="#b45309" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M58 65 Q68 60 78 67" stroke="#b45309" stroke-width="1.5" fill="none" opacity="0.3"/>
+  </g>
+  <!-- +1 Badge -->
+  <g transform="translate(340, 50)">
+    <rect x="0" y="0" width="120" height="60" rx="16" fill="#f59e0b"/>
+    <rect x="2" y="2" width="116" height="56" rx="14" fill="none" stroke="#fbbf24" stroke-width="2"/>
+    <text x="60" y="42" font-family="Arial,sans-serif" font-size="32" font-weight="900" fill="#1e1e3f" text-anchor="middle">+1</text>
+  </g>
+  <!-- Muscle text -->
+  <text x="256" y="460" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#f59e0b" text-anchor="middle">MUSCLE</text>
+</svg>

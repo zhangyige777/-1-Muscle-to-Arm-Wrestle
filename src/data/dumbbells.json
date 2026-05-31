@@ -1,0 +1,106 @@
+{
+  "gameName": "+1 Muscle to Arm Wrestle",
+  "lastUpdated": "2026-05-31",
+  "dumbbells": [
+    {
+      "id": "basic-dumbbell",
+      "name": "Basic Dumbbell",
+      "tier": 1,
+      "musclePerStep": 1,
+      "cost": 0,
+      "currency": "wins",
+      "description": "Your starting dumbbell. +1 Muscle per step.",
+      "tags": ["starter"]
+    },
+    {
+      "id": "iron-dumbbell",
+      "name": "Iron Dumbbell",
+      "tier": 2,
+      "musclePerStep": 2,
+      "cost": 100,
+      "currency": "wins",
+      "description": "A solid iron dumbbell. Doubles your muscle per step.",
+      "tags": ["world-1"]
+    },
+    {
+      "id": "steel-dumbbell",
+      "name": "Steel Dumbbell",
+      "tier": 3,
+      "musclePerStep": 5,
+      "cost": 1000,
+      "currency": "wins",
+      "description": "A strong steel dumbbell. 5x muscle per step.",
+      "tags": ["world-1"]
+    },
+    {
+      "id": "golden-dumbbell",
+      "name": "Golden Dumbbell",
+      "tier": 4,
+      "musclePerStep": 12,
+      "cost": 10000,
+      "currency": "wins",
+      "description": "A gleaming golden dumbbell. 12x muscle per step.",
+      "tags": ["world-1"]
+    },
+    {
+      "id": "diamond-dumbbell",
+      "name": "Diamond Dumbbell",
+      "tier": 5,
+      "musclePerStep": 30,
+      "cost": 100000,
+      "currency": "wins",
+      "description": "A dazzling diamond dumbbell. 30x muscle per step.",
+      "tags": ["world-1", "world-2"]
+    },
+    {
+      "id": "crystal-dumbbell",
+      "name": "Crystal Dumbbell",
+      "tier": 6,
+      "musclePerStep": 75,
+      "cost": 1000000,
+      "currency": "wins",
+      "description": "A mystical crystal dumbbell. 75x muscle per step.",
+      "tags": ["world-2"]
+    },
+    {
+      "id": "candy-dumbbell",
+      "name": "Candy Dumbbell",
+      "tier": 7,
+      "musclePerStep": 200,
+      "cost": 10000000,
+      "currency": "wins",
+      "description": "A sweet candy dumbbell. 200x muscle per step. High-tier upgrade.",
+      "tags": ["world-2", "world-3"]
+    },
+    {
+      "id": "cyber-dumbbell",
+      "name": "Cyber Dumbbell",
+      "tier": 8,
+      "musclePerStep": 500,
+      "cost": 100000000,
+      "currency": "wins",
+      "description": "A futuristic cyber dumbbell. 500x muscle per step. Cyber City tier.",
+      "tags": ["world-3", "world-4"]
+    },
+    {
+      "id": "galaxy-dumbbell",
+      "name": "Galaxy Dumbbell",
+      "tier": 9,
+      "musclePerStep": 1500,
+      "cost": 10000000000,
+      "currency": "wins",
+      "description": "A cosmic galaxy dumbbell. 1500x muscle per step. Endgame tier.",
+      "tags": ["world-4", "endgame"]
+    },
+    {
+      "id": "universal-dumbbell",
+      "name": "Universal Dumbbell",
+      "tier": 10,
+      "musclePerStep": 5000,
+      "cost": 1000000000000,
+      "currency": "wins",
+      "description": "The ultimate universal dumbbell. 5000x muscle per step. Maximum power.",
+      "tags": ["world-4", "endgame", "max"]
+    }
+  ]
+}

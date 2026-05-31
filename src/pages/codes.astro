@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getActiveCodes, getExpiredCodes, getGameConfig, generateBreadcrumbSchema, generateFAQSchema, getCurrentDateString } from '@/lib/data';
+
+const config = getGameConfig();
+const monthYear = getCurrentDateString();
+const activeCodes = getActiveCodes();
+const expiredCodes = getExpiredCodes();
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Codes', url: '/codes' }]);
+const faqSchema = generateFAQSchema([
+  { question: 'How do I redeem codes?', answer: 'Open the Shop, scroll to bottom, find Community Code, type your code, and click Verify.' },
+  { question: 'How often are new codes released?', answer: 'New codes typically come with game updates every Saturday.' },
+  { question: 'What rewards can I get from codes?', answer: 'Free Wins, Muscle, Pets (Bunny, Turkey), Eggs, and Boosts.' },
+  { question: 'Why is my code not working?', answer: 'Codes may be expired, entered incorrectly, or already redeemed. Some codes like "more potion" contain spaces.' },
+]);
+---
+<BaseLayout title={`+1 Muscle to Arm Wrestle Codes (${monthYear}) — All Working Codes`} description="All working codes for free Wins, Muscle, Pets, Eggs, and Boosts. Updated daily." canonical="/codes">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🎫 +1 Muscle to Arm Wrestle Codes ({monthYear})</h1>
+    <p class="text-gray-500 mb-8">All working promo codes for free Wins, Muscle, Pets, Eggs, and Boosts.</p>
+
+    <!-- Active Codes -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+        <span class="w-3 h-3 bg-green-500 rounded-full"></span> Active Codes ({activeCodes.length})
+      </h2>
+      <div class="space-y-3">
+        {activeCodes.map(code => (
+          <div class={`p-4 rounded-xl border ${code.isNew ? 'border-green-300 bg-green-50 dark:bg-green-950/20' : 'border-gray-200 dark:border-gray-800'}`}>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <code class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded font-mono font-bold text-sm">{code.code}</code>
+                {code.isNew && <span class="px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded">NEW</span>}
+              </div>
+              <button class="copy-btn px-3 py-1 rounded text-xs font-bold bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 text-gray-600 dark:text-gray-400" data-code={code.code}>Copy</button>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">🎁 {code.reward}</p>
+            <p class="text-xs text-gray-400 mt-1">Added: {code.addedDate} · Source: {code.source}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- How to Redeem -->
+    <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+      <h2 class="text-xl font-bold mb-4">📋 How to Redeem Codes</h2>
+      <ol class="space-y-2 text-sm">
+        <li><strong>1.</strong> Open <strong>+1 Muscle to Arm Wrestle</strong> on Roblox</li>
+        <li><strong>2.</strong> Click the <strong>Shop</strong> button (shopping cart icon)</li>
+        <li><strong>3.</strong> Scroll to the bottom</li>
+        <li><strong>4.</strong> Find <strong>"Community Code"</strong></li>
+        <li><strong>5.</strong> Type your code and click <strong>"Verify"</strong></li>
+      </ol>
+    </section>
+
+    <!-- Expired -->
+    {expiredCodes.length > 0 && (
+      <section class="mb-10">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+          <span class="w-3 h-3 bg-gray-400 rounded-full"></span> Expired Codes
+        </h2>
+        <div class="space-y-2">
+          {expiredCodes.map(code => (
+            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-900 opacity-60">
+              <code class="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded font-mono text-sm line-through">{code.code}</code>
+              <span class="text-xs text-gray-400 ml-2">— {code.reward}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Related Links -->
+    <section class="p-6 rounded-xl border">
+      <h2 class="text-xl font-bold mb-4">Related Tools</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href="/calculator" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Muscle Calculator</a>
+        <a href="/tier-list" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🏆 Pet Tier List</a>
+        <a href="/beginner-guide" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">📖 Beginner Guide</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = (btn as HTMLElement).dataset.code || '';
+        try { await navigator.clipboard.writeText(code); } catch { /* fallback */ }
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('bg-green-500', 'text-white');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('bg-green-500', 'text-white'); }, 2000);
+      });
+    });
+  </script>
+</BaseLayout>

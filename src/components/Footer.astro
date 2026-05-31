@@ -1,0 +1,16 @@
+---
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-gray-200 dark:border-gray-800 mt-16 py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-500">
+    <div class="flex justify-center gap-4 mb-3">
+      <a href="/terms" class="hover:underline">Terms</a>
+      <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>
+      <a href="/about" class="hover:underline">About</a>
+    </div>
+    <p class="mb-2">💪 {config.game.name} Guide & Tools — Fan-made companion site. Not affiliated with Roblox Corporation or {config.game.developer}.</p>
+    <p>&copy; {year} All rights reserved.</p>
+  </div>
+</footer>

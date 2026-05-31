@@ -1,0 +1,22 @@
+{
+  "name": "+1 Muscle to Arm Wrestle Guide & Tools",
+  "short_name": "Muscle Arm Wrestle",
+  "description": "The ultimate companion — codes, muscle calculator, pet tier list, and guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#f59e0b",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    }
+  ]
+}

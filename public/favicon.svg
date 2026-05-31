@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e3f"/>
+      <stop offset="100%" stop-color="#0d0d1a"/>
+    </linearGradient>
+    <linearGradient id="arm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="url(#bg)"/>
+  <!-- Flexed bicep arm silhouette -->
+  <path d="M8 22 L8 16 Q8 12 11 11 L13 10 Q14 9.5 15 10 L15 13 Q15 14 14 14.5 L12 15.5 Q11 16 11 17 L11 22 Z" fill="url(#arm)"/>
+  <path d="M15 10 Q16 9 17 10 L20 13 Q22 15 22 17 L22 22 L18 22 L18 17 Q18 16 17 15 L15 13 Z" fill="url(#arm)"/>
+  <!-- +1 text -->
+  <text x="23" y="11" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="#f59e0b">+1</text>
+</svg>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { generateBreadcrumbSchema } from '@/lib/data';
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Updates', url: '/updates' }]);
+const UPDATES = [
+  { date: '2026-05-24', title: 'New World: The Rock Zone', changes: ['Added The Rock Zone (World 3) with meme opponents', 'New: The Rock boss (67T Muscle)', '67 Pack egg + 67 pet (x50 muscle)', 'Strawberry Egg + Strawberry Elephant', 'New code: yasineoldman (10 eggs)'] },
+  { date: '2026-05-16', title: 'Cyber City & New Pets', changes: ['Added Cyber City (World 4)', 'Cyber Security Guard, Gardener, Astronaut, Galaxy Minor, Green Alien', 'Cyborg Kitty pet (Epic)', 'Code: ilovecass (300 Wins + Turkey)', 'Code: bunnyhop (Free Bunny)'] },
+  { date: '2026-05-10', title: 'Fantasy World', changes: ['Added Fantasy World (World 2)', 'Caveman→Devil→Tech Titan (9 opponents)', 'Fantasy Eggs with Epic pets', 'Codes: strongman, more potion'] },
+  { date: '2026-05-05', title: 'Rebirth & Pets', changes: ['Rebirth system with permanent multipliers', 'Pet hatching from eggs', 'Gold Machine + Rainbow Machine', 'Code: potion up'] },
+  { date: '2026-04-20', title: 'Game Launch', changes: ['Initial release', 'Starter Gym with 10 opponents', 'Basic dumbbell upgrades', 'Walk = +1 Muscle per step'] },
+];
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Updates" description="Latest updates and patch notes. Updated every Saturday." canonical="/updates">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <div class="max-w-4xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-extrabold mb-2">🆕 Updates & Patch Notes</h1>
+    <p class="text-gray-500 mb-8">Game updates every Saturday.</p>
+    <div class="space-y-6">
+      {UPDATES.map((u, i) => (
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-gray-800">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-bold">{u.date}</span>
+            {i === 0 && <span class="px-2 py-0.5 bg-green-500 text-white rounded text-xs font-bold">LATEST</span>}
+          </div>
+          <h2 class="text-lg font-bold mb-3">{u.title}</h2>
+          <ul class="space-y-1">{u.changes.map(c => <li class="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2"><span class="text-green-500">+</span>{c}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/codes" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🎫 Latest Codes</a>
+      <a href="/wiki" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">📚 Full Wiki</a>
+    </div>
+  </div>
+</BaseLayout>

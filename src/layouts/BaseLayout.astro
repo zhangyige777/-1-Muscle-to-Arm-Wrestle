@@ -1,0 +1,48 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '@/styles/global.css';
+import { getGameConfig } from '@/lib/data';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const config = getGameConfig();
+const { title = config.seo.siteTitle, description = config.seo.siteDescription, canonical, ogImage = '/og-default.jpg' } = Astro.props;
+const canonicalURL = canonical ? new URL(canonical, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#f59e0b" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={[...config.seo.primaryKeywords, ...config.seo.secondaryKeywords].join(', ')} />
+  <link rel="canonical" href={canonicalURL.href} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL.href} />
+  <meta property="og:site_name" content={config.game.name} />
+  <meta property="og:image" content={`${config.seo.baseUrl}${ogImage}`} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${config.seo.baseUrl}${ogImage}`} />
+</head>
+<body class="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans antialiased">
+  <Header />
+  <main class="min-h-[calc(100vh-180px)]">
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>

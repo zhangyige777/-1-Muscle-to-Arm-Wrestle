@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGameConfig, getActiveCodes, generateBreadcrumbSchema, generateVideoGameSchema, generateFAQSchema } from '@/lib/data';
+
+const config = getGameConfig();
+const activeCodes = getActiveCodes();
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }]);
+const videoGameSchema = generateVideoGameSchema();
+const faqSchema = generateFAQSchema([
+  { question: `What is ${config.game.name}?`, answer: `It's a Roblox strength simulator where you walk to gain muscle, arm wrestle opponents, collect pets, and rebirth. Developed by ${config.game.developer}.` },
+  { question: 'How do I get free codes?', answer: 'Open the Shop, scroll to bottom, enter codes in Community Code section.' },
+  { question: 'How many worlds are there?', answer: '4 worlds: Starter Gym, Fantasy World, The Rock Zone, and Cyber City.' },
+  { question: 'What is the best pet?', answer: 'Huge Hydra Dominus (Gamepass) is strongest. Among free pets, "67" has x50 muscle multiplier.' },
+]);
+
+const QUICK_LINKS = [
+  { href: '/codes', title: 'Codes', desc: 'All active promo codes with free rewards', emoji: '🎫' },
+  { href: '/calculator', title: 'Calculator', desc: 'Calculate your muscle gain per step', emoji: '🧮' },
+  { href: '/tier-list', title: 'Pet Tier List', desc: 'Best pets ranked from S to D tier', emoji: '🏆' },
+  { href: '/beginner-guide', title: 'Beginner Guide', desc: 'Complete walkthrough for new players', emoji: '📖' },
+  { href: '/wiki', title: 'Wiki', desc: 'All worlds, opponents, and items', emoji: '📚' },
+  { href: '/updates', title: 'Updates', desc: 'Latest patch notes and changes', emoji: '🆕' },
+];
+---
+<BaseLayout title={`${config.game.name} — Codes, Calculator & Tier List (${monthYear})`} canonical="/">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-4">
+        <span class="text-amber-500">💪</span> {config.game.name}
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+        The ultimate companion — codes, muscle calculator, pet tier list, and beginner guide. Updated {config.game.updateSchedule.toLowerCase()}.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/codes" class="inline-flex items-center px-6 py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors">
+          🎫 Get Free Codes ({activeCodes.length} Active)
+        </a>
+        <a href="/calculator" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
+          🧮 Muscle Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {QUICK_LINKS.map(link => (
+        <a href={link.href} class="card-hover block p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+          <div class="text-2xl mb-2">{link.emoji}</div>
+          <h2 class="font-bold text-lg mb-1">{link.title}</h2>
+          <p class="text-sm text-gray-500">{link.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- How to Play -->
+  <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+    <h2 class="text-2xl font-bold mb-6">How to Play</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {[
+        { step: '1', title: 'Walk & Gain Muscle', desc: 'Every step gives +1 Muscle. Equip better dumbbells to multiply your gains.' },
+        { step: '2', title: 'Arm Wrestle', desc: 'Challenge opponents to earn Wins. Stronger opponents give bigger rewards.' },
+        { step: '3', title: 'Upgrade & Collect', desc: 'Buy better dumbbells, hatch eggs for pets, use boosts for multipliers.' },
+        { step: '4', title: 'Rebirth & Conquer', desc: 'Rebirth for permanent multipliers and unlock new worlds.' },
+      ].map(item => (
+        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
+          <div class="text-3xl font-black text-amber-500 mb-2">{item.step}</div>
+          <h3 class="font-bold mb-1">{item.title}</h3>
+          <p class="text-sm text-gray-500">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Game Stats -->
+  <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+    <h2 class="text-2xl font-bold mb-6">Game Stats</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {[
+        { label: 'Visits', value: config.stats.visits },
+        { label: 'Favorites', value: config.stats.favorites },
+        { label: 'Online Now', value: config.stats.onlineNow },
+        { label: 'Updates', value: config.game.updateSchedule },
+      ].map(stat => (
+        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 text-center">
+          <div class="text-sm text-gray-500 mb-1">{stat.label}</div>
+          <div class="text-xl font-bold">{stat.value}</div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-6 text-center">
+      <a href={`https://www.roblox.com/games/${config.game.robloxId}`} target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors">
+        ▶ Play on Roblox
+      </a>
+    </div>
+  </section>
+</BaseLayout>

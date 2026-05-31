@@ -1,0 +1,73 @@
+{
+  "gameName": "+1 Muscle to Arm Wrestle",
+  "lastUpdated": "2026-05-31",
+  "worlds": [
+    {
+      "id": "starter-gym",
+      "name": "Starter Gym",
+      "slug": "starter-gym",
+      "order": 1,
+      "unlockRequirement": "None (starting world)",
+      "description": "Your journey begins here. Walk around the gym to build muscle and arm wrestle your first opponents.",
+      "opponents": [
+        { "id": "nerdy-kid", "name": "Nerdy Kid", "slug": "nerdy-kid", "muscleRequired": 10, "winsReward": 5, "difficulty": "Easy", "description": "The weakest opponent. A great first challenge." },
+        { "id": "big-bully", "name": "Big Bully", "slug": "big-bully", "muscleRequired": 650, "winsReward": 15, "difficulty": "Easy", "description": "A school bully with some muscle. Needs 650 strength." },
+        { "id": "headmaster", "name": "Headmaster", "slug": "headmaster", "muscleRequired": 5000, "winsReward": 50, "difficulty": "Medium", "description": "The headmaster of the school. A moderate challenge." },
+        { "id": "athlete-boy", "name": "Athlete Boy", "slug": "athlete-boy", "muscleRequired": 30000, "winsReward": 150, "difficulty": "Medium", "description": "A star athlete. Requires 30K strength." },
+        { "id": "gym-bro", "name": "Gym Bro", "slug": "gym-bro", "muscleRequired": 200000, "winsReward": 500, "difficulty": "Hard", "description": "A dedicated gym rat. Serious muscle needed." },
+        { "id": "king-boxer", "name": "King Boxer", "slug": "king-boxer", "muscleRequired": 1000000, "winsReward": 2000, "difficulty": "Hard", "description": "The boxing champion. 1M strength required." },
+        { "id": "giga-chad", "name": "Giga Chad", "slug": "giga-chad", "muscleRequired": 1000000, "winsReward": 2500, "difficulty": "Hard", "description": "The meme legend himself. 1M strength required." },
+        { "id": "bodyguard", "name": "Bodyguard", "slug": "bodyguard", "muscleRequired": 7500000, "winsReward": 5000, "difficulty": "Hard", "description": "A massive bodyguard. 7.5M strength needed." },
+        { "id": "mafia-boss", "name": "Mafia Boss", "slug": "mafia-boss", "muscleRequired": 25000000, "winsReward": 10000, "difficulty": "Extreme", "description": "The mafia boss of the gym. 25M strength required." },
+        { "id": "the-unknown", "name": "The Unknown", "slug": "the-unknown", "muscleRequired": 111000000, "winsReward": 25000, "difficulty": "Extreme", "description": "The final boss of World 1. 111M strength needed." }
+      ]
+    },
+    {
+      "id": "fantasy-world",
+      "name": "Fantasy World",
+      "slug": "fantasy-world",
+      "order": 2,
+      "unlockRequirement": "Defeat The Unknown (111M Muscle)",
+      "description": "A magical realm with powerful fantasy opponents. Pets and eggs available here are stronger.",
+      "opponents": [
+        { "id": "caveman", "name": "Caveman", "slug": "caveman", "muscleRequired": 450000000, "winsReward": 50000, "difficulty": "Easy", "description": "A prehistoric warrior. 450M strength needed." },
+        { "id": "evil-pirate", "name": "Evil Pirate", "slug": "evil-pirate", "muscleRequired": 1000000000, "winsReward": 100000, "difficulty": "Medium", "description": "A fearsome pirate captain. 1B strength required." },
+        { "id": "samurai", "name": "Samurai", "slug": "samurai", "muscleRequired": 3500000000, "winsReward": 250000, "difficulty": "Medium", "description": "A master swordsman. 3.5B strength needed." },
+        { "id": "cookie-king", "name": "Cookie King", "slug": "cookie-king", "muscleRequired": 10000000000, "winsReward": 500000, "difficulty": "Hard", "description": "The ruler of cookies. 10B strength required." },
+        { "id": "skelly-giant", "name": "Skelly Giant", "slug": "skelly-giant", "muscleRequired": 50000000000, "winsReward": 1000000, "difficulty": "Hard", "description": "A massive skeleton giant. 50B strength needed." },
+        { "id": "wizard", "name": "Wizard", "slug": "wizard", "muscleRequired": 175000000000, "winsReward": 3000000, "difficulty": "Hard", "description": "A powerful dark wizard. 175B strength required." },
+        { "id": "sky-lord", "name": "Sky Lord", "slug": "sky-lord", "muscleRequired": 420000000000, "winsReward": 5000000, "difficulty": "Extreme", "description": "The lord of the skies. 420B strength needed." },
+        { "id": "devil", "name": "Devil", "slug": "devil", "muscleRequired": 1500000000000, "winsReward": 10000000, "difficulty": "Extreme", "description": "The devil himself. 1.5T strength required." },
+        { "id": "tech-titan", "name": "Tech Titan", "slug": "tech-titan", "muscleRequired": 12000000000000, "winsReward": 25000000, "difficulty": "Extreme", "description": "The final boss of Fantasy World. 12T strength needed." }
+      ]
+    },
+    {
+      "id": "the-rock-zone",
+      "name": "The Rock Zone",
+      "slug": "the-rock-zone",
+      "order": 3,
+      "unlockRequirement": "Defeat Tech Titan (12T Muscle)",
+      "description": "A meme-themed world featuring The Rock and other hilarious opponents. Trolls and brain-rot pets await!",
+      "opponents": [
+        { "id": "the-rock", "name": "The Rock", "slug": "the-rock", "muscleRequired": 67000000000000, "winsReward": 100000000, "difficulty": "Extreme", "description": "Dwayne 'The Rock' Johnson himself. 67T strength needed!" },
+        { "id": "troll", "name": "Troll", "slug": "troll", "muscleRequired": 100000000000000, "winsReward": 150000000, "difficulty": "Extreme", "description": "An internet troll with massive strength." },
+        { "id": "skippy-toilet", "name": "Skippy Toilet", "slug": "skippy-toilet", "muscleRequired": 150000000000000, "winsReward": 200000000, "difficulty": "Extreme", "description": "The legendary Skippy Toilet. Pure meme power." }
+      ]
+    },
+    {
+      "id": "cyber-city",
+      "name": "Cyber City",
+      "slug": "cyber-city",
+      "order": 4,
+      "unlockRequirement": "Defeat The Rock Zone bosses",
+      "description": "The final futuristic world. The strongest opponents in the game await with astronomical strength requirements.",
+      "opponents": [
+        { "id": "cyber-security-guard", "name": "Cyber Security Guard", "slug": "cyber-security-guard", "muscleRequired": 225000000000000, "winsReward": 500000000, "difficulty": "Extreme", "description": "A futuristic security guard. 225T strength needed." },
+        { "id": "gardener", "name": "Gardener", "slug": "gardener", "muscleRequired": 1500000000000000, "winsReward": 1000000000, "difficulty": "Extreme", "description": "A cyber gardener with immense power. 1.5Q strength." },
+        { "id": "astronaut", "name": "Astronaut", "slug": "astronaut", "muscleRequired": 4000000000000000, "winsReward": 2500000000, "difficulty": "Extreme", "description": "A space-faring astronaut. 4Q strength needed." },
+        { "id": "galaxy-minor", "name": "Galaxy Minor", "slug": "galaxy-minor", "muscleRequired": 15000000000000000, "winsReward": 5000000000, "difficulty": "Extreme", "description": "A minor galaxy entity. 15Q strength required." },
+        { "id": "green-alien", "name": "Green Alien", "slug": "green-alien", "muscleRequired": 79000000000000000, "winsReward": 10000000000, "difficulty": "Extreme", "description": "The final boss of Cyber City. 79Q strength needed. The ultimate challenge." }
+      ]
+    }
+  ]
+}

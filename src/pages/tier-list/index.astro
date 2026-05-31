@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPets, getGameConfig, generateBreadcrumbSchema, generateFAQSchema, getCurrentDateString } from '@/lib/data';
+
+const config = getGameConfig();
+const monthYear = getCurrentDateString();
+const pets = getPets();
+const tiers = ['S', 'A', 'B', 'C', 'D'] as const;
+
+const TIER_CONFIG: Record<string, { color: string; bg: string; label: string }> = {
+  S: { color: 'text-red-400', bg: 'bg-red-500/10 border-red-500/30', label: 'S Tier — Best' },
+  A: { color: 'text-orange-400', bg: 'bg-orange-500/10 border-orange-500/30', label: 'A Tier — Excellent' },
+  B: { color: 'text-yellow-400', bg: 'bg-yellow-500/10 border-yellow-500/30', label: 'B Tier — Good' },
+  C: { color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30', label: 'C Tier — Average' },
+  D: { color: 'text-gray-400', bg: 'bg-gray-500/10 border-gray-500/30', label: 'D Tier — Basic' },
+};
+const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-700', Uncommon: 'bg-green-200 text-green-700', Rare: 'bg-blue-200 text-blue-700', Epic: 'bg-purple-200 text-purple-700', Legendary: 'bg-amber-200 text-amber-700', Mythical: 'bg-red-200 text-red-700' };
+
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Tier List', url: '/tier-list' }]);
+const faqSchema = generateFAQSchema([
+  { question: 'What is the best pet?', answer: 'Huge Hydra Dominus (S Tier, Gamepass exclusive). Among free pets, "67" has x50 muscle multiplier.' },
+  { question: 'How to get Golden Pets?', answer: 'Use the Gold Machine to combine 5 of the same pet into a Golden version.' },
+]);
+---
+<BaseLayout title={`+1 Muscle to Arm Wrestle Pet Tier List (${monthYear})`} description="All pets ranked from S to D tier with muscle bonus, win bonus, rarity, and hatch chance." canonical="/tier-list">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">🏆 Pet Tier List ({monthYear})</h1>
+    <p class="text-gray-500 mb-8">All pets ranked by muscle bonus and overall value.</p>
+
+    {tiers.map(tier => {
+      const tierPets = pets.filter(p => p.tier === tier);
+      if (!tierPets.length) return null;
+      const cfg = TIER_CONFIG[tier];
+      return (
+        <div class={`mb-6 p-4 rounded-xl border ${cfg.bg}`}>
+          <h2 class={`text-lg font-bold mb-3 ${cfg.color}`}>{cfg.label}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {tierPets.map(pet => (
+              <a href={`/tier-list/${pet.slug}`} class="block p-4 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 card-hover">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-bold">{pet.name}</span>
+                  <span class={`px-2 py-0.5 rounded text-xs font-bold ${RARITY_COLORS[pet.rarity] || 'bg-gray-200'}`}>{pet.rarity}</span>
+                </div>
+                <div class="space-y-1 text-sm text-gray-500">
+                  <div class="flex justify-between"><span>Muscle</span><span class="font-mono font-bold text-amber-500">{pet.muscleBonus}x</span></div>
+                  <div class="flex justify-between"><span>Wins</span><span class="font-mono font-bold text-green-500">{pet.winBonus}x</span></div>
+                  <div class="flex justify-between"><span>Source</span><span class="text-xs">{pet.eggSource}</span></div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/codes" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🎫 Free Pet Codes</a>
+      <a href="/calculator" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

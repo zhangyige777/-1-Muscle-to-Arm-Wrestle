@@ -1,0 +1,19 @@
+---
+import { getGameConfig } from '@/lib/data';
+const config = getGameConfig();
+---
+<header class="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="/" class="font-bold text-lg tracking-tight hover:text-blue-600 transition-colors">
+      <span class="text-amber-500">💪</span> {config.game.name}
+      <span class="text-xs text-gray-400 ml-2 font-normal hidden sm:inline">Guide & Tools</span>
+    </a>
+    <nav class="flex items-center gap-1 text-sm font-medium">
+      <a href="/codes" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Codes</a>
+      <a href="/calculator" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Calculator</a>
+      <a href="/tier-list" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Tier List</a>
+      <a href="/beginner-guide" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hidden sm:block">Guide</a>
+      <a href="/updates" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">Updates</a>
+    </nav>
+  </div>
+</header>

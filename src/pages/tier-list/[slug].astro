@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPets, getPetBySlug, generateBreadcrumbSchema } from '@/lib/data';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => getPets().map(pet => ({ params: { slug: pet.slug }, props: { pet } }));
+
+const { pet } = Astro.props;
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Tier List', url: '/tier-list' }, { name: pet.name, url: `/tier-list/${pet.slug}` }]);
+const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-700', Uncommon: 'bg-green-200 text-green-700', Rare: 'bg-blue-200 text-blue-700', Epic: 'bg-purple-200 text-purple-700', Legendary: 'bg-amber-200 text-amber-700', Mythical: 'bg-red-200 text-red-700' };
+---
+<BaseLayout title={`${pet.name} — ${pet.rarity} Pet (${pet.muscleBonus}x Muscle)`} description={`${pet.name}: ${pet.rarity} pet. ${pet.muscleBonus}x muscle, ${pet.winBonus}x wins. From ${pet.eggSource}.`} canonical={`/tier-list/${pet.slug}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <a href="/tier-list" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Tier List</a>
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-2">
+        <h1 class="text-3xl font-extrabold">{pet.name}</h1>
+        <span class={`px-3 py-1 rounded-full text-sm font-bold ${RARITY_COLORS[pet.rarity] || ''}`}>{pet.rarity}</span>
+      </div>
+      <p class="text-gray-500">{pet.description}</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border text-center">
+        <div class="text-sm text-gray-500 mb-1">Muscle Bonus</div>
+        <div class="text-3xl font-black text-amber-500">{pet.muscleBonus}x</div>
+      </div>
+      <div class="p-4 rounded-xl bg-green-50 dark:bg-green-950/30 border text-center">
+        <div class="text-sm text-gray-500 mb-1">Win Bonus</div>
+        <div class="text-3xl font-black text-green-500">{pet.winBonus}x</div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 border mb-6">
+      <h2 class="font-bold mb-3">Pet Details</h2>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between"><span class="text-gray-500">Tier</span><span class="font-bold">{pet.tier} Tier</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Egg Source</span><span class="font-bold">{pet.eggSource}</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Hatch Chance</span><span class="font-bold">{(pet.hatchChance * 100).toFixed(0)}%</span></div>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a href="/tier-list" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🏆 Full Tier List</a>
+      <a href="/calculator" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
+      <a href="/codes" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">🎫 Free Codes</a>
+    </div>
+  </div>
+</BaseLayout>

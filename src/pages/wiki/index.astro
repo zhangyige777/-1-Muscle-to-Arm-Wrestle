@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getWorlds, formatNumber, generateBreadcrumbSchema } from '@/lib/data';
+const worlds = getWorlds();
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Wiki', url: '/wiki' }]);
+const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700', Medium:'bg-yellow-100 text-yellow-700', Hard:'bg-orange-100 text-orange-700', Extreme:'bg-red-100 text-red-700' };
+---
+<BaseLayout title="+1 Muscle to Arm Wrestle Wiki — All Worlds & Opponents" description="Complete wiki: 4 worlds, 27 opponents, muscle requirements and rewards." canonical="/wiki">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">📚 Game Wiki — All Worlds & Opponents</h1>
+    <p class="text-gray-500 mb-8">Complete database of all 4 worlds.</p>
+    {worlds.map(world => (
+      <section class="mb-8">
+        <a href={`/wiki/${world.slug}`} class="block p-5 rounded-xl bg-gray-50 dark:bg-gray-900 border card-hover mb-4">
+          <h2 class="text-xl font-bold mb-1">🌍 {world.name}</h2>
+          <p class="text-sm text-gray-500">{world.description}</p>
+          <p class="text-xs text-amber-500 mt-2">🔓 {world.unlockRequirement}</p>
+        </a>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead><tr class="border-b border-gray-200"><th class="py-2 px-3 text-left">Opponent</th><th class="py-2 px-3 text-right">Muscle</th><th class="py-2 px-3 text-right">Wins</th><th class="py-2 px-3 text-center">Difficulty</th></tr></thead>
+            <tbody>
+              {world.opponents.map(opp => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3 font-medium">{opp.name}</td>
+                  <td class="py-2 px-3 text-right font-mono text-amber-500">{formatNumber(opp.muscleRequired)}</td>
+                  <td class="py-2 px-3 text-right font-mono text-green-500">{formatNumber(opp.winsReward)}</td>
+                  <td class="py-2 px-3 text-center"><span class={`px-2 py-0.5 rounded text-xs font-bold ${DIFF_COLORS[opp.difficulty]||''}`}>{opp.difficulty}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/calculator" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Calculator</a>
+      <a href="/beginner-guide" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">📖 Guide</a>
+    </div>
+  </div>
+</BaseLayout>

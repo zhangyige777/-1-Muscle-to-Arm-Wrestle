@@ -1,0 +1,68 @@
+{
+  "gameName": "+1 Muscle to Arm Wrestle",
+  "lastUpdated": "2026-05-31",
+  "codes": [
+    {
+      "code": "yasineoldman",
+      "reward": "10 Free Basic Eggs",
+      "source": "YouTube/@AustinChallenges",
+      "addedDate": "2026-05-22",
+      "status": "active",
+      "isNew": true
+    },
+    {
+      "code": "ilovecass",
+      "reward": "300 Wins + 500 Muscle + 1 Turkey Pet",
+      "source": "Sportskeeda",
+      "addedDate": "2026-05-16",
+      "status": "active",
+      "isNew": true
+    },
+    {
+      "code": "bunnyhop",
+      "reward": "1 Free Bunny Pet",
+      "source": "YouTube/@AustinChallenges",
+      "addedDate": "2026-05-16",
+      "status": "active",
+      "isNew": false
+    },
+    {
+      "code": "strongman",
+      "reward": "Free Rewards (Wins & Muscle)",
+      "source": "Sportskeeda",
+      "addedDate": "2026-05-10",
+      "status": "active",
+      "isNew": false
+    },
+    {
+      "code": "more potion",
+      "reward": "2 Win Boosts + 2 Muscle Boosts",
+      "source": "YouTube/@AustinChallenges",
+      "addedDate": "2026-05-10",
+      "status": "active",
+      "isNew": false
+    },
+    {
+      "code": "potion up",
+      "reward": "1 Win Boost + 1 Muscle Boost",
+      "source": "Sportskeeda",
+      "addedDate": "2026-05-05",
+      "status": "active",
+      "isNew": false
+    },
+    {
+      "code": "release",
+      "reward": "Free Wins & Muscle",
+      "source": "Roblox Den",
+      "addedDate": "2026-04-20",
+      "status": "expired"
+    },
+    {
+      "code": "welcome",
+      "reward": "100 Wins",
+      "source": "Roblox Den",
+      "addedDate": "2026-04-20",
+      "status": "expired"
+    }
+  ]
+}

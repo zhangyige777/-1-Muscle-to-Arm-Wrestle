@@ -1,0 +1,41 @@
+{
+  "game": {
+    "name": "+1 Muscle to Arm Wrestle",
+    "robloxId": "134750648450964",
+    "developer": "Beast Lifters",
+    "genre": "Strength Simulator",
+    "currentVersion": "Latest",
+    "lastUpdated": "2026-05-31",
+    "updateSchedule": "Every Saturday",
+    "platforms": ["Roblox (PC, Mobile, Xbox)"]
+  },
+  "stats": {
+    "visits": "50M+",
+    "favorites": "100K+",
+    "likes": "80K+",
+    "onlineNow": "5K+",
+    "serverSize": 20,
+    "active": true
+  },
+  "seo": {
+    "siteTitle": "+1 Muscle to Arm Wrestle Guide & Tools (May 2026)",
+    "siteDescription": "The ultimate +1 Muscle to Arm Wrestle companion — codes, muscle calculator, pet tier list, and beginner guide. Updated every week.",
+    "baseUrl": "https://muscle-arm-wrestle.gg",
+    "primaryKeywords": ["+1 Muscle to Arm Wrestle", "Muscle to Arm Wrestle codes", "Muscle to Arm Wrestle codes 2026", "arm wrestle Roblox"],
+    "secondaryKeywords": ["Muscle to Arm Wrestle best pets", "Muscle to Arm Wrestle tier list", "how to get strong fast Muscle to Arm Wrestle", "Muscle to Arm Wrestle rebirth guide", "Muscle to Arm Wrestle dumbbell upgrades", "Muscle to Arm Wrestle secret pets", "Muscle to Arm Wrestle Galaxy Update"],
+    "defaultOgImage": "/og-default.jpg"
+  },
+  "routes": [
+    { "path": "/", "title": "+1 Muscle to Arm Wrestle Guide", "priority": "1.0" },
+    { "path": "/codes", "title": "+1 Muscle to Arm Wrestle Codes", "priority": "0.9" },
+    { "path": "/calculator", "title": "+1 Muscle to Arm Wrestle Calculator", "priority": "0.9" },
+    { "path": "/tier-list", "title": "+1 Muscle to Arm Wrestle Tier List", "priority": "0.9" },
+    { "path": "/beginner-guide", "title": "+1 Muscle to Arm Wrestle Beginner Guide", "priority": "0.8" },
+    { "path": "/wiki", "title": "+1 Muscle to Arm Wrestle Wiki", "priority": "0.8" },
+    { "path": "/updates", "title": "+1 Muscle to Arm Wrestle Updates", "priority": "0.8" }
+  ],
+  "calculator": {
+    "type": "progression",
+    "dataFile": "calculator-progression.json"
+  }
+}
