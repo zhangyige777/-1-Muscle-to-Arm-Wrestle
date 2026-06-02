@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
 
@@ -34,7 +34,7 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Egg Calculator</span>
     </nav>
 
-    <div class="text-3xl mb-2" aria-hidden="true">🥚</div>
+    <div class="text-3xl mb-2" aria-hidden="true">馃</div>
     <h1 class="text-3xl font-extrabold tracking-tight mb-2">Egg Calculator</h1>
     <p class="text-gray-500 mb-8">Calculate egg hatch probabilities and expected costs. Find the best eggs to open for pets.</p>
 
@@ -42,17 +42,17 @@ const videoGameSchema = generateVideoGameSchema();
       <!-- Calculator -->
       <div class="space-y-6">
         <div>
-          <label class="block font-bold mb-2" for="pet-select">🐾 Target Pet</label>
+          <label class="block font-bold mb-2" for="pet-select">馃惥 Target Pet</label>
           <select id="pet-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             {pets.map(p => (
               <option value={p.id} data:hatchChance={p.hatchChance} data:eggSource={p.eggSource} data:rarity={p.rarity} data:muscleBonus={p.muscleBonus}>
-                {p.name} ({p.rarity}) — {p.eggSource}
+                {p.name} ({p.rarity}) -{p.eggSource}
               </option>
             ))}
           </select>
         </div>
         <div>
-          <label class="block font-bold mb-2" for="confidence-level">📈 Confidence Level</label>
+          <label class="block font-bold mb-2" for="confidence-level">馃搱 Confidence Level</label>
           <select id="confidence-level" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             <option value="50">50% (Average luck)</option>
             <option value="80">80% (Likely)</option>
@@ -69,28 +69,28 @@ const videoGameSchema = generateVideoGameSchema();
         <div id="results-panel" class="hidden space-y-4">
           <div class="p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border text-center">
             <div class="text-sm text-gray-500 mb-1">Expected Eggs Needed</div>
-            <div id="expected-eggs" class="text-5xl font-black text-emerald-500">—</div>
+            <div id="expected-eggs" class="text-5xl font-black text-emerald-500">-</div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Hatch Chance</div>
-              <div id="hatch-chance" class="text-xl font-bold">—</div>
+              <div id="hatch-chance" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">1 in X Odds</div>
-              <div id="one-in-x" class="text-xl font-bold">—</div>
+              <div id="one-in-x" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Egg Source</div>
-              <div id="egg-source" class="text-xl font-bold">—</div>
+              <div id="egg-source" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Muscle Bonus</div>
-              <div id="muscle-bonus" class="text-xl font-bold">—</div>
+              <div id="muscle-bonus" class="text-xl font-bold">-</div>
             </div>
           </div>
           <div id="detail-box" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <h3 class="font-bold mb-1">📊 Probability Analysis</h3>
+            <h3 class="font-bold mb-1">馃搳 Probability Analysis</h3>
             <p id="detail-text" class="text-sm text-gray-600 dark:text-gray-300"></p>
           </div>
         </div>
@@ -98,7 +98,7 @@ const videoGameSchema = generateVideoGameSchema();
 
       <!-- Egg Source Groups -->
       <div class="space-y-6">
-        <h2 class="text-xl font-bold">🥚 All Egg Sources</h2>
+        <h2 class="text-xl font-bold">馃 All Egg Sources</h2>
         {eggSources.map(group => (
           <div class="p-4 rounded-xl border bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <h3 class="font-bold mb-3">{group.name}</h3>
@@ -151,9 +151,9 @@ const videoGameSchema = generateVideoGameSchema();
     <div class="mt-12 pt-8 border-t">
       <h3 class="font-bold mb-4">Useful Links</h3>
       <div class="flex flex-wrap gap-3">
-        <a href="/tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📊 Tier List</a>
-        <a href="/codes/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🎁 Codes</a>
-        <a href="/calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🧮 Muscle Calculator</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃搳 Tier List</a>
+        <a href="/codes/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃巵 Codes</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃М Muscle Calculator</a>
       </div>
     </div>
 

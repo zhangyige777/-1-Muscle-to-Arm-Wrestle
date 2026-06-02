@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getPets, getGameConfig, generateBreadcrumbSchema, generateFAQSchema, getCurrentDateString } from '@/lib/data';
 
@@ -8,11 +8,11 @@ const pets = getPets();
 const tiers = ['S', 'A', 'B', 'C', 'D'] as const;
 
 const TIER_CONFIG: Record<string, { color: string; bg: string; label: string }> = {
-  S: { color: 'text-red-400', bg: 'bg-red-500/10 border-red-500/30', label: 'S Tier — Best' },
-  A: { color: 'text-orange-400', bg: 'bg-orange-500/10 border-orange-500/30', label: 'A Tier — Excellent' },
-  B: { color: 'text-yellow-400', bg: 'bg-yellow-500/10 border-yellow-500/30', label: 'B Tier — Good' },
-  C: { color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30', label: 'C Tier — Average' },
-  D: { color: 'text-gray-400', bg: 'bg-gray-500/10 border-gray-500/30', label: 'D Tier — Basic' },
+  S: { color: 'text-red-400', bg: 'bg-red-500/10 border-red-500/30', label: 'S Tier -Best' },
+  A: { color: 'text-orange-400', bg: 'bg-orange-500/10 border-orange-500/30', label: 'A Tier -Excellent' },
+  B: { color: 'text-yellow-400', bg: 'bg-yellow-500/10 border-yellow-500/30', label: 'B Tier -Good' },
+  C: { color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30', label: 'C Tier -Average' },
+  D: { color: 'text-gray-400', bg: 'bg-gray-500/10 border-gray-500/30', label: 'D Tier -Basic' },
 };
 const RARITY_COLORS: Record<string, string> = { Common: 'bg-gray-200 text-gray-700', Uncommon: 'bg-green-200 text-green-700', Rare: 'bg-blue-200 text-blue-700', Epic: 'bg-purple-200 text-purple-700', Legendary: 'bg-amber-200 text-amber-700', Mythical: 'bg-red-200 text-red-700' };
 
@@ -26,7 +26,7 @@ const faqSchema = generateFAQSchema([
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <div class="text-3xl mb-2" aria-hidden="true">🏆</div>
+    <div class="text-3xl mb-2" aria-hidden="true">馃弳</div>
     <h1 class="text-3xl font-extrabold tracking-tight mb-2">Pet Tier List</h1>
     <p class="text-gray-500 mb-8">All pets ranked by muscle bonus and overall value.</p>
 
@@ -57,10 +57,10 @@ const faqSchema = generateFAQSchema([
     })}
 
     <div class="mt-6 flex flex-wrap gap-3">
-      <a href="/codes/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🎫 Free Pet Codes</a>
-      <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Calculator</a>
-      <a href="/pet-tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">📊 Detailed Pet Rankings</a>
-      <a href="/best-pets/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">⭐ Best Pets Guide</a>
+      <a href="/codes/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">馃帿 Free Pet Codes</a>
+      <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃М Calculator</a>
+      <a href="/pet-tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">馃搳 Detailed Pet Rankings</a>
+      <a href="/best-pets/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">猸?Best Pets Guide</a>
     </div>
   </div>
 </BaseLayout>

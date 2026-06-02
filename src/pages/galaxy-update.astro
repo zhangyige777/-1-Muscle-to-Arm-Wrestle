@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getPets, getDumbbells, getWorlds, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
@@ -43,10 +43,10 @@ const faqSchema = generateFAQSchema([
     <!-- Introduction -->
     <section class="mb-10">
       <p class="text-sm text-gray-600 dark:text-gray-400">
-        The Galaxy Update is one of the most significant content expansions in <strong>+1 Muscle to Arm Wrestle</strong>. It introduced a new tier of endgame content including the Galaxy Dumbbell, The Rock Zone world, and the futuristic Cyber City — the final and most challenging world in the game. This update represents the bridge between mid-game and true endgame, pushing players to reach astronomical muscle levels and encounter meme-themed opponents.
+        The Galaxy Update is one of the most significant content expansions in <strong>+1 Muscle to Arm Wrestle</strong>. It introduced a new tier of endgame content including the Galaxy Dumbbell, The Rock Zone world, and the futuristic Cyber City -the final and most challenging world in the game. This update represents the bridge between mid-game and true endgame, pushing players to reach astronomical muscle levels and encounter meme-themed opponents.
       </p>
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-        If you have been grinding through Fantasy World and wondering what comes next, the Galaxy Update is your goal. Reaching this content requires defeating the Tech Titan (12T Muscle) and progressing through The Rock Zone before unlocking Cyber City. The rewards are massive — opponents in Cyber City drop up to 10B Wins per match, and the Galaxy Dumbbell provides a staggering 1500x muscle per step.
+        If you have been grinding through Fantasy World and wondering what comes next, the Galaxy Update is your goal. Reaching this content requires defeating the Tech Titan (12T Muscle) and progressing through The Rock Zone before unlocking Cyber City. The rewards are massive -opponents in Cyber City drop up to 10B Wins per match, and the Galaxy Dumbbell provides a staggering 1500x muscle per step.
       </p>
     </section>
 
@@ -71,12 +71,12 @@ const faqSchema = generateFAQSchema([
               </div>
             </div>
           )}
-          <p>The Galaxy Dumbbell is a cosmic-themed endgame dumbbell that provides 1500x muscle per step — a massive 3x jump from the Cyber Dumbbell (500x). It costs 10B Wins, making it a significant investment, but one that pays off enormously when farming Cyber City opponents. This dumbbell is essential for taking on the strongest opponents in the game.</p>
+          <p>The Galaxy Dumbbell is a cosmic-themed endgame dumbbell that provides 1500x muscle per step -a massive 3x jump from the Cyber Dumbbell (500x). It costs 10B Wins, making it a significant investment, but one that pays off enormously when farming Cyber City opponents. This dumbbell is essential for taking on the strongest opponents in the game.</p>
         </div>
         <div class="p-5 rounded-xl border border-cyan-200 dark:border-cyan-900 bg-cyan-50 dark:bg-cyan-950/30">
           <h3 class="font-bold text-cyan-700 dark:text-cyan-400 mb-2">Cyber City (World 4)</h3>
           {cyberCity && (
-            <p class="mb-2">The final futuristic world with <strong>{cyberCity.opponents.length} extreme-difficulty opponents</strong>. Muscle requirements range from {formatNumber(cyberCity.opponents[0].muscleRequired)} to {formatNumber(cyberCity.opponents[cyberCity.opponents.length - 1].muscleRequired)} — culminating in the Green Alien, the ultimate boss requiring 79Q muscle and rewarding 10B Wins per match.</p>
+            <p class="mb-2">The final futuristic world with <strong>{cyberCity.opponents.length} extreme-difficulty opponents</strong>. Muscle requirements range from {formatNumber(cyberCity.opponents[0].muscleRequired)} to {formatNumber(cyberCity.opponents[cyberCity.opponents.length - 1].muscleRequired)} -culminating in the Green Alien, the ultimate boss requiring 79Q muscle and rewarding 10B Wins per match.</p>
           )}
           <p>Cyber City is the endgame destination where only the most dedicated players reach. The opponents here drop astronomical Win rewards, making it the best location for farming Wins once you can consistently beat its challengers.</p>
         </div>
@@ -180,7 +180,7 @@ const faqSchema = generateFAQSchema([
         </div>
         <div>
           <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Push Rebirth Levels</h3>
-          <p>High rebirth levels (10+) are essential for Galaxy Update content. Each rebirth level multiplies your muscle gains, and the opponents here require quadrillions of muscle. Use the <a href="/calculator/" class="text-blue-600 hover:underline">calculator</a> to find the optimal rebirth timing for your current setup.</p>
+          <p>High rebirth levels (10+) are essential for Galaxy Update content. Each rebirth level multiplies your muscle gains, and the opponents here require quadrillions of muscle. Use the <a href="/muscle-calculator/" class="text-blue-600 hover:underline">calculator</a> to find the optimal rebirth timing for your current setup.</p>
         </div>
         <div>
           <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Stockpile Boosts</h3>
@@ -208,7 +208,7 @@ const faqSchema = generateFAQSchema([
         <a href="/updates/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Update Log</a>
         <a href="/wiki/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold text-sm hover:bg-gray-700">Wiki</a>
         <a href="/dumbbells/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Dumbbells Guide</a>
-        <a href="/calculator/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Muscle Calculator</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Muscle Calculator</a>
       </div>
     </section>
 

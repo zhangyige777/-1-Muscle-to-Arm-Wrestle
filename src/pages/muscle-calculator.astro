@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CalculatorClient from '@/components/CalculatorClient';
 import { getGameConfig, getPets, getDumbbells, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
@@ -13,7 +13,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ]);
 const faqSchema = generateFAQSchema([
   { question: 'How do I calculate my muscle per step in +1 Muscle to Arm Wrestle?', answer: 'Your effective muscle per step is calculated by multiplying your dumbbell base value by your rebirth multiplier, your pet muscle bonus, and any active boosts. The formula is: Base x Rebirth x Pet x Boost. For example, a Diamond Dumbbell (30x) with Rebirth 3 (3x), Fox pet (2x), and a 2x boost gives 30 x 3 x 2 x 2 = 360 muscle per step.' },
-  { question: 'What gives the biggest muscle increase — dumbbell, rebirth, or pet?', answer: 'Dumbbell upgrades provide the largest absolute increase at every stage. Upgrading from Basic (1x) to Iron (2x) doubles your gains instantly. However, at high rebirth levels, the rebirth multiplier becomes the dominant factor — Rebirth 17 gives a 200x multiplier. Pets like the Huge Hydra Dominus (150x) can also rival dumbbell upgrades in late game.' },
+  { question: 'What gives the biggest muscle increase -dumbbell, rebirth, or pet?', answer: 'Dumbbell upgrades provide the largest absolute increase at every stage. Upgrading from Basic (1x) to Iron (2x) doubles your gains instantly. However, at high rebirth levels, the rebirth multiplier becomes the dominant factor -Rebirth 17 gives a 200x multiplier. Pets like the Huge Hydra Dominus (150x) can also rival dumbbell upgrades in late game.' },
   { question: 'Does the muscle calculator account for stacking boosts?', answer: 'The calculator includes a 2x muscle boost toggle. In-game, you can stack multiple boosts together for even greater effect. When all multipliers are active (dumbbell + rebirth + pet + boost), the gains scale multiplicatively, meaning each additional multiplier has a bigger impact than the last.' },
 ]);
 ---
@@ -30,17 +30,17 @@ const faqSchema = generateFAQSchema([
 
     <div class="flex items-center gap-3 mb-2">
       <span class="text-3xl" aria-hidden="true">&#x1F4CA;</span>
-      <h1 class="text-3xl font-extrabold tracking-tight">Muscle Calculator</h1>
+      <h1 class="text-3xl font-extrabold tracking-tight">+1 Muscle to Arm Wrestle Muscle Calculator</h1>
     </div>
     <p class="text-gray-500 dark:text-gray-400 mb-4">Calculate your muscle per step in +1 Muscle to Arm Wrestle. Select your dumbbell, rebirth level, pet, and boosts to see your effective muscle gain.</p>
 
     <!-- Introduction -->
     <section class="mb-8">
       <p class="text-sm text-gray-600 dark:text-gray-400">
-        Understanding your muscle per step is the key to efficient progression in <strong>+1 Muscle to Arm Wrestle</strong>. Every decision you make — which dumbbell to buy, when to rebirth, which pet to equip — directly impacts how fast you gain muscle. Use this calculator to plan your upgrades and see exactly how each multiplier contributes to your total muscle per step.
+        Understanding your muscle per step is the key to efficient progression in <strong>+1 Muscle to Arm Wrestle</strong>. Every decision you make -which dumbbell to buy, when to rebirth, which pet to equip -directly impacts how fast you gain muscle. Use this calculator to plan your upgrades and see exactly how each multiplier contributes to your total muscle per step.
       </p>
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-        The muscle formula is multiplicative: <strong>Base (Dumbbell) x Rebirth Multiplier x Pet Bonus x Boost</strong>. This means that improving any one factor multiplies the benefit of all the others. For example, going from Rebirth 2 (2x) to Rebirth 3 (3x) with a 30x dumbbell and 2x pet bonus gives you an extra 30 muscle per step — far more than the 1x increase you would get without the other multipliers.
+        The muscle formula is multiplicative: <strong>Base (Dumbbell) x Rebirth Multiplier x Pet Bonus x Boost</strong>. This means that improving any one factor multiplies the benefit of all the others. For example, going from Rebirth 2 (2x) to Rebirth 3 (3x) with a 30x dumbbell and 2x pet bonus gives you an extra 30 muscle per step -far more than the 1x increase you would get without the other multipliers.
       </p>
     </section>
 
@@ -72,9 +72,9 @@ const faqSchema = generateFAQSchema([
       <h2 class="text-xl font-bold mb-3">Muscle Gain Tips</h2>
       <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
         <li><strong>Upgrade dumbbells first:</strong> The dumbbell base is your biggest multiplier in early and mid game. Always buy the next tier as soon as you can afford it.</li>
-        <li><strong>Rebirth at the right time:</strong> Rebirthing resets your muscle but gives a permanent multiplier. Rebirth when you hit a wall — when the next opponent requires significantly more muscle than you can efficiently gain.</li>
+        <li><strong>Rebirth at the right time:</strong> Rebirthing resets your muscle but gives a permanent multiplier. Rebirth when you hit a wall -when the next opponent requires significantly more muscle than you can efficiently gain.</li>
         <li><strong>Use boosts strategically:</strong> Activate a 2x muscle boost right before a long play session to maximize the duration. Pair boosts with a strong pet for the best results.</li>
-        <li><strong>Equip your best pet:</strong> Only your active pet's bonus applies. Always have your strongest pet equipped, and use the <a href="/calculator/" class="text-blue-600 hover:underline">full calculator</a> to compare pet options.</li>
+        <li><strong>Equip your best pet:</strong> Only your active pet's bonus applies. Always have your strongest pet equipped, and use the <a href="/muscle-calculator/" class="text-blue-600 hover:underline">full calculator</a> to compare pet options.</li>
       </ul>
     </section>
 
@@ -82,7 +82,7 @@ const faqSchema = generateFAQSchema([
     <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">
       <h2 class="text-xl font-bold mb-4">Related Tools</h2>
       <div class="flex flex-wrap gap-3">
-        <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Muscle Calculator (Full)</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Muscle Calculator (Full)</a>
         <a href="/wins-calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Wins Calculator</a>
         <a href="/pet-calculator/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">Pet Calculator</a>
         <a href="/codes/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Free Codes</a>

@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getWorlds, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
 
@@ -18,13 +18,13 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Wins Calculator', url: '/wins-calculator' },
 ]);
 const faqSchema = generateFAQSchema([
-  { question: 'How are wins calculated in +1 Muscle to Arm Wrestle?', answer: 'Each opponent requires a certain amount of muscle to beat and rewards a fixed number of wins. You earn wins by arm wrestling opponents — the stronger the opponent, the more wins you get per match.' },
+  { question: 'How are wins calculated in +1 Muscle to Arm Wrestle?', answer: 'Each opponent requires a certain amount of muscle to beat and rewards a fixed number of wins. You earn wins by arm wrestling opponents -the stronger the opponent, the more wins you get per match.' },
   { question: 'Which opponent gives the most wins per match?', answer: 'The Green Alien in Cyber City gives 10B wins per match, but requires 79Q muscle. Choose opponents you can consistently beat for the best farming efficiency.' },
   { question: 'How many matches do I need for a specific win goal?', answer: 'Divide your target wins by the wins reward of your chosen opponent. For example, to reach 1,000 wins fighting Big Bully (15 wins/match), you need about 67 matches.' },
 ]);
 const videoGameSchema = generateVideoGameSchema();
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Wins Calculator" description="Calculate how many wins and matches you need in +1 Muscle to Arm Wrestle. Compare opponents and find the fastest farming route." canonical="/wins-calculator">
+<BaseLayout title="+1 Muscle to Arm Wrestle Wins Calculator" description="Calculate how many wins and matches you need in +1 Muscle to Arm Wrestle. Compare opponents and find the fastest farming route." canonical="/wins-calculator/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
@@ -37,27 +37,27 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Wins Calculator</span>
     </nav>
 
-    <div class="text-3xl mb-2" aria-hidden="true">🏆</div>
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Wins Calculator</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">馃弳</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Wins Calculator</h1>
     <p class="text-gray-500 mb-8">Calculate how many wins and matches you need. Compare opponents and find the fastest farming route.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Inputs -->
       <div class="space-y-6">
         <div>
-          <label class="block font-bold mb-2" for="muscle-input">💪 Your Current Muscle</label>
+          <label class="block font-bold mb-2" for="muscle-input">馃挭 Your Current Muscle</label>
           <input id="muscle-input" type="number" min="0" value="1000" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none" />
         </div>
         <div>
-          <label class="block font-bold mb-2" for="wins-goal">🎯 Goal Wins</label>
+          <label class="block font-bold mb-2" for="wins-goal">馃幆 Goal Wins</label>
           <input id="wins-goal" type="number" min="1" value="10000" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none" />
         </div>
         <div>
-          <label class="block font-bold mb-2" for="opponent-select">🤼 Select Opponent</label>
+          <label class="block font-bold mb-2" for="opponent-select">馃ぜ Select Opponent</label>
           <select id="opponent-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             {allOpponents.map(o => (
               <option value={o.id} data:muscleRequired={o.muscleRequired} data:winsReward={o.winsReward} data:worldName={o.worldName}>
-                {o.name} ({o.worldName}) — {o.winsReward} wins
+                {o.name} ({o.worldName}) -{o.winsReward} wins
               </option>
             ))}
           </select>
@@ -72,28 +72,28 @@ const videoGameSchema = generateVideoGameSchema();
         <div id="results-panel" class="hidden space-y-4">
           <div class="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border text-center">
             <div class="text-sm text-gray-500 mb-1">Matches Needed</div>
-            <div id="matches-result" class="text-5xl font-black text-amber-500">—</div>
+            <div id="matches-result" class="text-5xl font-black text-amber-500">-</div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Goal Wins</div>
-              <div id="goal-result" class="text-xl font-bold">—</div>
+              <div id="goal-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Wins / Match</div>
-              <div id="wpm-result" class="text-xl font-bold">—</div>
+              <div id="wpm-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Muscle Required</div>
-              <div id="muscle-req-result" class="text-xl font-bold">—</div>
+              <div id="muscle-req-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Your Muscle</div>
-              <div id="your-muscle-result" class="text-xl font-bold">—</div>
+              <div id="your-muscle-result" class="text-xl font-bold">-</div>
             </div>
           </div>
           <div id="recommendation-box" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <h3 class="font-bold mb-1">💡 Recommendation</h3>
+            <h3 class="font-bold mb-1">馃挕 Recommendation</h3>
             <p id="recommendation-text" class="text-sm text-gray-600 dark:text-gray-300"></p>
           </div>
         </div>
@@ -104,7 +104,7 @@ const videoGameSchema = generateVideoGameSchema();
           <div class="space-y-3">
             <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
               <summary class="font-semibold">How are wins calculated in +1 Muscle to Arm Wrestle?</summary>
-              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Each opponent requires a certain amount of muscle to beat and rewards a fixed number of wins. You earn wins by arm wrestling opponents — the stronger the opponent, the more wins you get per match.</p>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Each opponent requires a certain amount of muscle to beat and rewards a fixed number of wins. You earn wins by arm wrestling opponents -the stronger the opponent, the more wins you get per match.</p>
             </details>
             <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
               <summary class="font-semibold">Which opponent gives the most wins per match?</summary>
@@ -123,9 +123,9 @@ const videoGameSchema = generateVideoGameSchema();
     <div class="mt-12 pt-8 border-t">
       <h3 class="font-bold mb-4">Useful Links</h3>
       <div class="flex flex-wrap gap-3">
-        <a href="/codes/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🎁 Codes</a>
-        <a href="/calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🧮 Muscle Calculator</a>
-        <a href="/tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📊 Tier List</a>
+        <a href="/codes/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃巵 Codes</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃М Muscle Calculator</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃搳 Tier List</a>
       </div>
     </div>
 
@@ -179,7 +179,7 @@ const videoGameSchema = generateVideoGameSchema();
           const best = beatable.reduce((a, b) => b.winsReward > a.winsReward ? b : a);
           if (best.id !== sel.value) {
             const bestMatches = Math.ceil(goalWins / best.winsReward);
-            rec += ` Tip: ${best.name} gives more wins (${formatNumber(best.winsReward)}/match) — only ${formatNumber(bestMatches)} matches needed!`;
+            rec += ` Tip: ${best.name} gives more wins (${formatNumber(best.winsReward)}/match) -only ${formatNumber(bestMatches)} matches needed!`;
           }
         }
       }

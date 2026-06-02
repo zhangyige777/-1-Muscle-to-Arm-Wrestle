@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
@@ -14,9 +14,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Hydra Dominus', url: '/hydra-dominus' },
 ]);
 const faqSchema = generateFAQSchema([
-  { question: 'How do I get the Huge Hydra Dominus in +1 Muscle to Arm Wrestle?', answer: 'The Huge Hydra Dominus is exclusively available through the in-game Gamepass for 329 Robux. You cannot hatch it from eggs or earn it through gameplay. Once purchased, it is permanently added to your account and provides a 150x muscle bonus and 50x win bonus — the highest pet multipliers in the game.' },
+  { question: 'How do I get the Huge Hydra Dominus in +1 Muscle to Arm Wrestle?', answer: 'The Huge Hydra Dominus is exclusively available through the in-game Gamepass for 329 Robux. You cannot hatch it from eggs or earn it through gameplay. Once purchased, it is permanently added to your account and provides a 150x muscle bonus and 50x win bonus -the highest pet multipliers in the game.' },
   { question: 'Is the Huge Hydra Dominus worth 329 Robux?', answer: 'For dedicated players, yes. The Huge Hydra Dominus provides a 150x muscle bonus and 50x win bonus, which is 3x better than the best free pet (67, with 50x muscle and 10x wins). When combined with high rebirth levels and a strong dumbbell, the difference in progression speed is enormous. If you play regularly and plan to reach Cyber City, the Hydra Dominus significantly shortens your grind.' },
-  { question: 'How does the Huge Hydra Dominus compare to free pets?', answer: 'The best free pet is the 67 (50x muscle, 10x wins from 67 Packs). The Huge Hydra Dominus triples the muscle bonus (150x vs 50x) and quintuples the win bonus (50x vs 10x). With a Galaxy Dumbbell and Rebirth 10, the Hydra Dominus gives 2,250,000 muscle per step versus 750,000 with the 67 — a difference of 1.5M muscle per step that adds up incredibly fast over time.' },
+  { question: 'How does the Huge Hydra Dominus compare to free pets?', answer: 'The best free pet is the 67 (50x muscle, 10x wins from 67 Packs). The Huge Hydra Dominus triples the muscle bonus (150x vs 50x) and quintuples the win bonus (50x vs 10x). With a Galaxy Dumbbell and Rebirth 10, the Hydra Dominus gives 2,250,000 muscle per step versus 750,000 with the 67 -a difference of 1.5M muscle per step that adds up incredibly fast over time.' },
 ]);
 ---
 <BaseLayout title="+1 Muscle to Arm Wrestle Hydra Dominus Pet Guide" description="Complete guide to the Huge Hydra Dominus in +1 Muscle to Arm Wrestle. Cost, stats, how to get it, and is it worth the Robux?" canonical="/hydra-dominus/">
@@ -83,10 +83,10 @@ const faqSchema = generateFAQSchema([
           The Huge Hydra Dominus is exclusively available through the in-game <strong>Gamepass for 329 Robux</strong>. Unlike other pets that can be hatched from eggs, there is no way to obtain this pet through free gameplay. You must purchase it from the Roblox game store.
         </p>
         <p>
-          Once purchased, the pet is permanently bound to your account. You do not need to hatch it or do anything else — it appears in your pet inventory immediately. This means there is no luck involved; every player who buys the Gamepass receives the exact same pet with the full 150x muscle bonus and 50x win bonus.
+          Once purchased, the pet is permanently bound to your account. You do not need to hatch it or do anything else -it appears in your pet inventory immediately. This means there is no luck involved; every player who buys the Gamepass receives the exact same pet with the full 150x muscle bonus and 50x win bonus.
         </p>
         <p>
-          The pet is classified as <strong>Mythical</strong> rarity and Tier S (the highest tier). According to game data, only 18 to 101 of these pets exist across all servers, making it one of the rarest pets in the game — not because of hatch luck, but because of the Robux cost barrier.
+          The pet is classified as <strong>Mythical</strong> rarity and Tier S (the highest tier). According to game data, only 18 to 101 of these pets exist across all servers, making it one of the rarest pets in the game -not because of hatch luck, but because of the Robux cost barrier.
         </p>
       </div>
     </section>
@@ -145,7 +145,7 @@ const faqSchema = generateFAQSchema([
       {hydraDominus && bestFreePet && (
         <div class="mt-4 p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            <strong>Key takeaway:</strong> The Huge Hydra Dominus provides <strong>{(hydraDominus.muscleBonus / bestFreePet.muscleBonus).toFixed(1)}x more muscle bonus</strong> and <strong>{(hydraDominus.winBonus / bestFreePet.winBonus).toFixed(1)}x more win bonus</strong> than the best free pet ({bestFreePet.name}). With a Galaxy Dumbbell (1500x) and Rebirth 10 (15x), the Hydra Dominus gives {formatNumber(1500 * 15 * hydraDominus.muscleBonus)} muscle per step versus {formatNumber(1500 * 15 * bestFreePet.muscleBonus)} with {bestFreePet.name} — a difference of {formatNumber(1500 * 15 * (hydraDominus.muscleBonus - bestFreePet.muscleBonus))} muscle per step.
+            <strong>Key takeaway:</strong> The Huge Hydra Dominus provides <strong>{(hydraDominus.muscleBonus / bestFreePet.muscleBonus).toFixed(1)}x more muscle bonus</strong> and <strong>{(hydraDominus.winBonus / bestFreePet.winBonus).toFixed(1)}x more win bonus</strong> than the best free pet ({bestFreePet.name}). With a Galaxy Dumbbell (1500x) and Rebirth 10 (15x), the Hydra Dominus gives {formatNumber(1500 * 15 * hydraDominus.muscleBonus)} muscle per step versus {formatNumber(1500 * 15 * bestFreePet.muscleBonus)} with {bestFreePet.name} -a difference of {formatNumber(1500 * 15 * (hydraDominus.muscleBonus - bestFreePet.muscleBonus))} muscle per step.
           </p>
         </div>
       )}
@@ -161,7 +161,7 @@ const faqSchema = generateFAQSchema([
         <div>
           <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">For Dedicated Players: Yes</h3>
           <p>
-            If you play <strong>+1 Muscle to Arm Wrestle</strong> regularly and plan to reach Cyber City, the Huge Hydra Dominus is the single best Robux investment you can make. The 150x muscle bonus and 50x win bonus transform your progression speed at every stage of the game. The pet pays for itself in time saved — weeks of grinding reduced to days, especially in late game where the multipliers compound dramatically.
+            If you play <strong>+1 Muscle to Arm Wrestle</strong> regularly and plan to reach Cyber City, the Huge Hydra Dominus is the single best Robux investment you can make. The 150x muscle bonus and 50x win bonus transform your progression speed at every stage of the game. The pet pays for itself in time saved -weeks of grinding reduced to days, especially in late game where the multipliers compound dramatically.
           </p>
         </div>
         <div>
@@ -173,7 +173,7 @@ const faqSchema = generateFAQSchema([
         <div>
           <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">Value Analysis</h3>
           <p>
-            At 329 Robux, the Huge Hydra Dominus costs roughly equivalent to a few dollars. For the amount of progression power it provides — tripling the muscle bonus and quintupling the win bonus of the best free pet — it is one of the most efficient Gamepass purchases in the game. The fact that only 18 to 101 exist also makes it a prestigious flex in servers.
+            At 329 Robux, the Huge Hydra Dominus costs roughly equivalent to a few dollars. For the amount of progression power it provides -tripling the muscle bonus and quintupling the win bonus of the best free pet -it is one of the most efficient Gamepass purchases in the game. The fact that only 18 to 101 exist also makes it a prestigious flex in servers.
           </p>
         </div>
       </div>
@@ -196,7 +196,7 @@ const faqSchema = generateFAQSchema([
       <h2 class="text-xl font-bold mb-4">Related Guides</h2>
       <div class="flex flex-wrap gap-3">
         <a href="/best-pets/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">Best Pets</a>
-        <a href="/tier-list/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Pet Tier List</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">Pet Tier List</a>
         <a href="/pet-tier-list/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700">Full Tier List</a>
         <a href="/pet-calculator/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">Pet Calculator</a>
       </div>

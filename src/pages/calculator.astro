@@ -7,13 +7,13 @@ const config = getGameConfig();
 const monthYear = getCurrentDateString();
 const dumbbells = getDumbbells().map(d => ({ id: d.id, name: d.name, tier: d.tier, musclePerStep: d.musclePerStep, cost: d.cost }));
 const pets = getPets().map(p => ({ id: p.id, name: p.name, rarity: p.rarity, muscleBonus: p.muscleBonus }));
-const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Calculator', url: '/calculator' }]);
+const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Muscle Calculator', url: '/muscle-calculator' }]);
 const faqSchema = generateFAQSchema([
   { question: 'How is muscle per step calculated?', answer: 'Base × Rebirth × Pet × Boost. All stack multiplicatively.' },
   { question: 'Is the calculator free?', answer: 'Yes, completely free. No login required.' },
 ]);
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Muscle Calculator" description="Calculate your muscle per step in +1 Muscle to Arm Wrestle. Select dumbbell, rebirth level, pet, and boosts to see effective muscle gain." canonical="/calculator/">
+<BaseLayout title="+1 Muscle to Arm Wrestle Muscle Calculator" description="Calculate your muscle per step in +1 Muscle to Arm Wrestle. Select dumbbell, rebirth level, pet, and boosts to see effective muscle gain." canonical="/muscle-calculator/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <CalculatorClient client:load dumbbells={dumbbells} pets={pets} />

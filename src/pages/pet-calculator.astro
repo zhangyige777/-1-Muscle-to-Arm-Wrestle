@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getPets, getDumbbells, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
 
@@ -29,15 +29,15 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Pet Calculator</span>
     </nav>
 
-    <div class="text-3xl mb-2" aria-hidden="true">🐾</div>
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Pet Calculator</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">馃惥</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Pet Calculator</h1>
     <p class="text-gray-500 mb-8">Calculate how pets affect your muscle and wins. Compare pet multipliers and find the best pet for your stage.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Side-by-side comparison -->
       <div class="space-y-6">
         <div class="p-4 rounded-xl border bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-          <h2 class="font-bold mb-3">🔄 Side-by-Side Comparison</h2>
+          <h2 class="font-bold mb-3">馃攧 Side-by-Side Comparison</h2>
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-semibold mb-1" for="pet-a">Pet A</label>
@@ -65,28 +65,28 @@ const videoGameSchema = generateVideoGameSchema();
         </div>
 
         <div>
-          <label class="block font-bold mb-2" for="dumbbell-select">🏋️ Your Dumbbell</label>
+          <label class="block font-bold mb-2" for="dumbbell-select">馃弸锔?Your Dumbbell</label>
           <select id="dumbbell-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             {dumbbells.map(d => (
               <option value={d.id} data:musclePerStep={d.musclePerStep}>
-                {d.name} — {d.musclePerStep} muscle/step
+                {d.name} -{d.musclePerStep} muscle/step
               </option>
             ))}
           </select>
         </div>
 
         <div>
-          <label class="block font-bold mb-2" for="rebirth-level">🔄 Rebirth Level</label>
+          <label class="block font-bold mb-2" for="rebirth-level">馃攧 Rebirth Level</label>
           <select id="rebirth-level" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
-            <option value="1">Rebirth 0 — 1x</option>
-            <option value="1.5">Rebirth 1 — 1.5x</option>
-            <option value="2">Rebirth 2 — 2x</option>
-            <option value="3">Rebirth 3 — 3x</option>
-            <option value="5">Rebirth 5 — 5x</option>
-            <option value="10">Rebirth 7 — 10x</option>
-            <option value="15">Rebirth 10 — 15x</option>
-            <option value="100">Rebirth 15 — 100x</option>
-            <option value="200">Rebirth 17 — 200x</option>
+            <option value="1">Rebirth 0 -1x</option>
+            <option value="1.5">Rebirth 1 -1.5x</option>
+            <option value="2">Rebirth 2 -2x</option>
+            <option value="3">Rebirth 3 -3x</option>
+            <option value="5">Rebirth 5 -5x</option>
+            <option value="10">Rebirth 7 -10x</option>
+            <option value="15">Rebirth 10 -15x</option>
+            <option value="100">Rebirth 15 -100x</option>
+            <option value="200">Rebirth 17 -200x</option>
           </select>
         </div>
 
@@ -98,41 +98,41 @@ const videoGameSchema = generateVideoGameSchema();
         <div id="results-panel" class="hidden space-y-4">
           <div class="grid grid-cols-2 gap-3">
             <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-center">
-              <div class="text-xs text-gray-500 mb-1">Pet A — Muscle/Step</div>
-              <div id="pet-a-result" class="text-2xl font-black text-blue-500">—</div>
+              <div class="text-xs text-gray-500 mb-1">Pet A -Muscle/Step</div>
+              <div id="pet-a-result" class="text-2xl font-black text-blue-500">-</div>
             </div>
             <div class="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 text-center">
-              <div class="text-xs text-gray-500 mb-1">Pet B — Muscle/Step</div>
-              <div id="pet-b-result" class="text-2xl font-black text-purple-500">—</div>
+              <div class="text-xs text-gray-500 mb-1">Pet B -Muscle/Step</div>
+              <div id="pet-b-result" class="text-2xl font-black text-purple-500">-</div>
             </div>
           </div>
           <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border">
-            <h3 class="font-bold mb-2">📊 Comparison</h3>
+            <h3 class="font-bold mb-2">馃搳 Comparison</h3>
             <div class="space-y-2 text-sm">
               <div class="flex justify-between">
                 <span class="text-gray-500">Muscle Difference</span>
-                <span id="muscle-diff" class="font-mono font-bold">—</span>
+                <span id="muscle-diff" class="font-mono font-bold">-</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Win Bonus A</span>
-                <span id="win-bonus-a" class="font-mono font-bold">—</span>
+                <span id="win-bonus-a" class="font-mono font-bold">-</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Win Bonus B</span>
-                <span id="win-bonus-b" class="font-mono font-bold">—</span>
+                <span id="win-bonus-b" class="font-mono font-bold">-</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Steps to 1M Muscle (A)</span>
-                <span id="steps-a" class="font-mono font-bold">—</span>
+                <span id="steps-a" class="font-mono font-bold">-</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-500">Steps to 1M Muscle (B)</span>
-                <span id="steps-b" class="font-mono font-bold">—</span>
+                <span id="steps-b" class="font-mono font-bold">-</span>
               </div>
             </div>
           </div>
           <div id="recommendation-box" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <h3 class="font-bold mb-1">💡 Verdict</h3>
+            <h3 class="font-bold mb-1">馃挕 Verdict</h3>
             <p id="recommendation-text" class="text-sm text-gray-600 dark:text-gray-300"></p>
           </div>
         </div>
@@ -140,7 +140,7 @@ const videoGameSchema = generateVideoGameSchema();
 
       <!-- Pet Overview -->
       <div class="space-y-4">
-        <h2 class="text-xl font-bold">🐾 All Pets Ranked by Muscle Bonus</h2>
+        <h2 class="text-xl font-bold">馃惥 All Pets Ranked by Muscle Bonus</h2>
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
             <thead>
@@ -198,9 +198,9 @@ const videoGameSchema = generateVideoGameSchema();
     <div class="mt-12 pt-8 border-t">
       <h3 class="font-bold mb-4">Useful Links</h3>
       <div class="flex flex-wrap gap-3">
-        <a href="/tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📊 Tier List</a>
-        <a href="/calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🧮 Muscle Calculator</a>
-        <a href="/beginner-guide/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📖 Beginner Guide</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃搳 Tier List</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃М Muscle Calculator</a>
+        <a href="/beginner-guide/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃摉 Beginner Guide</a>
       </div>
     </div>
 
@@ -252,8 +252,8 @@ const videoGameSchema = generateVideoGameSchema();
 
       const stepsA = mpsA > 0 ? Math.ceil(1000000 / mpsA) : Infinity;
       const stepsB = mpsB > 0 ? Math.ceil(1000000 / mpsB) : Infinity;
-      document.getElementById('steps-a').textContent = stepsA === Infinity ? '∞' : formatNumber(stepsA);
-      document.getElementById('steps-b').textContent = stepsB === Infinity ? '∞' : formatNumber(stepsB);
+      document.getElementById('steps-a').textContent = stepsA === Infinity ? '-' : formatNumber(stepsA);
+      document.getElementById('steps-b').textContent = stepsB === Infinity ? '-' : formatNumber(stepsB);
 
       let rec = '';
       if (bonusB > bonusA) {

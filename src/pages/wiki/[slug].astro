@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getWorlds, getWorldBySlug, formatNumber, generateBreadcrumbSchema } from '@/lib/data';
 import type { GetStaticPaths } from 'astro';
@@ -7,16 +7,16 @@ const { world } = Astro.props;
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Wiki', url: '/wiki' }, { name: world.name, url: `/wiki/${world.slug}` }]);
 const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700', Medium:'bg-yellow-100 text-yellow-700', Hard:'bg-orange-100 text-orange-700', Extreme:'bg-red-100 text-red-700' };
 ---
-<BaseLayout title={`${world.name} — +1 Muscle to Arm Wrestle Wiki`} description={`${world.name} in +1 Muscle to Arm Wrestle: ${world.opponents.length} opponents with muscle requirements, win rewards, and difficulty ratings.`} canonical={`/wiki/${world.slug}/`}>
+<BaseLayout title={`${world.name} -+1 Muscle to Arm Wrestle Wiki`} description={`${world.name} in +1 Muscle to Arm Wrestle: ${world.opponents.length} opponents with muscle requirements, win rewards, and difficulty ratings.`} canonical={`/wiki/${world.slug}/`}>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-4xl mx-auto px-4 py-10">
-    <a href="/wiki/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">← Back to Wiki</a>
-    <div class="text-3xl mb-2" aria-hidden="true">🌍</div>
+    <a href="/wiki/" class="text-sm text-blue-600 hover:underline mb-4 inline-block">鈫?Back to Wiki</a>
+    <div class="text-3xl mb-2" aria-hidden="true">馃實</div>
     <h1 class="text-3xl font-extrabold mb-2">{world.name}</h1>
     <p class="text-gray-500 mb-2">{world.description}</p>
     <div class="flex flex-wrap gap-3 text-sm mb-8">
       <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700">World {world.order} of 4</span>
-      <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-700">🔓 {world.unlockRequirement}</span>
+      <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-700">馃敁 {world.unlockRequirement}</span>
     </div>
     <h2 class="text-xl font-bold mb-4">Opponents</h2>
     <div class="space-y-3">
@@ -36,8 +36,8 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
       ))}
     </div>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/wiki/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">📚 All Worlds</a>
-      <a href="/calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🧮 Calculator</a>
+      <a href="/wiki/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃摎 All Worlds</a>
+      <a href="/muscle-calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">馃М Calculator</a>
     </div>
   </div>
 </BaseLayout>

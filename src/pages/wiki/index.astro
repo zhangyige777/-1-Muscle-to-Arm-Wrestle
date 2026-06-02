@@ -1,22 +1,22 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getWorlds, formatNumber, generateBreadcrumbSchema } from '@/lib/data';
 const worlds = getWorlds();
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Wiki', url: '/wiki' }]);
 const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700', Medium:'bg-yellow-100 text-yellow-700', Hard:'bg-orange-100 text-orange-700', Extreme:'bg-red-100 text-red-700' };
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Wiki — All Worlds & Opponents" description="Complete wiki: 4 worlds, 27 opponents, muscle requirements and rewards." canonical="/wiki/">
+<BaseLayout title="+1 Muscle to Arm Wrestle Wiki - Worlds, Opponents & Rewards" description="Complete +1 Muscle to Arm Wrestle wiki with worlds, opponents, muscle requirements, win rewards, dumbbells, pets, rebirths, and progression tips." canonical="/wiki/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <div class="text-3xl mb-2" aria-hidden="true">📚</div>
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Game Wiki — All Worlds & Opponents</h1>
-    <p class="text-gray-500 mb-8">Complete database of all 4 worlds.</p>
+    <div class="text-3xl mb-2" aria-hidden="true">馃摎</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Wiki</h1>
+    <p class="text-gray-500 mb-8">Complete database of worlds, opponents, muscle requirements, win rewards, and progression routes.</p>
     {worlds.map(world => (
       <section class="mb-8">
         <a href={`/wiki/${world.slug}`} class="block p-5 rounded-xl bg-gray-50 dark:bg-gray-900 border card-hover mb-4">
-          <h2 class="text-xl font-bold mb-1">🌍 {world.name}</h2>
+          <h2 class="text-xl font-bold mb-1">馃實 {world.name}</h2>
           <p class="text-sm text-gray-500">{world.description}</p>
-          <p class="text-xs text-amber-500 mt-2">🔓 {world.unlockRequirement}</p>
+          <p class="text-xs text-amber-500 mt-2">馃敁 {world.unlockRequirement}</p>
         </a>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
@@ -36,8 +36,8 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
       </section>
     ))}
     <div class="mt-6 flex flex-wrap gap-3">
-      <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Calculator</a>
-      <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">📖 Guide</a>
+      <a href="/muscle-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃М Calculator</a>
+      <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">馃摉 Guide</a>
     </div>
   </div>
 </BaseLayout>

@@ -18,8 +18,8 @@
     "active": true
   },
   "seo": {
-    "siteTitle": "+1 Muscle to Arm Wrestle Codes & Calculators",
-    "siteDescription": "The ultimate +1 Muscle to Arm Wrestle companion - codes, muscle calculator, pet tier list, and beginner guide. Updated every week.",
+    "siteTitle": "+1 Muscle to Arm Wrestle Tools - Rebirth, Wins & Pet Calculators",
+    "siteDescription": "Use +1 Muscle to Arm Wrestle tools for rebirth timing, wins farming, dumbbell upgrades, pet multipliers, codes, and beginner progression.",
     "baseUrl": "https://1-muscle-to-arm-wrestle.pages.dev",
     "primaryKeywords": ["+1 Muscle to Arm Wrestle", "Muscle to Arm Wrestle codes", "Muscle to Arm Wrestle codes 2026", "arm wrestle Roblox"],
     "secondaryKeywords": ["Muscle to Arm Wrestle best pets", "Muscle to Arm Wrestle tier list", "how to get strong fast Muscle to Arm Wrestle", "Muscle to Arm Wrestle rebirth guide", "Muscle to Arm Wrestle dumbbell upgrades", "Muscle to Arm Wrestle secret pets", "Muscle to Arm Wrestle Galaxy Update"],
@@ -28,8 +28,8 @@
   "routes": [
     { "path": "/", "title": "+1 Muscle to Arm Wrestle Guide", "priority": "1.0" },
     { "path": "/codes", "title": "+1 Muscle to Arm Wrestle Codes", "priority": "0.9" },
-    { "path": "/calculator", "title": "+1 Muscle to Arm Wrestle Calculator", "priority": "0.9" },
-    { "path": "/tier-list", "title": "+1 Muscle to Arm Wrestle Tier List", "priority": "0.9" },
+    { "path": "/muscle-calculator", "title": "+1 Muscle to Arm Wrestle Muscle Calculator", "priority": "0.9" },
+    { "path": "/pet-tier-list", "title": "+1 Muscle to Arm Wrestle Pet Tier List", "priority": "0.9" },
     { "path": "/beginner-guide", "title": "+1 Muscle to Arm Wrestle Beginner Guide", "priority": "0.8" },
     { "path": "/wiki", "title": "+1 Muscle to Arm Wrestle Wiki", "priority": "0.8" },
     { "path": "/updates", "title": "+1 Muscle to Arm Wrestle Updates", "priority": "0.8" }

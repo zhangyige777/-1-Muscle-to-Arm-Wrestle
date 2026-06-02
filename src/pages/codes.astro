@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getActiveCodes, getExpiredCodes, getGameConfig, generateBreadcrumbSchema, generateFAQSchema, getCurrentDateString } from '@/lib/data';
 
@@ -14,14 +14,17 @@ const faqSchema = generateFAQSchema([
   { question: 'Why is my code not working?', answer: 'Codes may be expired, entered incorrectly, or already redeemed. Some codes like "more potion" contain spaces.' },
 ]);
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Codes — All Working Codes" description="All working codes for +1 Muscle to Arm Wrestle. Free Wins, Muscle, Pets, Eggs, and Boosts updated daily." canonical="/codes/">
+<BaseLayout title="+1 Muscle to Arm Wrestle Codes -All Working Codes" description="All working codes for +1 Muscle to Arm Wrestle. Free Wins, Muscle, Pets, Eggs, and Boosts updated daily." canonical="/codes/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <div class="text-3xl mb-2" aria-hidden="true">🎫</div>
+    <div class="text-3xl mb-2" aria-hidden="true">馃帿</div>
     <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Codes</h1>
     <p class="text-gray-500 mb-8">All working promo codes for free Wins, Muscle, Pets, Eggs, and Boosts.</p>
+    <div class="mb-8 p-4 rounded-xl bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 text-sm text-gray-700 dark:text-gray-300">
+      <strong>Last checked:</strong> June 1, 2026. <strong>Data status:</strong> {activeCodes.length} active codes tracked from in-game/community sources.
+    </div>
 
     <!-- Active Codes -->
     <section class="mb-10">
@@ -38,8 +41,8 @@ const faqSchema = generateFAQSchema([
               </div>
               <button class="copy-btn px-3 py-1 rounded text-xs font-bold bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 text-gray-600 dark:text-gray-400" data-code={code.code}>Copy</button>
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-400">🎁 {code.reward}</p>
-            <p class="text-xs text-gray-400 mt-1">Added: {code.addedDate} · Source: {code.source}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">馃巵 {code.reward}</p>
+            <p class="text-xs text-gray-400 mt-1">Added: {code.addedDate} 路 Source: {code.source}</p>
           </div>
         ))}
       </div>
@@ -47,7 +50,7 @@ const faqSchema = generateFAQSchema([
 
     <!-- How to Redeem -->
     <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
-      <h2 class="text-xl font-bold mb-4">📋 How to Redeem Codes</h2>
+      <h2 class="text-xl font-bold mb-4">馃搵 How to Redeem Codes</h2>
       <ol class="space-y-2 text-sm">
         <li><strong>1.</strong> Open <strong>+1 Muscle to Arm Wrestle</strong> on Roblox</li>
         <li><strong>2.</strong> Click the <strong>Shop</strong> button (shopping cart icon)</li>
@@ -67,7 +70,7 @@ const faqSchema = generateFAQSchema([
           {expiredCodes.map(code => (
             <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-900 opacity-60">
               <code class="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded font-mono text-sm line-through">{code.code}</code>
-              <span class="text-xs text-gray-400 ml-2">— {code.reward}</span>
+              <span class="text-xs text-gray-400 ml-2">-{code.reward}</span>
             </div>
           ))}
         </div>
@@ -78,9 +81,9 @@ const faqSchema = generateFAQSchema([
     <section class="p-6 rounded-xl border">
       <h2 class="text-xl font-bold mb-4">Related Tools</h2>
       <div class="flex flex-wrap gap-3">
-        <a href="/calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">🧮 Muscle Calculator</a>
-        <a href="/tier-list/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">🏆 Pet Tier List</a>
-        <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">📖 Beginner Guide</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃М Muscle Calculator</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">馃弳 Pet Tier List</a>
+        <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">馃摉 Beginner Guide</a>
       </div>
     </section>
   </div>
@@ -90,7 +93,7 @@ const faqSchema = generateFAQSchema([
       btn.addEventListener('click', async () => {
         const code = (btn as HTMLElement).dataset.code || '';
         try { await navigator.clipboard.writeText(code); } catch { /* fallback */ }
-        btn.textContent = '✓ Copied!';
+        btn.textContent = '鉁?Copied!';
         btn.classList.add('bg-green-500', 'text-white');
         setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('bg-green-500', 'text-white'); }, 2000);
       });

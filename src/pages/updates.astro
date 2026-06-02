@@ -10,12 +10,51 @@ const UPDATES = [
   { date: '2026-04-20', title: 'Game Launch', changes: ['Initial release', 'Starter Gym with 10 opponents', 'Basic dumbbell upgrades', 'Walk = +1 Muscle per step'] },
 ];
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Updates" description="Latest updates and patch notes. Updated every Saturday." canonical="/updates/">
+<BaseLayout title="+1 Muscle to Arm Wrestle Updates & Patch Notes" description="Track +1 Muscle to Arm Wrestle updates, patch notes, new worlds, new pets, codes, dumbbells, and weekly progression changes." canonical="/updates/">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <div class="max-w-4xl mx-auto px-4 py-10">
     <div class="text-3xl mb-2" aria-hidden="true">🆕</div>
-    <h1 class="text-3xl font-extrabold mb-2">Updates & Patch Notes</h1>
-    <p class="text-gray-500 mb-8">Game updates every Saturday.</p>
+    <h1 class="text-3xl font-extrabold mb-2">+1 Muscle to Arm Wrestle Updates & Patch Notes</h1>
+    <p class="text-gray-500 mb-4">Track weekly updates, new worlds, new pets, codes, dumbbells, and progression changes.</p>
+    <div class="mb-8 p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 text-sm text-gray-700 dark:text-gray-300">
+      <strong>Last checked:</strong> June 1, 2026. <strong>Update schedule:</strong> {UPDATES.length ? 'Usually Saturday updates, with data verified from in-game changes and community reports.' : 'Being monitored.'}
+    </div>
+
+    <section class="mb-8 grid grid-cols-1 md:grid-cols-4 gap-3">
+      {[
+        { label: 'Latest World', value: 'The Rock Zone' },
+        { label: 'Latest Major Pet', value: '67 / Strawberry Elephant' },
+        { label: 'Latest Code Source', value: 'Weekly updates' },
+        { label: 'Tracked Updates', value: String(UPDATES.length) },
+      ].map(item => (
+        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+          <div class="text-xs text-gray-500 mb-1">{item.label}</div>
+          <div class="font-bold">{item.value}</div>
+        </div>
+      ))}
+    </section>
+
+    <section class="mb-8 overflow-x-auto">
+      <h2 class="text-xl font-bold mb-3">Update History Table</h2>
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-gray-200 dark:border-gray-800">
+            <th class="py-2 px-3 text-left">Date</th>
+            <th class="py-2 px-3 text-left">Update</th>
+            <th class="py-2 px-3 text-left">Main Changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {UPDATES.map(u => (
+            <tr class="border-b border-gray-100 dark:border-gray-800">
+              <td class="py-2 px-3 font-mono text-xs">{u.date}</td>
+              <td class="py-2 px-3 font-semibold">{u.title}</td>
+              <td class="py-2 px-3 text-gray-600 dark:text-gray-400">{u.changes.slice(0, 2).join(' / ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
     <div class="space-y-6">
       {UPDATES.map((u, i) => (
         <div class="p-5 rounded-xl border border-gray-200 dark:border-gray-800">

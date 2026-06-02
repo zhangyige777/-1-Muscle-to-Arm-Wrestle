@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getGameConfig, getRebirthTiers, getDumbbells, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
 
@@ -12,7 +12,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: 'Rebirth Calculator', url: '/rebirth-calculator' },
 ]);
 const faqSchema = generateFAQSchema([
-  { question: 'When should I rebirth in +1 Muscle to Arm Wrestle?', answer: 'You should rebirth when your current muscle exceeds the break-even threshold — the point where the multiplier gain from rebirth offsets the muscle you lose. This calculator helps you find that exact point.' },
+  { question: 'When should I rebirth in +1 Muscle to Arm Wrestle?', answer: 'You should rebirth when your current muscle exceeds the break-even threshold -the point where the multiplier gain from rebirth offsets the muscle you lose. This calculator helps you find that exact point.' },
   { question: 'What do rebirth multipliers do?', answer: 'Rebirth multipliers increase your muscle per step and wins per match. Higher rebirth levels give bigger multipliers but cost exponentially more muscle to reach.' },
   { question: 'Do I lose all my muscle when I rebirth?', answer: 'Yes, rebirth resets your muscle to zero, but you gain permanent multipliers that make regaining muscle much faster. The key is rebirthing at the right time for maximum efficiency.' },
 ]);
@@ -30,44 +30,44 @@ const videoGameSchema = generateVideoGameSchema();
       <span class="text-gray-700 dark:text-gray-200 font-medium">Rebirth Calculator</span>
     </nav>
 
-    <div class="text-3xl mb-2" aria-hidden="true">🔄</div>
-    <h1 class="text-3xl font-extrabold tracking-tight mb-2">Rebirth Calculator</h1>
+    <div class="text-3xl mb-2" aria-hidden="true">馃攧</div>
+    <h1 class="text-3xl font-extrabold tracking-tight mb-2">+1 Muscle to Arm Wrestle Rebirth Calculator</h1>
     <p class="text-gray-500 mb-8">Should you rebirth now or wait? Calculate the optimal rebirth timing with break-even analysis.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Inputs -->
       <div class="space-y-6">
         <div>
-          <label class="block font-bold mb-2" for="rebirth-level">🔄 Current Rebirth Level</label>
+          <label class="block font-bold mb-2" for="rebirth-level">馃攧 Current Rebirth Level</label>
           <select id="rebirth-level" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             {rebirthTiers.map(t => (
               <option value={t.level} data:mult={t.muscleMultiplier} data:winMult={t.winMultiplier} data:cost={t.muscleCost}>
-                Rebirth {t.level} — {t.muscleMultiplier}x Muscle, {t.winMultiplier}x Wins (Cost: {t.muscleCost})
+                Rebirth {t.level} -{t.muscleMultiplier}x Muscle, {t.winMultiplier}x Wins (Cost: {t.muscleCost})
               </option>
             ))}
           </select>
         </div>
         <div>
-          <label class="block font-bold mb-2" for="current-muscle">💪 Current Muscle</label>
+          <label class="block font-bold mb-2" for="current-muscle">馃挭 Current Muscle</label>
           <input id="current-muscle" type="number" min="0" value="1000000" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none" />
         </div>
         <div>
-          <label class="block font-bold mb-2" for="dumbbell-select">🏋️ Current Dumbbell</label>
+          <label class="block font-bold mb-2" for="dumbbell-select">馃弸锔?Current Dumbbell</label>
           <select id="dumbbell-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             {dumbbells.map(d => (
               <option value={d.id} data:musclePerStep={d.musclePerStep}>
-                {d.name} — {d.musclePerStep} muscle/step
+                {d.name} -{d.musclePerStep} muscle/step
               </option>
             ))}
           </select>
         </div>
         <div>
-          <label class="block font-bold mb-2" for="pet-select">🐾 Current Pet</label>
+          <label class="block font-bold mb-2" for="pet-select">馃惥 Current Pet</label>
           <select id="pet-select" class="w-full p-3 rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:ring-2 focus:ring-amber-400 outline-none">
             <option value="" data:bonus="1">No Pet (1x)</option>
             {pets.map(p => (
               <option value={p.id} data:bonus={p.muscleBonus}>
-                {p.name} ({p.rarity}) — {p.muscleBonus}x
+                {p.name} ({p.rarity}) -{p.muscleBonus}x
               </option>
             ))}
           </select>
@@ -82,28 +82,28 @@ const videoGameSchema = generateVideoGameSchema();
         <div id="results-panel" class="hidden space-y-4">
           <div class="p-6 rounded-xl bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border text-center">
             <div class="text-sm text-gray-500 mb-1">Recommendation</div>
-            <div id="verdict" class="text-3xl font-black">—</div>
+            <div id="verdict" class="text-3xl font-black">-</div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Next Rebirth Mult</div>
-              <div id="next-mult-result" class="text-xl font-bold">—</div>
+              <div id="next-mult-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Break-Even Muscle</div>
-              <div id="breakeven-result" class="text-xl font-bold">—</div>
+              <div id="breakeven-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">Current Muscle/Step</div>
-              <div id="current-mps-result" class="text-xl font-bold">—</div>
+              <div id="current-mps-result" class="text-xl font-bold">-</div>
             </div>
             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border text-center">
               <div class="text-xs text-gray-500">After Rebirth Muscle/Step</div>
-              <div id="new-mps-result" class="text-xl font-bold">—</div>
+              <div id="new-mps-result" class="text-xl font-bold">-</div>
             </div>
           </div>
           <div id="detail-box" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <h3 class="font-bold mb-1">📋 Break-Even Analysis</h3>
+            <h3 class="font-bold mb-1">馃搵 Break-Even Analysis</h3>
             <p id="detail-text" class="text-sm text-gray-600 dark:text-gray-300"></p>
           </div>
         </div>
@@ -140,7 +140,7 @@ const videoGameSchema = generateVideoGameSchema();
           <div class="space-y-3">
             <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
               <summary class="font-semibold">When should I rebirth in +1 Muscle to Arm Wrestle?</summary>
-              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">You should rebirth when your current muscle exceeds the break-even threshold — the point where the multiplier gain from rebirth offsets the muscle you lose. This calculator helps you find that exact point.</p>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">You should rebirth when your current muscle exceeds the break-even threshold -the point where the multiplier gain from rebirth offsets the muscle you lose. This calculator helps you find that exact point.</p>
             </details>
             <details class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border cursor-pointer">
               <summary class="font-semibold">What do rebirth multipliers do?</summary>
@@ -159,9 +159,9 @@ const videoGameSchema = generateVideoGameSchema();
     <div class="mt-12 pt-8 border-t">
       <h3 class="font-bold mb-4">Useful Links</h3>
       <div class="flex flex-wrap gap-3">
-        <a href="/calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">🧮 Muscle Calculator</a>
-        <a href="/beginner-guide/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📖 Beginner Guide</a>
-        <a href="/tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">📊 Tier List</a>
+        <a href="/muscle-calculator/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃М Muscle Calculator</a>
+        <a href="/beginner-guide/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃摉 Beginner Guide</a>
+        <a href="/pet-tier-list/" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-amber-900/30 font-medium text-sm transition-colors">馃搳 Tier List</a>
       </div>
     </div>
 
@@ -227,11 +227,11 @@ const videoGameSchema = generateVideoGameSchema();
         verdictEl.className = 'text-3xl font-black text-gray-500';
         detailEl.textContent = 'You are at the maximum rebirth level. No further rebirths available!';
       } else if (muscle > breakEvenMuscle && multRatio > 1) {
-        verdictEl.textContent = '✅ REBIRTH NOW';
+        verdictEl.textContent = '鉁?REBIRTH NOW';
         verdictEl.className = 'text-3xl font-black text-green-500';
         detailEl.textContent = `Your muscle (${formatNumber(muscle)}) exceeds the break-even threshold (${formatNumber(Math.round(breakEvenMuscle))}). Rebirth to Rebirth ${nextTier.level} for ${nextMult}x muscle multiplier (up from ${currentMult}x). Your new muscle/step will be ${formatNumber(newMPS)} instead of ${formatNumber(currentMPS)}.`;
       } else {
-        verdictEl.textContent = '⏳ WAIT';
+        verdictEl.textContent = '鈴?WAIT';
         verdictEl.className = 'text-3xl font-black text-amber-500';
         detailEl.textContent = `You need ${formatNumber(Math.round(breakEvenMuscle))} muscle to break even on this rebirth. Currently at ${formatNumber(muscle)}. Keep building muscle before rebirthing to Rebirth ${nextTier.level}.`;
       }

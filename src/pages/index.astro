@@ -8,64 +8,68 @@ const activeCodes = getActiveCodes();
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }]);
 const videoGameSchema = generateVideoGameSchema();
 const faqSchema = generateFAQSchema([
-  { question: `What is ${config.game.name}?`, answer: `It's a Roblox strength simulator where you walk to gain muscle, arm wrestle opponents, collect pets, and rebirth. Developed by ${config.game.developer}.` },
-  { question: 'How do I get free codes?', answer: 'Open the Shop, scroll to bottom, enter codes in Community Code section.' },
-  { question: 'How many worlds are there?', answer: '4 worlds: Starter Gym, Fantasy World, The Rock Zone, and Cyber City.' },
-  { question: 'What is the best pet?', answer: 'Huge Hydra Dominus (Gamepass) is strongest. Among free pets, "67" has x50 muscle multiplier.' },
+  { question: `What is ${config.game.name}?`, answer: `It is a Roblox strength simulator where you walk to gain muscle, arm wrestle opponents, collect pets, and rebirth. Developed by ${config.game.developer}.` },
+  { question: 'What tools should I use first?', answer: 'Start with the rebirth calculator, wins calculator, dumbbell calculator, and pet tier list. These pages match the highest-value search intent for progression.' },
+  { question: 'How do I get free codes?', answer: 'Open the Shop, scroll to the bottom, and enter codes in the Community Code section.' },
+  { question: 'What is the best pet?', answer: 'Huge Hydra Dominus is the strongest Gamepass pet. Among free pets, "67" has a strong x50 muscle multiplier.' },
 ]);
 
 const QUICK_LINKS = [
-  { href: '/codes/', title: 'Codes', desc: 'All active promo codes with free rewards', emoji: '🎫' },
-  { href: '/calculator/', title: 'Muscle Calculator', desc: 'Calculate your muscle gain per step', emoji: '🧮' },
-  { href: '/wins-calculator/', title: 'Wins Calculator', desc: 'Calculate wins needed and best opponents', emoji: '⚔️' },
-  { href: '/rebirth-calculator/', title: 'Rebirth Calculator', desc: 'Find the optimal rebirth timing', emoji: '🔄' },
-  { href: '/dumbbell-calculator/', title: 'Dumbbell Calculator', desc: 'Compare dumbbell upgrade value', emoji: '🏋️' },
-  { href: '/egg-calculator/', title: 'Egg Calculator', desc: 'Calculate hatch probabilities', emoji: '🥚' },
-  { href: '/pet-calculator/', title: 'Pet Calculator', desc: 'Compare pet multipliers side by side', emoji: '🐾' },
-  { href: '/tier-list/', title: 'Pet Tier List', desc: 'Best pets ranked from S to D tier', emoji: '🏆' },
-  { href: '/pet-tier-list/', title: 'Pet Rankings', desc: 'Detailed pet tier breakdown', emoji: '📊' },
-  { href: '/best-pets/', title: 'Best Pets', desc: 'Top pets for early, mid, and late game', emoji: '⭐' },
-  { href: '/beginner-guide/', title: 'Beginner Guide', desc: 'Complete walkthrough for new players', emoji: '📖' },
-  { href: '/how-to-get-wins-fast/', title: 'Get Wins Fast', desc: 'Best strategies to earn wins quickly', emoji: '⚡' },
-  { href: '/how-to-get-muscle-fast/', title: 'Get Muscle Fast', desc: 'Fastest muscle gain strategies', emoji: '💪' },
-  { href: '/rebirth-guide/', title: 'Rebirth Guide', desc: 'When to rebirth and when to wait', emoji: '🔁' },
-  { href: '/eggs/', title: 'Eggs Guide', desc: 'All egg types and hatch recommendations', emoji: '🥚' },
-  { href: '/dumbbells/', title: 'Dumbbells Guide', desc: 'All tiers, costs, and upgrade order', emoji: '🏋️' },
-  { href: '/wiki/', title: 'Wiki', desc: 'All worlds, opponents, and items', emoji: '📚' },
-  { href: '/updates/', title: 'Updates', desc: 'Latest patch notes and changes', emoji: '🆕' },
-  { href: '/faq/', title: 'FAQ', desc: 'Common questions answered', emoji: '❓' },
+  { href: '/rebirth-calculator/', title: 'Rebirth Calculator', desc: 'Find the optimal rebirth timing', badge: 'R' },
+  { href: '/wins-calculator/', title: 'Wins Calculator', desc: 'Calculate wins needed and best opponents', badge: 'W' },
+  { href: '/dumbbell-calculator/', title: 'Dumbbell Calculator', desc: 'Compare dumbbell upgrade value', badge: 'D' },
+  { href: '/pet-tier-list/', title: 'Pet Tier List', desc: 'Best pets ranked from S to D tier', badge: 'P' },
+  { href: '/muscle-calculator/', title: 'Muscle Calculator', desc: 'Calculate your muscle gain per step', badge: 'M' },
+  { href: '/pet-calculator/', title: 'Pet Calculator', desc: 'Compare pet multipliers side by side', badge: 'P' },
+  { href: '/codes/', title: 'Codes', desc: `All active promo codes (${activeCodes.length} active)`, badge: 'C' },
+  { href: '/egg-calculator/', title: 'Egg Calculator', desc: 'Calculate hatch probabilities', badge: 'E' },
+  { href: '/best-pets/', title: 'Best Pets', desc: 'Top pets for early, mid, and late game', badge: 'B' },
+  { href: '/beginner-guide/', title: 'Beginner Guide', desc: 'Complete walkthrough for new players', badge: 'G' },
+  { href: '/how-to-get-wins-fast/', title: 'Get Wins Fast', desc: 'Best strategies to earn wins quickly', badge: 'W' },
+  { href: '/how-to-get-muscle-fast/', title: 'Get Muscle Fast', desc: 'Fastest muscle gain strategies', badge: 'M' },
+  { href: '/rebirth-guide/', title: 'Rebirth Guide', desc: 'When to rebirth and when to wait', badge: 'R' },
+  { href: '/eggs/', title: 'Eggs Guide', desc: 'All egg types and hatch recommendations', badge: 'E' },
+  { href: '/dumbbells/', title: 'Dumbbells Guide', desc: 'All tiers, costs, and upgrade order', badge: 'D' },
+  { href: '/wiki/', title: 'Wiki', desc: 'All worlds, opponents, and items', badge: 'W' },
+  { href: '/updates/', title: 'Updates', desc: 'Latest patch notes and changes', badge: 'U' },
+  { href: '/faq/', title: 'FAQ', desc: 'Common questions answered', badge: '?' },
 ];
 ---
-<BaseLayout title="+1 Muscle to Arm Wrestle Codes & Calculators" canonical="/">
+<BaseLayout
+  title="+1 Muscle to Arm Wrestle Tools - Rebirth, Wins & Pet Calculators"
+  description="Use +1 Muscle to Arm Wrestle tools for rebirth timing, wins farming, dumbbell upgrades, pet multipliers, codes, and beginner progression."
+  canonical="/"
+>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(videoGameSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <!-- Hero -->
   <section class="relative bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-16 px-4">
     <div class="max-w-5xl mx-auto text-center">
-      <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-4">+1 Muscle to Arm Wrestle Guide & Tools</h1>
+      <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-4">+1 Muscle to Arm Wrestle Tools</h1>
       <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
-        The ultimate companion — codes, muscle calculator, pet tier list, and beginner guide. Updated {config.game.updateSchedule.toLowerCase()}.
+        Plan rebirth timing, wins farming, dumbbell upgrades, pet multipliers, and codes for faster progression. Updated {config.game.updateSchedule.toLowerCase()}.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/codes/" class="inline-flex items-center px-6 py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors">
-          🎫 Get Free Codes ({activeCodes.length} Active)
+        <a href="/rebirth-calculator/" class="inline-flex items-center px-6 py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors">
+          Rebirth Calculator
         </a>
-        <a href="/calculator/" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
-          🧮 Muscle Calculator
+        <a href="/wins-calculator/" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
+          Wins Calculator
+        </a>
+        <a href="/pet-tier-list/" class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-700 transition-colors">
+          Pet Tier List
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Quick Links -->
   <section class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-2xl font-bold mb-6">Tools & Guides</h2>
+    <h2 class="text-2xl font-bold mb-6">Progression Tools</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
       {QUICK_LINKS.map(link => (
         <a href={link.href} class="card-hover block p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-          <div class="text-xl mb-1">{link.emoji}</div>
+          <div class="w-8 h-8 mb-2 rounded-lg bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 flex items-center justify-center text-sm font-black">{link.badge}</div>
           <div class="font-bold text-sm">{link.title}</div>
           <div class="text-xs text-gray-500">{link.desc}</div>
         </a>
@@ -73,40 +77,31 @@ const QUICK_LINKS = [
     </div>
   </section>
 
-  <!-- What is -->
   <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
     <h2 class="text-2xl font-bold mb-4">What is {config.game.name}?</h2>
     <div class="prose prose-sm dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 space-y-3">
-      <p>{config.game.name} is a popular Roblox strength simulator developed by {config.game.developer}. In the game, you walk to gain muscle, arm wrestle opponents to earn Wins, collect and hatch pets for powerful multipliers, and rebirth to unlock permanent bonuses and new worlds.</p>
-      <p>With over {config.stats.visits} visits and {config.stats.favorites} favorites, it's one of the fastest-growing strength games on Roblox. The game currently features 4 worlds — Starter Gym, Fantasy World, The Rock Zone, and Cyber City — each with progressively stronger opponents and better rewards.</p>
+      <p>{config.game.name} is a Roblox strength simulator developed by {config.game.developer}. You walk to gain muscle, arm wrestle opponents to earn Wins, collect pets for multipliers, and rebirth to unlock permanent bonuses and new worlds.</p>
+      <p>Use the calculators on this site to decide when to rebirth, which opponent to farm for Wins, which dumbbell upgrade gives the best value, and which pets are worth equipping.</p>
     </div>
   </section>
 
-  <!-- How to Play -->
   <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
-    <h2 class="text-2xl font-bold mb-6">How to Play</h2>
+    <h2 class="text-2xl font-bold mb-6">Best Tools to Use First</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
-        { step: '1', title: 'Walk & Gain Muscle', desc: 'Every step gives +1 Muscle. Equip better dumbbells to multiply your gains.' },
-        { step: '2', title: 'Arm Wrestle', desc: 'Challenge opponents to earn Wins. Stronger opponents give bigger rewards.' },
-        { step: '3', title: 'Upgrade & Collect', desc: 'Buy better dumbbells, hatch eggs for pets, use boosts for multipliers.' },
-        { step: '4', title: 'Rebirth & Conquer', desc: 'Rebirth for permanent multipliers and unlock new worlds.' },
+        { title: 'Rebirth Calculator', href: '/rebirth-calculator/', desc: 'Check whether rebirthing now is worth the reset.' },
+        { title: 'Wins Calculator', href: '/wins-calculator/', desc: 'Estimate matches needed and choose efficient opponents.' },
+        { title: 'Dumbbell Calculator', href: '/dumbbell-calculator/', desc: 'Compare upgrade value before spending Wins.' },
+        { title: 'Pet Tier List', href: '/pet-tier-list/', desc: 'Find the pets with the best progression value.' },
       ].map(item => (
-        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
-          <div class="text-3xl font-black text-amber-500 mb-2">{item.step}</div>
+        <a href={item.href} class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900 card-hover">
           <h3 class="font-bold mb-1">{item.title}</h3>
           <p class="text-sm text-gray-500">{item.desc}</p>
-        </div>
+        </a>
       ))}
-    </div>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a href="/how-to-get-wins-fast/" class="text-sm font-semibold text-blue-600 hover:underline">How to Get Wins Fast →</a>
-      <a href="/how-to-get-muscle-fast/" class="text-sm font-semibold text-blue-600 hover:underline">How to Get Muscle Fast →</a>
-      <a href="/rebirth-guide/" class="text-sm font-semibold text-blue-600 hover:underline">Rebirth Guide →</a>
     </div>
   </section>
 
-  <!-- Game Stats -->
   <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
     <h2 class="text-2xl font-bold mb-6">Game Stats</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -125,30 +120,29 @@ const QUICK_LINKS = [
     <div class="mt-6 text-center">
       <a href={`https://www.roblox.com/games/${config.game.robloxId}`} target="_blank" rel="noopener noreferrer"
         class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors">
-        ▶ Play on Roblox
+        Play on Roblox
       </a>
     </div>
   </section>
 
-  <!-- FAQ Preview -->
   <section class="max-w-3xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
     <h2 class="text-2xl font-bold mb-6 text-center">FAQ</h2>
     <div class="space-y-4">
       <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
         <h3 class="font-bold mb-1">What is {config.game.name}?</h3>
-        <p class="text-sm text-gray-500">A Roblox strength simulator where you walk to gain muscle, arm wrestle opponents, collect pets, and rebirth. Developed by {config.game.developer}.</p>
+        <p class="text-sm text-gray-500">A Roblox strength simulator where you walk to gain muscle, arm wrestle opponents, collect pets, and rebirth.</p>
       </div>
       <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
-        <h3 class="font-bold mb-1">How do I redeem codes?</h3>
-        <p class="text-sm text-gray-500">Open the Shop, scroll to bottom, enter codes in Community Code section. See all <a href="/codes/" class="text-blue-600 hover:underline">working codes here</a>.</p>
+        <h3 class="font-bold mb-1">Which tool should I use first?</h3>
+        <p class="text-sm text-gray-500">Start with the <a href="/rebirth-calculator/" class="text-blue-600 hover:underline">rebirth calculator</a>, then use the <a href="/wins-calculator/" class="text-blue-600 hover:underline">wins calculator</a> and <a href="/dumbbell-calculator/" class="text-blue-600 hover:underline">dumbbell calculator</a>.</p>
       </div>
       <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
         <h3 class="font-bold mb-1">What is the best pet?</h3>
-        <p class="text-sm text-gray-500">Huge Hydra Dominus (Gamepass) is strongest. Among free pets, "67" has x50 muscle multiplier. See the full <a href="/tier-list/" class="text-blue-600 hover:underline">tier list</a>.</p>
+        <p class="text-sm text-gray-500">Huge Hydra Dominus is the strongest Gamepass pet. Among free pets, "67" has a strong x50 muscle multiplier. See the full <a href="/pet-tier-list/" class="text-blue-600 hover:underline">pet tier list</a>.</p>
       </div>
     </div>
     <div class="mt-4 text-center">
-      <a href="/faq/" class="text-sm font-semibold text-blue-600 hover:underline">See all FAQ →</a>
+      <a href="/faq/" class="text-sm font-semibold text-blue-600 hover:underline">See all FAQ</a>
     </div>
   </section>
 </BaseLayout>
