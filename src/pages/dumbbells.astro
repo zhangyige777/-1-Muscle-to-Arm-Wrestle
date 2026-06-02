@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getDumbbells, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -97,6 +98,8 @@ const faqSchema = generateFAQSchema([
         </table>
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- Upgrade Priority -->
     <section class="mb-10">

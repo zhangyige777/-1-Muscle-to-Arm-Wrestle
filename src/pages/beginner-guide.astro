@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { generateSEOMetadata } from '../lib/data';
 ---
 <BaseLayout title="+1 Muscle to Arm Wrestle Beginner Guide" description="Complete walkthrough: how to gain muscle, arm wrestle, upgrade dumbbells, collect pets, and rebirth." canonical="/beginner-guide/">
@@ -29,6 +30,7 @@ import { generateSEOMetadata } from '../lib/data';
           <ul class="list-disc pl-5"><li>Iron (100 Wins, 2x)</li><li>Steel (1K, 5x)</li><li>Golden (10K, 12x)</li><li>Up to Universal (1T Wins, 5000x)</li></ul>
         </div>
       </section>
+      <AdSlot />
       <section>
         <h2 class="text-xl font-bold mb-3 flex items-center gap-2"><span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span> Pet System</h2>
         <div class="pl-10 text-sm text-gray-600 dark:text-gray-400 space-y-1">

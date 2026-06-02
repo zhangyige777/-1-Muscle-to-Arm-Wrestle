@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getRebirthTiers, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -67,6 +68,8 @@ const faqSchema = generateFAQSchema([
         </ul>
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- Rebirth Tier Table -->
     <section class="mb-10">

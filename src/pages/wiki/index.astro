@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getWorlds, formatNumber, generateBreadcrumbSchema } from '@/lib/data';
 const worlds = getWorlds();
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Wiki', url: '/wiki' }]);
@@ -35,6 +36,7 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
         </div>
       </section>
     ))}
+    <AdSlot />
     <div class="mt-6 flex flex-wrap gap-3">
       <a href="/muscle-calculator/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃М Calculator</a>
       <a href="/beginner-guide/" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold text-sm hover:bg-green-700">馃摉 Guide</a>

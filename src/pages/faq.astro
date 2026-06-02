@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -118,6 +119,8 @@ const faqSchema = generateFAQSchema(faqItems.map(f => ({ question: f.question, a
         </div>
       ))}
     </section>
+
+    <AdSlot />
 
     <!-- Related Links -->
     <section class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 mb-6">

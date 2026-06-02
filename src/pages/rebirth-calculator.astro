@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getRebirthTiers, getDumbbells, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema, generateVideoGameSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -154,6 +155,8 @@ const videoGameSchema = generateVideoGameSchema();
         </div>
       </div>
     </div>
+
+    <AdSlot />
 
     <!-- Related Links -->
     <div class="mt-12 pt-8 border-t">

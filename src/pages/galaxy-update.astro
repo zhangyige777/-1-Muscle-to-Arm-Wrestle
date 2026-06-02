@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getPets, getDumbbells, getWorlds, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -126,6 +127,8 @@ const faqSchema = generateFAQSchema([
         </table>
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- New Pets -->
     <section class="mb-10">

@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getPets, generateBreadcrumbSchema, generateFAQSchema, formatNumber } from '@/lib/data';
 
 const config = getGameConfig();
@@ -143,6 +144,8 @@ const lastUpdated = config.game.lastUpdated;
         </section>
       );
     })}
+
+    <AdSlot />
 
     <!-- FAQ Section -->
     <section class="mb-10 p-6 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">

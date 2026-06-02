@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getWorlds, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -114,6 +115,8 @@ function getDifficultyColor(difficulty: string) {
         ))}
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- Boost Usage Tips -->
     <section class="mb-10">

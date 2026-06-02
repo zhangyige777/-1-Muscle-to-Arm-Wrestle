@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getWorlds, getWorldBySlug, formatNumber, generateBreadcrumbSchema } from '@/lib/data';
 import type { GetStaticPaths } from 'astro';
 export const getStaticPaths: GetStaticPaths = () => getWorlds().map(w => ({ params: { slug: w.slug }, props: { world: w } }));
@@ -35,6 +36,7 @@ const DIFF_COLORS: Record<string,string> = { Easy:'bg-green-100 text-green-700',
         </div>
       ))}
     </div>
+    <AdSlot />
     <div class="mt-8 flex flex-wrap gap-3">
       <a href="/wiki/" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700">馃摎 All Worlds</a>
       <a href="/muscle-calculator/" class="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold text-sm hover:bg-amber-600">馃М Calculator</a>

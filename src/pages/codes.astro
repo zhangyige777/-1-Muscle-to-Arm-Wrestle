@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getActiveCodes, getExpiredCodes, getGameConfig, generateBreadcrumbSchema, generateFAQSchema, getCurrentDateString } from '@/lib/data';
 
 const config = getGameConfig();
@@ -47,6 +48,8 @@ const faqSchema = generateFAQSchema([
         ))}
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- How to Redeem -->
     <section class="mb-10 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">

@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -68,6 +69,8 @@ const faqSchema = generateFAQSchema([
         </div>
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- How to Get Boosts -->
     <section class="mb-10">

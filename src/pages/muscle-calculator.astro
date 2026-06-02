@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import CalculatorClient from '@/components/CalculatorClient';
 import { getGameConfig, getPets, getDumbbells, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
@@ -46,6 +47,8 @@ const faqSchema = generateFAQSchema([
 
     <!-- Calculator Component -->
     <CalculatorClient client:load dumbbells={dumbbells} pets={pets} />
+
+    <AdSlot />
 
     <!-- How Muscle Calculation Works -->
     <section class="mt-10 mb-10">

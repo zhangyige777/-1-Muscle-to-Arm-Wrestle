@@ -50,7 +50,7 @@ if (canonicalURL.pathname !== '/' && !canonicalURL.pathname.endsWith('/')) {
     gtag('config', 'G-6DXJC8Z3BV');
   </script>
 
-  <!-- Ad: Popunder (site-wide) -->
+  <!-- Ad: Social Bar (site-wide) -->
   <script is:inline src="https://tolerateshyrenamed.com/dc/24/34/dc2434f3d289282de7fbbd4903ce1d57.js"></script>
 </head>
 <body class="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans antialiased overflow-x-hidden">
@@ -66,22 +66,8 @@ if (canonicalURL.pathname !== '/' && !canonicalURL.pathname.endsWith('/')) {
     <slot />
   </main>
 
-  <!-- Ad: Rectangle 300x250 (above bottom banner) -->
-  <div class="flex justify-center my-4 px-4">
-    <script is:inline>
-      atOptions = {
-        'key' : '2e08bdf5af33c435e8a3bfa44bb00dc6',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script is:inline src="https://tolerateshyrenamed.com/2e08bdf5af33c435e8a3bfa44bb00dc6/invoke.js"></script>
-  </div>
-
-  <!-- Ad: Bottom Banner 728x90 -->
-  <div class="flex justify-center my-4 px-4">
+  <!-- Ad: Bottom Banner 728x90 (desktop only) -->
+  <div class="hidden md:flex justify-center my-4 px-4">
     <script is:inline>
       atOptions = {
         'key' : '62d5f020588b6f094368f4136e32216f',
@@ -94,8 +80,8 @@ if (canonicalURL.pathname !== '/' && !canonicalURL.pathname.endsWith('/')) {
     <script is:inline src="https://tolerateshyrenamed.com/62d5f020588b6f094368f4136e32216f/invoke.js"></script>
   </div>
 
-  <!-- Ad: Mobile Banner 320x50 -->
-  <div class="flex justify-center my-2 px-4">
+  <!-- Ad: Mobile Banner 320x50 (mobile only) -->
+  <div class="flex md:hidden justify-center my-2 px-4">
     <script is:inline>
       atOptions = {
         'key' : 'f2579615744c7d2a247aed03d2944b03',

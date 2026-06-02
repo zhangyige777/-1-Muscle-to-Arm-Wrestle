@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -117,6 +118,8 @@ function getRarityColor(rarity: string) {
         ))}
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- Late Game / Ultimate -->
     <section class="mb-10">

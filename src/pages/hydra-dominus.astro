@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -90,6 +91,8 @@ const faqSchema = generateFAQSchema([
         </p>
       </div>
     </section>
+
+    <AdSlot />
 
     <!-- Stat Comparison -->
     <section class="mb-10">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getActiveCodes, generateBreadcrumbSchema, generateVideoGameSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -84,6 +85,8 @@ const QUICK_LINKS = [
       <p>Use the calculators on this site to decide when to rebirth, which opponent to farm for Wins, which dumbbell upgrade gives the best value, and which pets are worth equipping.</p>
     </div>
   </section>
+
+  <AdSlot />
 
   <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
     <h2 class="text-2xl font-bold mb-6">Best Tools to Use First</h2>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { generateBreadcrumbSchema } from '@/lib/data';
 const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Updates', url: '/updates' }]);
 const UPDATES = [
@@ -55,6 +56,7 @@ const UPDATES = [
         </tbody>
       </table>
     </section>
+    <AdSlot />
     <div class="space-y-6">
       {UPDATES.map((u, i) => (
         <div class="p-5 rounded-xl border border-gray-200 dark:border-gray-800">

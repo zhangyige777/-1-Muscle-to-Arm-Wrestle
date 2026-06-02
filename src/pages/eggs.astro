@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdSlot from '@/components/AdSlot.astro';
 import { getGameConfig, getPets, formatNumber, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/data';
 
 const config = getGameConfig();
@@ -107,6 +108,8 @@ const faqSchema = generateFAQSchema([
         </div>
       </section>
     ))}
+
+    <AdSlot />
 
     <!-- Egg Strategy -->
     <section class="mb-10 p-6 rounded-xl bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900">
