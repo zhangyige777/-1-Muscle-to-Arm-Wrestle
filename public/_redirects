@@ -1,0 +1,5 @@
+/calculator/ /muscle-calculator/ 301
+/calculator /muscle-calculator/ 301
+/tier-list/ /pet-tier-list/ 301
+/tier-list /pet-tier-list/ 301
+/tier-list/* /pet-tier-list/ 301
